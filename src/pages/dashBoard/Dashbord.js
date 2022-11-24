@@ -16,7 +16,7 @@ const Dashbord = () => {
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             <li>
               <Link to="/categories"> Categories </Link>
-              <Link to="/dashboard/totalUser"> All User</Link>
+              <Link to="/addproducts"> Add Products</Link>
                   <Link to="/dashboard/adddoctor"> Add Doctors </Link>
                   <Link to="/dashboard/manageDoctors"> Manage Doctors </Link>
             </li>

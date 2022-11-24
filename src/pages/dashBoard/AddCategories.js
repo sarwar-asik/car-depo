@@ -7,18 +7,31 @@ const AddCategories = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
       } = useForm();
 
       const addCategories = (event) => {
-        toast('add')
+        // toast('add')
         const categories={
             name:event.name,
             img:event.img,
             options:event.options,
         }
         console.log(categories);
-
+        fetch(`http://localhost:3008/category`,{
+            method:'POST',
+            headers:{
+                'content-type':"application/json"
+            },
+            body:JSON.stringify(categories)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            toast.success('added microbus')
+            reset()
+        })
        
       };
     

@@ -8,7 +8,9 @@ const Main = () => {
         <div>
             <Header></Header>
             <Outlet/>
-            <Footer></Footer>
+          <div className="w-full mx-auto">
+          {/* <Footer></Footer> */}
+          </div>
         </div>
     );
 };
