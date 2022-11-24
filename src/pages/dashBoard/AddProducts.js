@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../firebase/AuthProvider";
 
 const AddProducts = () => {
+    const {user}= useContext(AuthContext)
+    console.log(user);
   const {
     register,
     handleSubmit,
@@ -15,18 +18,21 @@ const AddProducts = () => {
     const name = data.name;
     const img = data.img;
     const price = data.reselPrice;
-    const dis = 3999;
-    const discount = (price - dis);
+    const discount = 388;
+    
     const location = data.location;
     const mobile = data.mobile;
     const used = data.usedTime;
     const category = data.category;
+    const descriptions = data.descriptions
 
     const products = {
       name,
       category,
       img,
+      seller:user.displayName,
       price,
+      descriptions,
       discount,
       location,
       mobile,
@@ -45,6 +51,7 @@ const AddProducts = () => {
       .then((data) => {
         console.log(data);
         toast.success("Added products");
+        reset()
       });
 
     console.log(products);
