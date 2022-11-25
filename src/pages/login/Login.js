@@ -8,61 +8,51 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import app from "../../firebase/Firebase.config";
 
 const Login = () => {
+  const auth = getAuth(app);
+  const { googleSignIn, user, login, gitSignIn } = useContext(AuthContext);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
+  const [error, setError] = useState("");
+  const [show, setShow] = useState(true);
+  const handleShow = () => {
+    setShow(!show);
+  };
 
-    const auth = getAuth(app)
-   const {googleSignIn,user,login}=useContext(AuthContext)
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const from = location.state?.from?.pathname || "/";
 
-   
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm();
-  
-    const [error,setError] =useState('')
-    const [show, setShow] = useState(true);
-    const handleShow = () => {
-      setShow(!show);
-    };
-  
-    const location = useLocation();
-    const navigate = useNavigate();
-  
-    const from = location.state?.from?.pathname || "/";
-
-
-
-    const submitLogin = (data) => {
-     
-
-        const email = data.email;
-        const password = data.password;
-        const usertype = data.user;
-        const user = { email, password,usertype };
-        // console.log(user);
-        login(email,password)
-        .then(result =>{
-          toast('success login ')
-          setError('')
-          return navigate(from, { replace: true });
-          // console.log(result.user);
-        })
-        .catch(err=>{
-            setError(err.message)
-            console.log(err);
-        })
-       setError('')
-      };
+  const submitLogin = (data) => {
+    const email = data.email;
+    const password = data.password;
+    const usertype = data.user;
+    const user = { email, password, usertype };
+    // console.log(user);
+    login(email, password)
+      .then((result) => {
+        toast("success login ");
+        setError("");
+        return navigate(from, { replace: true });
+        // console.log(result.user);
+      })
+      .catch((err) => {
+        setError(err.message);
+        console.log(err);
+      });
+    setError("")
+  };
   return (
     <div className="max-w-md mx-auto my-5 rounded">
       <h1 className="text-3xl my-3 text-center"> Log In please </h1>
       <form onSubmit={handleSubmit(submitLogin)} className="">
         {/* <Header /> */}
 
-       
         <div className="form-control w-full ">
           <label className="label">
             <span className="label-text-alt">Your Email</span>
@@ -136,20 +126,14 @@ const Login = () => {
         />
       </form>
       <p>
-   
         Create an Account ?
         <Link to="/signup" className="text-primary">
-      
           Please Sign up
         </Link>
       </p>
       <div className="divider">OR</div>
-      <button
-        onClick={googleSignIn}
-        className="btn btn-outline w-full text-lg "
-      >
-        
-        Continue With Google
+      <button onClick={gitSignIn} className="btn btn-outline w-full text-lg ">
+        Continue With GitHub
       </button>
     </div>
   );

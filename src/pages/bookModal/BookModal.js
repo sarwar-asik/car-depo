@@ -19,7 +19,7 @@ const BookModal = ({ productInfo, setModal }) => {
     const number = form.number.value;
     const location = form.location.value;
 
-    const booking = { name, email, product, price, number, location,img:productInfo?.img };
+    const booking = { name, email, product, price, number, location,img:productInfo?.img,seller:productInfo?.email };
 
     console.log(booking);
 
@@ -72,7 +72,7 @@ const BookModal = ({ productInfo, setModal }) => {
               defaultValue={user?.displayName}
             />
             <input
-              type="text "
+              type="email"
               name="email"
               defaultValue={user?.email}
               className="input w-full"

@@ -18,9 +18,13 @@ const Header = () => {
               Log Out{" "}
             </Link>
           </li>
+         
           
           <li tabIndex={2} htmlFor="dashboard-drawer">
         <Link to="/dashboard">Dashboard</Link>
+      </li>
+      <li className="bg-slate-300 rounded-full  ">
+            <Link to='/profile'> Profile</Link>
       </li>
         </>
       ) : (
@@ -72,7 +76,7 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-center lg:hidden ">
-          <a className="btn btn-ghost normal-case text-xl ">Used Cars Depot</a>
+          <a className="btn btn-ghost normal-case text-xl">Used Cars Depot</a>
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">

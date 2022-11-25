@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -66,11 +67,27 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+const gitProvider = new GithubAuthProvider()
+
+const gitSignIn = ()=>{
+   signInWithPopup(auth,gitProvider)
+      .then(result =>{
+       toast('success github logIn')
+       console.log(result.user);
+      })
+      .catch(err=>console.log(err))
+}
+
+
+
+
+
   const authInfo = {
     name: "zinku",
     createUser,
     login,
     user,
+    gitSignIn,
     googleSignIn,
     logout,
   };

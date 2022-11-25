@@ -26,7 +26,7 @@ const SellerProducts = () => {
             <tr>
               <th>No</th>
               <th>Name</th>
-              <th>Image</th>
+              <th>Status</th>
               <th>Price</th>
               <th>Pay</th>
             </tr>
@@ -38,17 +38,13 @@ const SellerProducts = () => {
                 <th>{index+1}</th>
                 <td>{product.name}</td>
                 <td>
-                    <figure>
-                    <img className="mask mask-circle max-w-[80px] h-[100px]" 
-                    src={product?.img} 
-                    alt="image" />
-                    </figure>
+                  sold
                 </td>
                <td>
                {product.price}
                </td>
                 <td>
-                    <button className="btn btn-outline"> Pay </button>
+                    <button className="btn btn-error btn-outline">Delete </button>
                 </td>
               </tr>
             })
