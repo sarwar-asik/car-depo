@@ -6,6 +6,7 @@ const Products = () => {
   const products = useLoaderData();
   // console.log(products);
   const [productInfo, setproducts] = useState({});
+  const [isModal ,setModal] = useState(true)
 
   const productData = (data) => {
     setproducts(data);
@@ -62,7 +63,10 @@ const Products = () => {
           );
         })}
       </div>
-      <BookModal productInfo={productInfo}/>
+    {
+      isModal&&
+      <BookModal  productInfo={productInfo} setModal={setModal}/>
+    }
     </div>
   );
 };

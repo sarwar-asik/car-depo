@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { card } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthProvider";
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
   const MenuItem = (
     <React.Fragment>
       <li>
-      <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/signup">Sign In</Link>
-      </li>
-      <li tabIndex={2} htmlFor="dashboard-drawer">
+      {user?.email ? (
+        <>
+          <li>
+            <Link className="btn btn-outline btn-error" onClick={logout} to="/login">
+              Log Out{" "}
+            </Link>
+          </li>
+          <li tabIndex={2} htmlFor="dashboard-drawer">
         <Link to="/dashboard">Dashboard</Link>
       </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign In</Link>
+          </li>
+        </>
+      )}
+      
     </React.Fragment>
   );
   return (
@@ -45,9 +61,12 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {MenuItem}
-              <label htmlFor="dashboard-drawer" className="btn btn-ghost lg:hidden">
-              <Link> Dashboard</Link>
-            {/* <svg
+              <label
+                htmlFor="dashboard-drawer"
+                className="btn btn-ghost lg:hidden"
+              >
+                <Link> Dashboard</Link>
+                {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               fill="none"
@@ -61,9 +80,7 @@ const Header = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg> */}
-          </label>
-           
-              
+              </label>
             </ul>
           </div>
           <div className=" hidden lg:flex">

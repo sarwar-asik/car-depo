@@ -161,7 +161,7 @@ const SignIn = () => {
 
         <input
           type="submit"
-          value="Log In"
+          value="Sign In"
           className="btn btn-active btn-primary w-full my-5"
         />
       </form>

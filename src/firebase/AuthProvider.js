@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import app from "./Firebase.config";
 import { toast } from "react-toastify";
@@ -55,7 +56,24 @@ const AuthProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const authInfo = { name: "zinku", createUser, login, user, googleSignIn };
+  const logout = () => {
+    const islogout = window.confirm(" Log Out ?");
+
+    if (islogout) {
+      return signOut(auth).then(() => {
+      })
+      .catch(e=>console.log(e))
+    }
+  };
+
+  const authInfo = {
+    name: "zinku",
+    createUser,
+    login,
+    user,
+    googleSignIn,
+    logout,
+  };
   return (
     <div>
       <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -18,7 +18,7 @@ const AddProducts = () => {
     const name = data.name;
     const img = data.img;
     const price = data.reselPrice;
-    const discount = 388;
+    const discount = data.discount;
     
     const location = data.location;
     const mobile = data.mobile;
@@ -103,6 +103,13 @@ const AddProducts = () => {
           <input
             {...register("reselPrice", { required: "reselPrice is Required" })}
             aria-invalid={errors.reselPrice ? "true" : "false"}
+            type="text"
+            placeholder="Price"
+            className="input my-2 mx-1"
+          />
+          <input
+            {...register("discount", { required: "discount is Required" })}
+            aria-invalid={errors.discount ? "true" : "false"}
             type="text"
             placeholder="Price"
             className="input my-2 mx-1"
