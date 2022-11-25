@@ -14,10 +14,11 @@ const Header = () => {
       {user?.email ? (
         <>
           <li>
-            <Link className="btn btn-outline btn-error" onClick={logout} to="/login">
+            <Link className="" onClick={logout} to="/login">
               Log Out{" "}
             </Link>
           </li>
+          
           <li tabIndex={2} htmlFor="dashboard-drawer">
         <Link to="/dashboard">Dashboard</Link>
       </li>

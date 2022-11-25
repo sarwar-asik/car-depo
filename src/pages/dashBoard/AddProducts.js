@@ -1,36 +1,39 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
+import useRoleCheck from "../../hooks/useRoleCheck";
 
 const AddProducts = () => {
-    const {user}= useContext(AuthContext)
-    console.log(user);
+  const { user } = useContext(AuthContext);
+  // console.log(user);
+const [roleCheck] =useRoleCheck(user?.email)
+const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-
   const addProducts = (data) => {
     // console.log(data);
     const name = data.name;
     const img = data.img;
     const price = data.reselPrice;
     const discount = data.discount;
-    
+
     const location = data.location;
     const mobile = data.mobile;
     const used = data.usedTime;
     const category = data.category;
-    const descriptions = data.descriptions
+    const descriptions = data.descriptions;
 
     const products = {
       name,
       category,
       img,
-      seller:user.displayName,
+      seller: user.displayName,
       price,
       descriptions,
       discount,
@@ -40,7 +43,8 @@ const AddProducts = () => {
       time: new Date().toLocaleDateString(),
     };
 
-    fetch(`http://localhost:3008/products`, {
+   if(roleCheck==='seller'){
+    fetch(`http://localhost:3008/products?email=${user.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -51,10 +55,13 @@ const AddProducts = () => {
       .then((data) => {
         console.log(data);
         toast.success("Added products");
-        reset()
+        reset();
       });
-
-    console.log(products);
+   }
+   else{
+    navigate('/signup')
+   }
+    // console.log(products);
   };
 
   return (
@@ -66,7 +73,7 @@ const AddProducts = () => {
 
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text-alt">Your Name</span>
+            <span className="label-text-alt">Products Name</span>
           </label>
           <input
             {...register("name", { required: "Fill up ,please" })}

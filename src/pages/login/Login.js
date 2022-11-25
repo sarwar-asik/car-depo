@@ -2,7 +2,7 @@ import { getAuth } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
 import app from "../../firebase/Firebase.config";
@@ -12,8 +12,10 @@ const Login = () => {
 
 
     const auth = getAuth(app)
-   const {googleSignIn,user}=useContext(AuthContext)
+   const {googleSignIn,user,login}=useContext(AuthContext)
 
+
+   
     const {
       register,
       handleSubmit,
@@ -26,10 +28,33 @@ const Login = () => {
       setShow(!show);
     };
   
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    const from = location.state?.from?.pathname || "/";
 
-    const submitLogin = (event) => {
-        event.preventDefault();
-       
+
+
+    const submitLogin = (data) => {
+     
+
+        const email = data.email;
+        const password = data.password;
+        const usertype = data.user;
+        const user = { email, password,usertype };
+        // console.log(user);
+        login(email,password)
+        .then(result =>{
+          toast('success login ')
+          setError('')
+          return navigate(from, { replace: true });
+          // console.log(result.user);
+        })
+        .catch(err=>{
+            setError(err.message)
+            console.log(err);
+        })
+       setError('')
       };
   return (
     <div className="max-w-md mx-auto my-5 rounded">
@@ -70,7 +95,7 @@ const Login = () => {
                 <HiEyeOff onClick={handleShow} />
               ) : (
                 <HiEye onClick={handleShow} />
-              )}{" "}
+              )}
             </span>
           </label>
           <input
