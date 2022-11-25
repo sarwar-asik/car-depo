@@ -17,7 +17,7 @@ const SellerProducts = () => {
     <div>
       <h1 className="text-2xl text-center my-5 ">
         {" "}
-        Your Products {myProducts.length}
+        Your Products {myProducts?.length}
       </h1>
 
       <div className="overflow-x-auto mx-auto max-w-[80%]">
@@ -33,7 +33,7 @@ const SellerProducts = () => {
           </thead>
           <tbody>
            {
-            myProducts.map((product,index)=>{
+            myProducts?.map((product,index)=>{
                 return<tr>
                 <th>{index+1}</th>
                 <td>{product.name}</td>

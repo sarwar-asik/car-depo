@@ -23,7 +23,7 @@ const [roleCheck]=useRoleCheck(user.email)
               <Link to="/categories"> Categories </Link>
               <Link to="/addproducts"> Add Products</Link>
                   <Link to="/selllerproducts"> My Products </Link>
-                  <Link to="/dashboard/manageDoctors"> Manage Doctors </Link>
+                  <Link to="/myorders"> My Orders </Link>
             </li>
           </ul>
         </div>

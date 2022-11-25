@@ -19,7 +19,7 @@ const BookModal = ({ productInfo, setModal }) => {
     const number = form.number.value;
     const location = form.location.value;
 
-    const booking = { name, email, product, price, number, location };
+    const booking = { name, email, product, price, number, location,img:productInfo?.img };
 
     console.log(booking);
 

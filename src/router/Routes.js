@@ -4,6 +4,7 @@ import AddCategories from "../pages/dashBoard/AddCategories";
 import AddProducts from "../pages/dashBoard/AddProducts";
 import Dashbord from "../pages/dashBoard/Dashbord";
 import SellerProducts from "../pages/dashBoard/seller/SellerProducts";
+import MyOrders from "../pages/dashBoard/user/MyOrders";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Products from "../pages/products/Products";
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path:'/selllerproducts',
         element:<SellerProducts/>
+      },
+      {
+        path:'/myorders',
+        element:<MyOrders/>
       }
     ],
   },
