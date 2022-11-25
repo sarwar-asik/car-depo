@@ -33,7 +33,9 @@ const navigate = useNavigate()
       name,
       category,
       img,
-      seller: user.displayName,
+      email:user?.email,
+      seller: user?.displayName,
+      posted:new Date().toLocaleDateString(),
       price,
       descriptions,
       discount,
@@ -118,7 +120,7 @@ const navigate = useNavigate()
             {...register("discount", { required: "discount is Required" })}
             aria-invalid={errors.discount ? "true" : "false"}
             type="text"
-            placeholder="Price"
+            placeholder="Discount Price"
             className="input my-2 mx-1"
           />
           <input

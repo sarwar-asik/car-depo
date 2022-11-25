@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../firebase/AuthProvider";
+import useRoleCheck from "../../hooks/useRoleCheck";
 
 const Dashbord = () => {
+  const {user} = useContext(AuthContext)
+const [roleCheck]=useRoleCheck(user.email)
+
   return <div>
   <div className="drawer drawer-mobile">
         <input
@@ -17,7 +22,7 @@ const Dashbord = () => {
             <li>
               <Link to="/categories"> Categories </Link>
               <Link to="/addproducts"> Add Products</Link>
-                  <Link to="/dashboard/adddoctor"> Add Doctors </Link>
+                  <Link to="/selllerproducts"> My Products </Link>
                   <Link to="/dashboard/manageDoctors"> Manage Doctors </Link>
             </li>
           </ul>

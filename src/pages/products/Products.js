@@ -45,8 +45,8 @@ const Products = () => {
 
                     <p className="flex flex-col gap-3 font-semibold ">
                       <h5> Offer Price : $5500</h5>
-                      <h4> Posted : </h4>
-                      <h4>Seller : </h4>
+                      <h4> Posted : {prod?.posted}</h4>
+                      <h4>Seller :{prod?.seller} </h4>
                     </p>
                   </div>
 
