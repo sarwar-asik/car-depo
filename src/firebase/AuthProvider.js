@@ -89,7 +89,7 @@ const gitSignIn = ()=>{
     user,
     gitSignIn,
     googleSignIn,
-    logout,
+    
   };
   return (
     <div>

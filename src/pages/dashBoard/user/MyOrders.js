@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
 
@@ -44,16 +45,24 @@ console.log(orders);
                 <td>{order.name}</td>
                 <td>
                     <figure>
-                    <img className="mask mask-circle max-w-[80px] h-[100px]" 
-                    src={order?.img} 
-                    alt="image" />
+                    <img
+                     src={order?.img}  
+                     className="mask mask-circle max-w-[80px] h-[100px]"
+                     alt="img" />
                     </figure>
                 </td>
                <td>
                {order.price}
                </td>
                 <td>
-                    <button className="btn btn-outline"> Pay </button>
+                   
+                    { order?.price&& !order?.paid&&
+                        <Link to={`/payment/${order?._id}`} className="btn btn-outline btn-info"> Pay </Link>
+                    }
+                    {
+                        order?.price&& order?.paid&&
+                        <span className="text-green-500">Paid</span>
+                    }
                 </td>
               </tr>
             })

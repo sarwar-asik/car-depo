@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../firebase/AuthProvider";
-import useRoleCheck from "../../hooks/useRoleCheck";
+import { AuthContext } from "../../../firebase/AuthProvider";
+import useRoleCheck from "../../../hooks/useRoleCheck";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
   // console.log(user);
-const [roleCheck] =useRoleCheck(user?.email)
-const navigate = useNavigate()
+  const [roleCheck] = useRoleCheck(user?.email);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -33,9 +33,9 @@ const navigate = useNavigate()
       name,
       category,
       img,
-      email:user?.email,
+      email: user?.email,
       seller: user?.displayName,
-      posted:new Date().toLocaleDateString(),
+      posted: new Date().toLocaleDateString(),
       price,
       descriptions,
       discount,
@@ -45,24 +45,23 @@ const navigate = useNavigate()
       time: new Date().toLocaleDateString(),
     };
 
-   if(roleCheck==='seller'){
-    fetch(`http://localhost:3008/products?email=${user.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(products),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Added products");
-        reset();
-      });
-   }
-   else{
-    navigate('/signup')
-   }
+    if (roleCheck === "seller") {
+      fetch(`http://localhost:3008/products?email=${user.email}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(products),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast.success("Added products");
+          reset();
+        });
+    } else {
+      navigate("/signup");
+    }
     // console.log(products);
   };
 
