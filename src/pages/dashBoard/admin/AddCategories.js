@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../firebase/AuthProvider";
 
 const AddCategories = () => {
   const {
@@ -10,6 +11,8 @@ const AddCategories = () => {
     formState: { errors },
   } = useForm();
 
+  const { user } = useContext(AuthContext);
+
   const addCategories = (event) => {
     // toast('add')
     const categories = {
@@ -18,7 +21,7 @@ const AddCategories = () => {
       options: event.options,
     };
     console.log(categories);
-    fetch(`https://sh-server-site.vercel.app/category`, {
+    fetch(`https://sh-server-site.vercel.app/category?email=${user?.email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +38,7 @@ const AddCategories = () => {
 
   return (
     <div className="max-w-md mx-auto my-5 rounded">
-      <h1> Your Categories </h1>
+      <h1> Add a Categories </h1>
       <form onSubmit={handleSubmit(addCategories)} className="">
         {/* <Header /> */}
 

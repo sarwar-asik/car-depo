@@ -20,7 +20,8 @@ const [roleCheck]=useRoleCheck(user.email)
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
             <li>
-              <Link to="/categories"> Categories </Link>
+              <Link to="/categories">Add Categories </Link>
+              <Link to="/allseller"> All Seller </Link>
               <Link to="/addproducts"> Add Products</Link>
                    <Link to="/selllerproducts"> My Products </Link>
                   <Link to="/myorders"> My Orders </Link>

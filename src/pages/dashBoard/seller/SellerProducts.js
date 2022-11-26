@@ -32,7 +32,7 @@ const SellerProducts = () => {
 
     if (isDelete) {
       fetch(
-        `http://localhost:3008/deleteproducts/${product._id}?email=${user?.email}`,
+        `https://sh-server-site.vercel.app/deleteproducts/${product._id}?email=${user?.email}`,
         {
           method: "DELETE",
           headers: {

@@ -9,10 +9,9 @@ import useRoleCheck from "../../../hooks/useRoleCheck";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
-  const allCategories = useLoaderData()
+  const allCategories = useLoaderData();
 
   // console.log(allCategories);
-
 
   const [roleCheck] = useRoleCheck(user?.email);
   const navigate = useNavigate();
@@ -23,13 +22,10 @@ const AddProducts = () => {
     formState: { errors },
   } = useForm();
   // console.log(oneCategory);
-  
-  
-  
-  const [oneCategory,setOneCategory] =useState({})
+
+  const [oneCategory, setOneCategory] = useState({});
 
   const addProducts = (data) => {
-
     // console.log(data);
     const name = data.name;
     const img = data.img;
@@ -41,18 +37,18 @@ const AddProducts = () => {
     const used = data.usedTime;
     const category = data?.category;
     const descriptions = data.descriptions;
-    const condition =data?.condition
+    const condition = data?.condition;
 
-const getcate= allCategories.find(singCate => singCate.name ===category)
+    const getcate = allCategories.find(
+      (singCate) => singCate.name === category
+    );
 
-// console.log('full category',getcate);
-
-
+    // console.log('full category',getcate);
 
     const products = {
       name,
       category,
-      categoryId:getcate?._id,
+      categoryId: getcate?._id,
       img,
       email: user?.email,
       seller: user?.displayName,
@@ -68,21 +64,18 @@ const getcate= allCategories.find(singCate => singCate.name ===category)
     };
 
     if (roleCheck === "seller") {
-      fetch(
-        `http://localhost:3008/products?email=${user?.email}`,
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(products),
-        }
-      )
+      fetch(`https://sh-server-site.vercel.app/products?email=${user?.email}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(products),
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          toast.success('added Product')
-          navigate('/selllerproducts')
+          toast.success("added Product");
+          navigate("/selllerproducts");
           // reset()
         });
     } else {
@@ -91,8 +84,6 @@ const getcate= allCategories.find(singCate => singCate.name ===category)
 
     console.log(products);
   };
-
-
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">
@@ -178,16 +169,15 @@ const getcate= allCategories.find(singCate => singCate.name ===category)
           <label htmlFor="" className="mx-3 font-medium">
             Condition
           </label>
-            <select
-          {...register("condition", { required: true })}
-          className=" my-2 py-2 mx-1"
-        >
-          
-          <option value="Excelent">Excelent</option>
-          <option value="Good">Good</option>
+          <select
+            {...register("condition", { required: true })}
+            className=" my-2 py-2 mx-1"
+          >
+            <option value="Excelent">Excelent</option>
+            <option value="Good">Good</option>
 
-          <option value="Fair">Fair</option>
-        </select>
+            <option value="Fair">Fair</option>
+          </select>
 
           {errors.name && (
             <p className="text-red-400 text-sm" role="alert">
@@ -197,13 +187,12 @@ const getcate= allCategories.find(singCate => singCate.name ===category)
         </div>
 
         <label htmlFor="" className="mt-3 font-medium">
-            Location
-          </label>
+          Location
+        </label>
         <select
           {...register("location", { required: true })}
           className="w-full py-3 my-2"
         >
-          
           <option value="Dhaka">Dhaka</option>
           <option value="Chattagrame">Chattagrame</option>
 
@@ -211,20 +200,21 @@ const getcate= allCategories.find(singCate => singCate.name ===category)
         </select>
 
         <label htmlFor="" className="mt-3 font-medium">
-            Category 
-          </label>
+          Category
+        </label>
         <select
           {...register("category", { required: true })}
           className="w-full py-3 my-2"
         >
-          {
-            allCategories.map(singleCategory=> {
-             return <>
-              <option value={singleCategory?.name}>{singleCategory?.name}</option>
+          {allCategories.map((singleCategory) => {
+            return (
+              <>
+                <option value={singleCategory?.name}>
+                  {singleCategory?.name}
+                </option>
               </>
-            })
-          }
-
+            );
+          })}
         </select>
 
         <input

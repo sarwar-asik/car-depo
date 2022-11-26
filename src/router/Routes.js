@@ -12,6 +12,7 @@ import SignIn from "../pages/signin/SignIn";
 import Profile from "../profiles/Profile";
 import Payment from "../pages/dashBoard/user/Payment";
 import ErrorDisplay from "../errors/ErrorDisplay";
+import AllSeller from "../pages/dashBoard/admin/AllSeller";
 
 const router = createBrowserRouter([
   {
@@ -38,13 +39,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/addproducts",
-        loader:()=>fetch(`http://localhost:3008/categories`),
+        loader: () => fetch(`https://sh-server-site.vercel.app/categories`),
         element: <AddProducts />,
       },
       {
         path: "/products/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3008/products/${params.id}`),
+          fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
         element: <Products />,
       },
       {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/bookings/${params.id}`),
         element: <Payment />,
+      },
+      {
+        path: "/allseller",
+        element: <AllSeller />,
       },
     ],
   },
