@@ -2,14 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import useRoleCheck from "../../../hooks/useRoleCheck";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
-  // console.log(user);
+  const allCategories = useLoaderData()
+
+  // console.log(allCategories);
+
+
   const [roleCheck] = useRoleCheck(user?.email);
   const navigate = useNavigate();
   const {
@@ -18,8 +22,14 @@ const AddProducts = () => {
     reset,
     formState: { errors },
   } = useForm();
+  // console.log(oneCategory);
+  
+  
+  
+  const [oneCategory,setOneCategory] =useState({})
 
   const addProducts = (data) => {
+
     // console.log(data);
     const name = data.name;
     const img = data.img;
@@ -31,15 +41,24 @@ const AddProducts = () => {
     const used = data.usedTime;
     const category = data?.category;
     const descriptions = data.descriptions;
+    const condition =data?.condition
+
+const getcate= allCategories.find(singCate => singCate.name ===category)
+
+// console.log('full category',getcate);
+
+
 
     const products = {
       name,
       category,
+      categoryId:getcate?._id,
       img,
       email: user?.email,
       seller: user?.displayName,
       posted: new Date().toLocaleDateString(),
       price,
+      condition,
       descriptions,
       discount,
       location,
@@ -50,7 +69,7 @@ const AddProducts = () => {
 
     if (roleCheck === "seller") {
       fetch(
-        `https://used-cars-project-a88b9.web.app/products?email=${user.email}&category=${category}`,
+        `http://localhost:3008/products?email=${user?.email}`,
         {
           method: "POST",
           headers: {
@@ -62,43 +81,18 @@ const AddProducts = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-
-          fetch(
-            `https://used-cars-project-a88b9.web.app/updateCategory?category=${category}`,
-            {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-                authorization: `bearer ${localStorage.getItem("accessToken")}`,
-              },
-              body: JSON.stringify(category),
-            }
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              toast.success("Added products");
-            });
+          toast.success('added Product')
+          navigate('/selllerproducts')
+          // reset()
         });
     } else {
       navigate("/signup");
     }
 
-    // console.log(products);
+    console.log(products);
   };
 
-  //   const useCategory=name =>{
 
-  //   const [gotcategory,setCategory]=useState({})
-  //   useEffect(() => {
-  //     axios.get(`https://used-cars-project-a88b9.web.app/productsCate?name=${name}`).then((data) => {
-  //       //   console.log(data.data);
-  //       setCategory(data.data)
-
-  //     });
-  //   }, [name])
-  //   return gotcategory
-  // }
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">
@@ -181,6 +175,19 @@ const AddProducts = () => {
             placeholder="descriptions"
             className="input my-2 mx-1"
           />
+          <label htmlFor="" className="mx-3 font-medium">
+            Condition
+          </label>
+            <select
+          {...register("condition", { required: true })}
+          className=" my-2 py-2 mx-1"
+        >
+          
+          <option value="Excelent">Excelent</option>
+          <option value="Good">Good</option>
+
+          <option value="Fair">Fair</option>
+        </select>
 
           {errors.name && (
             <p className="text-red-400 text-sm" role="alert">
@@ -189,23 +196,35 @@ const AddProducts = () => {
           )}
         </div>
 
+        <label htmlFor="" className="mt-3 font-medium">
+            Location
+          </label>
         <select
           {...register("location", { required: true })}
           className="w-full py-3 my-2"
         >
+          
           <option value="Dhaka">Dhaka</option>
           <option value="Chattagrame">Chattagrame</option>
 
           <option value="Maijdee">Maijdee</option>
         </select>
 
+        <label htmlFor="" className="mt-3 font-medium">
+            Category 
+          </label>
         <select
           {...register("category", { required: true })}
           className="w-full py-3 my-2"
         >
-          <option value="Microbus">Microbus</option>
-          <option value="Used Luxury Cars">Used Luxury Cars</option>
-          <option value="Electric Cars">Electric Cars</option>
+          {
+            allCategories.map(singleCategory=> {
+             return <>
+              <option value={singleCategory?.name}>{singleCategory?.name}</option>
+              </>
+            })
+          }
+
         </select>
 
         <input

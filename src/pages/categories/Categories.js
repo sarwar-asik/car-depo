@@ -26,7 +26,7 @@ const Categories = () => {
       >
         {categories.map((category) => {
           return (
-            <Link to={`/products/${category.name}`}>
+            <Link to={`/products/${category._id}`}>
               <div className="card shadow-xl w-[400px] mx-auto">
                 <figure>
                   <img

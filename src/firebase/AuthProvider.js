@@ -61,27 +61,27 @@ const AuthProvider = ({ children }) => {
     const islogout = window.confirm(" Log Out ?");
 
     if (islogout) {
-      return signOut(auth).then(() => {
-        localStorage.removeItem('accessToken')
-      })
-      .catch(e=>console.log(e))
+      return signOut(auth)
+        .then(() => {
+          localStorage.removeItem("accessToken");
+        })
+        .catch((e) => console.log(e));
     }
   };
 
-const gitProvider = new GithubAuthProvider()
+  const gitProvider = new GithubAuthProvider();
 
-const gitSignIn = ()=>{
-   signInWithPopup(auth,gitProvider)
-      .then(result =>{
-       toast('success github logIn')
-       console.log(result.user);
+  const gitSignIn = () => {
+    signInWithPopup(auth, gitProvider)
+      .then((result) => {
+        toast("success github logIn");
+        console.log(result.user);
       })
-      .catch(err=>console.log(err))
-}
+      .catch((err) => console.log(err));
+  };
 
-
-
-
+  //delete user //
+  
 
   const authInfo = {
     createUser,
@@ -90,7 +90,6 @@ const gitSignIn = ()=>{
     user,
     gitSignIn,
     googleSignIn,
-    
   };
   return (
     <div>

@@ -38,12 +38,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/addproducts",
+        loader:()=>fetch(`http://localhost:3008/categories`),
         element: <AddProducts />,
       },
       {
-        path: "/products/:name",
+        path: "/products/:id",
         loader: ({ params }) =>
-          fetch(`https://sh-server-site.vercel.app/products/${params.name}`),
+          fetch(`http://localhost:3008/products/${params.id}`),
         element: <Products />,
       },
       {
