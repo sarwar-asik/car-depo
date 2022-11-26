@@ -6,7 +6,7 @@ const SellerProducts = () => {
     queryKey: ["myproducts"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:3008/myproducts/seller1@gmail.com`
+        `https://sh-server-site.vercel.app/myproducts/seller1@gmail.com`
       );
       const data = await res.json();
       return data;
@@ -32,24 +32,21 @@ const SellerProducts = () => {
             </tr>
           </thead>
           <tbody>
-           {
-            myProducts?.map((product,index)=>{
-                return<tr>
-                <th>{index+1}</th>
-                <td>{product.name}</td>
-                <td>
-                  sold
-                </td>
-               <td>
-               {product.price}
-               </td>
-                <td>
-                    <button className="btn btn-error btn-outline">Delete </button>
-                </td>
-              </tr>
-            })
-           }
-         
+            {myProducts?.map((product, index) => {
+              return (
+                <tr>
+                  <th>{index + 1}</th>
+                  <td>{product.name}</td>
+                  <td>sold</td>
+                  <td>{product.price}</td>
+                  <td>
+                    <button className="btn btn-error btn-outline">
+                      Delete{" "}
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

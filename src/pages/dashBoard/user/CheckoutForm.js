@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const CheckoutForm = ({ order }) => {
-  const { price,name,email,_id, } = order;
+  const { price, name, email, _id } = order;
 
   // //after server side ///
 
@@ -14,12 +14,12 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch(`http://localhost:3008/create-payment-intent`, {
+    fetch(`https://sh-server-site.vercel.app/create-payment-intent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({price}),
+      body: JSON.stringify({ price }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
@@ -53,57 +53,51 @@ const CheckoutForm = ({ order }) => {
       setCardError("");
     }
 
-    setsuccess('')
-    settransictionId('')
-    setprocessing(true)
-    const {paymentIntent, error:confirmError} = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: card,
-            billing_details: {
-              name:name,
-              email:email
-            },
+    setsuccess("");
+    settransictionId("");
+    setprocessing(true);
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: name,
+            email: email,
           },
         },
-      );
-      if(confirmError){
-        setCardError(confirmError.message)
-        return
-      }
-      if(paymentIntent.status ==="succeeded"){
-      
-       
-        const payment = {
-            price,
-            transactionId: paymentIntent.id,
-            email,
-            bookingId: _id,
-            about: "posted from checkoutForm",
-          };
-          fetch(`http://localhost:3008/payment`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify(payment),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                setsuccess('Your payment is successfull')
-                settransictionId(paymentIntent.id);
-                console.log(data);
-                toast.success("Payment Success");
-              }
-            });
+      });
+    if (confirmError) {
+      setCardError(confirmError.message);
+      return;
     }
-    setprocessing(false)
+    if (paymentIntent.status === "succeeded") {
+      const payment = {
+        price,
+        transactionId: paymentIntent.id,
+        email,
+        bookingId: _id,
+        about: "posted from checkoutForm",
+      };
+      fetch(`https://sh-server-site.vercel.app/payment`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            setsuccess("Your payment is successfull");
+            settransictionId(paymentIntent.id);
+            console.log(data);
+            toast.success("Payment Success");
+          }
+        });
+    }
+    setprocessing(false);
     //   console.log(paymentIntent);
-
-
   };
   return (
     <>
@@ -129,19 +123,21 @@ const CheckoutForm = ({ order }) => {
         <button
           className="btn btn-accent my-8 text-center"
           type="submit"
-          disabled={!stripe || !clientSecret ||processing}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
       </form>
       {<h1 className="text-error font-medium"> {cardError}</h1>}
       {}
-      {success&&
-      <>
-      <h1 className="text-green-500  font-medium"> {success} </h1>
-      <h1 className="text-blue-500  font-medium">TransactionId: {transictionId} </h1>
-  </>
-      }
+      {success && (
+        <>
+          <h1 className="text-green-500  font-medium"> {success} </h1>
+          <h1 className="text-blue-500  font-medium">
+            TransactionId: {transictionId}{" "}
+          </h1>
+        </>
+      )}
     </>
   );
 };

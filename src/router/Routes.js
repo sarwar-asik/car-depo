@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement:<ErrorDisplay/>,
+    errorElement: <ErrorDisplay />,
     children: [
       {
         path: "/",
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path: "/products/:name",
         loader: ({ params }) =>
-          fetch(`http://localhost:3008/products/${params.name}`),
+          fetch(`https://sh-server-site.vercel.app/products/${params.name}`),
         element: <Products />,
       },
       {
@@ -59,10 +59,11 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path:'/payment/:id',
-        loader:({params})=>fetch(`http://localhost:3008/bookings/${params.id}`),
-        element:<Payment/>
-      }
+        path: "/payment/:id",
+        loader: ({ params }) =>
+          fetch(`https://sh-server-site.vercel.app/bookings/${params.id}`),
+        element: <Payment />,
+      },
     ],
   },
 ]);

@@ -19,12 +19,21 @@ const BookModal = ({ productInfo, setModal }) => {
     const number = form.number.value;
     const location = form.location.value;
 
-    const booking = { name, email, product, price, number, location,img:productInfo?.img,seller:productInfo?.email };
+    const booking = {
+      name,
+      email,
+      product,
+      price,
+      number,
+      location,
+      img: productInfo?.img,
+      seller: productInfo?.email,
+    };
 
     console.log(booking);
 
     if (user) {
-      fetch(`http://localhost:3008/bookings`, {
+      fetch(`https://sh-server-site.vercel.app/bookings`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

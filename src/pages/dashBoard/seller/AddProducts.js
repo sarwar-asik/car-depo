@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -16,6 +18,7 @@ const AddProducts = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const addProducts = (data) => {
     // console.log(data);
     const name = data.name;
@@ -26,7 +29,7 @@ const AddProducts = () => {
     const location = data.location;
     const mobile = data.mobile;
     const used = data.usedTime;
-    const category = data.category;
+    const category = data?.category;
     const descriptions = data.descriptions;
 
     const products = {
@@ -46,24 +49,56 @@ const AddProducts = () => {
     };
 
     if (roleCheck === "seller") {
-      fetch(`http://localhost:3008/products?email=${user.email}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(products),
-      })
+      fetch(
+        `https://used-cars-project-a88b9.web.app/products?email=${user.email}&category=${category}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(products),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          toast.success("Added products");
-          reset();
+
+          fetch(
+            `https://used-cars-project-a88b9.web.app/updateCategory?category=${category}`,
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+              body: JSON.stringify(category),
+            }
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              toast.success("Added products");
+            });
         });
     } else {
       navigate("/signup");
     }
+
     // console.log(products);
   };
+
+  //   const useCategory=name =>{
+
+  //   const [gotcategory,setCategory]=useState({})
+  //   useEffect(() => {
+  //     axios.get(`https://used-cars-project-a88b9.web.app/productsCate?name=${name}`).then((data) => {
+  //       //   console.log(data.data);
+  //       setCategory(data.data)
+
+  //     });
+  //   }, [name])
+  //   return gotcategory
+  // }
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">

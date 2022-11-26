@@ -10,7 +10,7 @@ import app from "../../firebase/Firebase.config";
 import useToken from "../../hooks/useToken";
 
 const SignIn = () => {
-  const {  googleSignIn, createUser } = useContext(AuthContext);
+  const { googleSignIn, createUser } = useContext(AuthContext);
   //   console.log(user);
   const auth = getAuth(app);
 
@@ -32,13 +32,11 @@ const SignIn = () => {
     setShow(!show);
   };
 
-
-  const [tokenEmail,setTokenEmail] =useState('')
-  const [token]=useToken(tokenEmail)
-  if(token){
+  const [tokenEmail, setTokenEmail] = useState("");
+  const [token] = useToken(tokenEmail);
+  if (token) {
     return navigate(from, { replace: true });
   }
-
 
   const handleSignup = (data) => {
     // console.log(data);
@@ -59,7 +57,7 @@ const SignIn = () => {
         })
           .then(() => {
             toast.success("sign up");
-            setTokenEmail(email)
+            setTokenEmail(email);
             savedDB(user);
             setError("");
             reset();
@@ -70,7 +68,7 @@ const SignIn = () => {
   };
 
   const savedDB = (user) => {
-    fetch(`http://localhost:3008/users`, {
+    fetch(`https://sh-server-site.vercel.app/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,8 +78,7 @@ const SignIn = () => {
       .then((res) => res.json())
       .catch((data) => {
         console.log(data);
-        
-      
+
         toast.success("added DB");
       });
   };
