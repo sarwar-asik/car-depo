@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
 import app from "../../firebase/Firebase.config";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const auth = getAuth(app);
@@ -27,6 +28,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+  // for jwt
+  const [tokenEmail,setTokenEmail] =useState('')
+  const [token]=useToken(user.email)
+
+
 
   const submitLogin = (data) => {
     const email = data.email;

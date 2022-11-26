@@ -83,9 +83,9 @@ const gitSignIn = ()=>{
 
 
   const authInfo = {
-    name: "zinku",
     createUser,
     login,
+    logout,
     user,
     gitSignIn,
     googleSignIn,

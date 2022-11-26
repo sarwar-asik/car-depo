@@ -14,7 +14,7 @@ const Header = () => {
       {user?.email ? (
         <>
           <li>
-            <Link className="" onClick={logout} to="/login">
+            <Link className="" onClick={logout} >
               Log Out{" "}
             </Link>
           </li>
