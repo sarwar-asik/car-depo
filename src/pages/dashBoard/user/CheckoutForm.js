@@ -1,12 +1,16 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const CheckoutForm = ({ order }) => {
-  const { price,name,email } = order;
+  const { price,name,email,_id, } = order;
 
   // //after server side ///
 
   const [clientSecret, setClientSecret] = useState("");
+  const [success, setsuccess] = useState("");
+  const [processing, setprocessing] = useState(false);
+  const [transictionId, settransictionId] = useState("");
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -49,6 +53,9 @@ const CheckoutForm = ({ order }) => {
       setCardError("");
     }
 
+    setsuccess('')
+    settransictionId('')
+    setprocessing(true)
     const {paymentIntent, error:confirmError} = await stripe.confirmCardPayment(
         clientSecret,
         {
@@ -65,7 +72,36 @@ const CheckoutForm = ({ order }) => {
         setCardError(confirmError.message)
         return
       }
-      console.log(paymentIntent);
+      if(paymentIntent.status ==="succeeded"){
+      
+       
+        const payment = {
+            price,
+            transactionId: paymentIntent.id,
+            email,
+            bookingId: _id,
+            about: "posted from checkoutForm",
+          };
+          fetch(`http://localhost:3008/payment`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(payment),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                setsuccess('Your payment is successfull')
+                settransictionId(paymentIntent.id);
+                console.log(data);
+                toast.success("Payment Success");
+              }
+            });
+    }
+    setprocessing(false)
+    //   console.log(paymentIntent);
 
 
   };
@@ -93,12 +129,19 @@ const CheckoutForm = ({ order }) => {
         <button
           className="btn btn-accent my-8 text-center"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret ||processing}
         >
           Pay
         </button>
       </form>
       {<h1 className="text-error font-medium"> {cardError}</h1>}
+      {}
+      {success&&
+      <>
+      <h1 className="text-green-500  font-medium"> {success} </h1>
+      <h1 className="text-blue-500  font-medium">TransactionId: {transictionId} </h1>
+  </>
+      }
     </>
   );
 };

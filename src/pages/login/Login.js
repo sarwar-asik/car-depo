@@ -28,9 +28,13 @@ const Login = () => {
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
-  // for jwt
+
+  // for jwt ////
   const [tokenEmail,setTokenEmail] =useState('')
-  const [token]=useToken(user.email)
+  const [token]=useToken(tokenEmail)
+  if(token){
+    return navigate(from, { replace: true });
+  }
 
 
 
@@ -44,7 +48,7 @@ const Login = () => {
       .then((result) => {
         toast("success login ");
         setError("");
-        return navigate(from, { replace: true });
+        setTokenEmail(email)
         // console.log(result.user);
       })
       .catch((err) => {

@@ -62,6 +62,7 @@ const AuthProvider = ({ children }) => {
 
     if (islogout) {
       return signOut(auth).then(() => {
+        localStorage.removeItem('accessToken')
       })
       .catch(e=>console.log(e))
     }

@@ -4,12 +4,13 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth, updateProfile } from "firebase/auth";
 import app from "../../firebase/Firebase.config";
+import useToken from "../../hooks/useToken";
 
 const SignIn = () => {
-  const { user, googleSignIn, createUser } = useContext(AuthContext);
+  const {  googleSignIn, createUser } = useContext(AuthContext);
   //   console.log(user);
   const auth = getAuth(app);
 
@@ -20,11 +21,24 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
   const [error, setError] = useState("");
   const [show, setShow] = useState(true);
   const handleShow = () => {
     setShow(!show);
   };
+
+
+  const [tokenEmail,setTokenEmail] =useState('')
+  const [token]=useToken(tokenEmail)
+  if(token){
+    return navigate(from, { replace: true });
+  }
+
 
   const handleSignup = (data) => {
     // console.log(data);
@@ -45,6 +59,7 @@ const SignIn = () => {
         })
           .then(() => {
             toast.success("sign up");
+            setTokenEmail(email)
             savedDB(user);
             setError("");
             reset();
@@ -65,6 +80,8 @@ const SignIn = () => {
       .then((res) => res.json())
       .catch((data) => {
         console.log(data);
+        
+      
         toast.success("added DB");
       });
   };
