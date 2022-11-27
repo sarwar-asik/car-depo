@@ -19,7 +19,9 @@ const Header = () => {
             </Link>
           </li>
          
-          
+          <li>
+            <Link to="/blogs">Blogs</Link>
+          </li>
           <li tabIndex={2} htmlFor="dashboard-drawer">
         <Link to="/dashboard">Dashboard</Link>
       </li>
@@ -35,6 +37,7 @@ const Header = () => {
           <li>
             <Link to="/signup">Sign In</Link>
           </li>
+         
         </>
       )}
       

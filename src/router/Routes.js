@@ -15,6 +15,7 @@ import ErrorDisplay from "../errors/ErrorDisplay";
 import AllSeller from "../pages/dashBoard/admin/AllSeller";
 import Allbuyer from "../pages/dashBoard/admin/Allbuyer";
 import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
+import Blogs from "../pages/blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
         loader: () => fetch(`https://sh-server-site.vercel.app/getreport`),
         element: <ReportedItem />,
       },
+      {
+        path:'/blogs',
+        element:<Blogs/>
+      }
     ],
   },
 ]);
