@@ -1,16 +1,41 @@
 import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../firebase/AuthProvider";
+import useRoleCheck from "../../hooks/useRoleCheck";
 import BookModal from "../bookModal/BookModal";
 
 const Products = () => {
+  const { user } = useContext(AuthContext);
+
+  const [roleCheck] = useRoleCheck(user?.email);
+  // console.log(roleCheck);
   const products = useLoaderData();
   // console.log(products);
   const [productInfo, setproducts] = useState({});
-  const [isModal ,setModal] = useState(true)
+  const [isModal, setModal] = useState(true);
 
   const productData = (data) => {
     setproducts(data);
     // console.log(data);
+  };
+
+  // console.log();
+  const ReportAdmin = (info) => {
+    info["buyer"] = user?.email;
+
+    fetch(`https://sh-server-site.vercel.app/reportadmin`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success(`Reported Admin ${info?.name}`);
+      });
   };
 
   return (
@@ -57,16 +82,22 @@ const Products = () => {
                   >
                     Book Now
                   </label>
+                  {user?.email && (
+                    <button
+                      onClick={() => ReportAdmin(prod)}
+                      className="bg-blue-400 py-2 hover:bg-lime-800 text-zinc-200 "
+                    >
+                      {" "}
+                      Report to Admin
+                    </button>
+                  )}
                 </div>
               </div>
             </>
           );
         })}
       </div>
-    {
-      isModal&&
-      <BookModal  productInfo={productInfo} setModal={setModal}/>
-    }
+      {isModal && <BookModal productInfo={productInfo} setModal={setModal} />}
     </div>
   );
 };

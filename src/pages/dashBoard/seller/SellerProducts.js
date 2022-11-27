@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
@@ -9,7 +10,20 @@ const SellerProducts = () => {
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
   // console.log(user.email);
+
+  // const [prods, setProd] = useState(null);
+  // console.log(prods);
+  
+  // const [advertisess, setAdvertise] = useState([]);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3008/advertise`).then((data) => {
+  //     //   console.log(data.data);
+  //     setAdvertise(data.data);
+  //   });
+  // }, []);
+
 
   const {
     data: myProducts,
@@ -49,6 +63,29 @@ const SellerProducts = () => {
     }
   };
 
+  
+  // console.log(advertisess);
+
+  const advertise = (product) => {
+    // const getProduct = advertisess.find(single =>single.name ===product?.name)
+    //     setProd(getProduct)
+
+    // console.log(product);
+    fetch("http://localhost:3008/addAdvertisement", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        refetch();
+        toast.success(`advertised ${product.name}`);
+      });
+  };
+
   return (
     <div>
       <h1 className="text-2xl text-center my-5 "> Your Products</h1>
@@ -63,6 +100,7 @@ const SellerProducts = () => {
               <th>Name</th>
               <th>Status</th>
               <th>Price</th>
+              <th>Advertise</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -81,6 +119,24 @@ const SellerProducts = () => {
                     >
                       Delete
                     </button>
+                  </td>
+                  <td>
+                    {/* {prods ? (
+                      <p>Advertised</p>
+                    ) : (
+                      <button
+                        onClick={() => advertise(product)}
+                        className="btn btn-sm btn-accent"
+                      >
+                        Advertise
+                      </button>
+                    )} */}
+                     <button
+                        onClick={() => advertise(product)}
+                        className="btn btn-sm btn-accent"
+                      >
+                        Advertise
+                      </button>
                   </td>
                 </tr>
               );

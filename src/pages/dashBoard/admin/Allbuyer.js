@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
 
-const AllSeller = () => {
+const Allbuyer = () => {
   const { user } = useContext(AuthContext);
 
   const {
@@ -15,7 +15,7 @@ const AllSeller = () => {
     queryKey: ["seller"],
     queryFn: () =>
       fetch(
-        `https://sh-server-site.vercel.app/allseller?email=${user?.email}&type=seller`
+        `https://sh-server-site.vercel.app/allseller?email=${user?.email}&type=buyer`
       )
         .then((res) => res.json())
         .then((data) => data),
@@ -23,10 +23,10 @@ const AllSeller = () => {
 
   //   console.log(seller);
   const deleteUser = (seller) => {
-    toast(seller?.name);
+    // toast(seller?.name);
     const isDelete = window.confirm(`Delete ${seller?.name}`);
     if (isDelete) {
-      fetch("https://sh-server-site.vercel.app/deleteUser?type=seller", {
+      fetch("https://sh-server-site.vercel.app/deleteUser?type=buyer", {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
@@ -41,23 +41,6 @@ const AllSeller = () => {
         });
     }
   };
-
-  const verifySeller = (seller) => {
-    fetch(`https://sh-server-site.vercel.app/verify?email=${user?.email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(seller),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success(`verified ${seller?.name}`);
-        refetch();
-      });
-  };
-
   return (
     <div className="max-w-[80%] mx-auto">
       {isLoading && <Loader />}
@@ -71,7 +54,6 @@ const AllSeller = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Delete</th>
-              <th>Verify</th>
             </tr>
           </thead>
           <tbody>
@@ -91,19 +73,6 @@ const AllSeller = () => {
                         Delete{" "}
                       </button>
                     </td>
-                    <td>
-                      {sell?.status === "verified" ? (
-                        <h1 className="btn btn-sm btn-success"> Verified </h1>
-                      ) : (
-                        <h1
-                          onClick={() => verifySeller(sell)}
-                          className="btn btn-sm btn-info "
-                        >
-                          {" "}
-                          Verify{" "}
-                        </h1>
-                      )}
-                    </td>
                   </tr>
                 );
               })}
@@ -114,4 +83,4 @@ const AllSeller = () => {
   );
 };
 
-export default AllSeller;
+export default Allbuyer;

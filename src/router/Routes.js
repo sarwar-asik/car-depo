@@ -13,6 +13,8 @@ import Profile from "../profiles/Profile";
 import Payment from "../pages/dashBoard/user/Payment";
 import ErrorDisplay from "../errors/ErrorDisplay";
 import AllSeller from "../pages/dashBoard/admin/AllSeller";
+import Allbuyer from "../pages/dashBoard/admin/Allbuyer";
+import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +71,15 @@ const router = createBrowserRouter([
       {
         path: "/allseller",
         element: <AllSeller />,
+      },
+      {
+        path: "/allbuyer",
+        element: <Allbuyer />,
+      },
+      {
+        path: "/report",
+        loader: () => fetch(`https://sh-server-site.vercel.app/getreport`),
+        element: <ReportedItem />,
       },
     ],
   },

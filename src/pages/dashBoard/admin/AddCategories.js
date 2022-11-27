@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
+import useRoleCheck from "../../../hooks/useRoleCheck";
 
 const AddCategories = () => {
   const {
@@ -11,8 +13,14 @@ const AddCategories = () => {
     formState: { errors },
   } = useForm();
 
+  
   const { user } = useContext(AuthContext);
 
+  const [roleCheck] =useRoleCheck(user?.email)
+
+const navigate = useNavigate()
+
+  console.log("role is ......", roleCheck);
   const addCategories = (event) => {
     // toast('add')
     const categories = {
@@ -21,6 +29,7 @@ const AddCategories = () => {
       options: event.options,
     };
     console.log(categories);
+  if(roleCheck === 'Admin'){
     fetch(`https://sh-server-site.vercel.app/category?email=${user?.email}`, {
       method: "POST",
       headers: {
@@ -34,11 +43,18 @@ const AddCategories = () => {
         toast.success("added microbus");
         reset();
       });
+  }
+  else{
+    navigate('/signup')
+  }
+
+
+
   };
 
   return (
     <div className="max-w-md mx-auto my-5 rounded">
-      <h1> Add a Categories </h1>
+      <h1 className="text-3xl text-center "> Add a Categories </h1>
       <form onSubmit={handleSubmit(addCategories)} className="">
         {/* <Header /> */}
 

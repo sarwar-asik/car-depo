@@ -1,12 +1,14 @@
-import React from 'react';
-import Categories from '../categories/Categories';
+import React from "react";
+import Advertisement from "../advertise/Advertisement";
+import Categories from "../categories/Categories";
 
 const Home = () => {
-    return (
-        <div>
-            <Categories/>
-        </div>
-    );
+  return (
+    <div>
+      <Categories />
+      <Advertisement />
+    </div>
+  );
 };
 
 export default Home;

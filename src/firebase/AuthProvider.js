@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import app from "./Firebase.config";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -57,13 +58,16 @@ const AuthProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+
   const logout = () => {
     const islogout = window.confirm(" Log Out ?");
 
     if (islogout) {
       return signOut(auth)
         .then(() => {
+          setLoading(true)
           localStorage.removeItem("accessToken");
+         
         })
         .catch((e) => console.log(e));
     }
@@ -76,6 +80,7 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         toast("success github logIn");
         console.log(result.user);
+        setLoading(true)
       })
       .catch((err) => console.log(err));
   };

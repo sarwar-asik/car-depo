@@ -76,6 +76,7 @@ const CheckoutForm = ({ order }) => {
         transactionId: paymentIntent.id,
         email,
         bookingId: _id,
+        name:name,
         about: "posted from checkoutForm",
       };
       fetch(`https://sh-server-site.vercel.app/payment`, {
