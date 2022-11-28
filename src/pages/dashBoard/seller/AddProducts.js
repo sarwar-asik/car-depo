@@ -23,6 +23,11 @@ const AddProducts = () => {
   } = useForm();
   // console.log(oneCategory);
 
+
+
+
+  
+
   const [oneCategory, setOneCategory] = useState({});
 
   const addProducts = (data) => {
@@ -45,6 +50,8 @@ const AddProducts = () => {
 
     // console.log('full category',getcate);
 
+    
+
     const products = {
       name,
       category,
@@ -62,7 +69,7 @@ const AddProducts = () => {
       used,
       time: new Date().toLocaleDateString(),
     };
-
+    
     if (roleCheck === "seller") {
       fetch(`https://sh-server-site.vercel.app/products?email=${user?.email}`, {
         method: "POST",
@@ -87,7 +94,7 @@ const AddProducts = () => {
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">
-      <h1> Add Your Products </h1>
+      <h1 className="text-3xl "> Add Your Products </h1>
 
       <form onSubmit={handleSubmit(addProducts)} className="">
         {/* <Header /> */}
@@ -207,6 +214,7 @@ const AddProducts = () => {
           className="w-full py-3 my-2"
         >
           {allCategories.map((singleCategory) => {
+
             return (
               <>
                 <option value={singleCategory?.name}>
@@ -219,7 +227,7 @@ const AddProducts = () => {
 
         <input
           type="submit"
-          value="Log In"
+          value="Add Product"
           className="btn btn-active btn-primary w-full my-5"
         />
       </form>

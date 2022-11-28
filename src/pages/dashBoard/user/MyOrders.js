@@ -13,7 +13,11 @@ const MyOrders = () => {
   //   console.log(user.email);
   useEffect(() => {
     axios
-      .get(`https://sh-server-site.vercel.app/orders/${user?.email}`)
+      .get(`http://localhost:3008/orders/${user?.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
       .then((data) => {
         //   console.log(data.data);
         setOrders(data.data);
@@ -68,7 +72,9 @@ const MyOrders = () => {
                       </Link>
                     )}
                     {order?.price && order?.paid && (
-                      <span className=" bg-green-500 text-white font-medium rounded p-2 ">Paid</span>
+                      <span className=" bg-green-500 text-white font-medium rounded p-2 ">
+                        Paid
+                      </span>
                     )}
                   </td>
                 </tr>

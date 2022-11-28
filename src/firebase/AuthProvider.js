@@ -11,7 +11,8 @@ import {
 } from "firebase/auth";
 import app from "./Firebase.config";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../hooks/useToken";
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -43,6 +44,52 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  const logout = () => {
+    const islogout = window.confirm(" Log Out ?");
+
+    if (islogout) {
+      return signOut(auth)
+        .then(() => {
+          setLoading(true);
+          localStorage.removeItem("accessToken");
+        })
+        .catch((e) => console.log(e));
+    }
+  };
+
+  const gitProvider = new GithubAuthProvider();
+
+  const [tokenEmail, setTokenEmail] = useState("");
+  const [token] = useToken(tokenEmail);
+
+  const gitSignIn = () => {
+    signInWithPopup(auth, gitProvider)
+      .then((result) => {
+        toast("success github logIn");
+        console.log(result, "are result.....");
+
+        setToken(result.user.displayName);
+
+        setLoading(true);
+        const name = user.displayName;
+        const email = "github@gmail.com";
+        const type = "buyer";
+        const users = { name, email, type };
+        savedDB(users);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const setToken = (email) => {
+    fetch(`http://localhost:3008/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem(`accessToken`, data.accessToken);
+      });
+  };
+
+  //delete user //
+
   // google sign in
 
   const provider = new GoogleAuthProvider();
@@ -52,41 +99,33 @@ const AuthProvider = ({ children }) => {
       .then((result) => {
         const user = result.user;
         console.log(" from google sign in ", user);
+        setTokenEmail(user.email);
+        const name = user.displayName;
+        const email = user.email;
+        const type = "buyer";
+        const users = { name, email, type };
+        savedDB(users);
+        setToken(user.email);
+
         toast.success("Success Google ");
-        //   saveUser(user.displayName,user.email)
       })
       .catch((err) => console.log(err));
   };
 
-
-  const logout = () => {
-    const islogout = window.confirm(" Log Out ?");
-
-    if (islogout) {
-      return signOut(auth)
-        .then(() => {
-          setLoading(true)
-          localStorage.removeItem("accessToken");
-         
-        })
-        .catch((e) => console.log(e));
-    }
+  const savedDB = (user) => {
+    fetch(`https://sh-server-site.vercel.app/users`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .catch((data) => {
+        console.log(data);
+        toast.success("added DB");
+      });
   };
-
-  const gitProvider = new GithubAuthProvider();
-
-  const gitSignIn = () => {
-    signInWithPopup(auth, gitProvider)
-      .then((result) => {
-        toast("success github logIn");
-        console.log(result.user);
-        setLoading(true)
-      })
-      .catch((err) => console.log(err));
-  };
-
-  //delete user //
-  
 
   const authInfo = {
     createUser,

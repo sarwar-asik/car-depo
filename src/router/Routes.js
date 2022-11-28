@@ -16,6 +16,7 @@ import AllSeller from "../pages/dashBoard/admin/AllSeller";
 import Allbuyer from "../pages/dashBoard/admin/Allbuyer";
 import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
 import Blogs from "../pages/blogs/Blogs";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
         path: "/products/:id",
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
-        element: <Products />,
+        element: <PrivateRoute><Products></Products></PrivateRoute>
       },
       {
         path: "/selllerproducts",

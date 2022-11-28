@@ -11,7 +11,7 @@ const Header = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      {user?.email ? (
+      {user?.displayName? (
         <>
           <li>
             <Link className="" onClick={logout} >

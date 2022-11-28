@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
@@ -19,6 +20,17 @@ const Products = () => {
     setproducts(data);
     // console.log(data);
   };
+
+  const [users, setusers] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:3008/users`).then((data) => {
+      //   console.log(data.data);
+      setusers(data.data);
+    });
+  }, []);
+
+  // console.log(users);
+  // console.log(products);
 
   // console.log();
   const ReportAdmin = (info) => {
@@ -43,6 +55,9 @@ const Products = () => {
       <h1 className="text-5xl font-bold my-5 text-center"> Our Products</h1>
       <div className="grid lg:grid-cols-2 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
         {products.map((prod) => {
+          const getUser = users.find((user) => user.email === prod.email);
+          //  console.log('////',getUser,'.....');
+
           return (
             <>
               <div className="card lg:card-side   shadow-xl">
@@ -71,7 +86,17 @@ const Products = () => {
                     <p className="flex flex-col gap-3 font-semibold ">
                       <h5> Offer Price : $5500</h5>
                       <h4> Posted : {prod?.posted}</h4>
-                      <h4>Seller :{prod?.seller} </h4>
+
+                      <div className="indicator">
+                        {getUser?.status === "verified" && (
+                          <span className="indicator-item badge badge-primary">
+                            verified
+                          </span>
+                        )}
+                        <div className="grid w-12   place-items-center">
+                          {prod.seller}
+                        </div>
+                      </div>
                     </p>
                   </div>
 

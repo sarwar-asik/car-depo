@@ -1,6 +1,7 @@
 import { getAuth } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -65,7 +66,7 @@ const Login = () => {
 
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text-alt">Your Email</span>
+            <span className="text-xl font-semi-bold">Your Email</span>
           </label>
           <input
             {...register("email", {
@@ -88,7 +89,7 @@ const Login = () => {
         </div>
         <div className="form-control w-full">
           <label className="label">
-            <span className="label-text-alt">Your Password</span>
+            <span className="text-xl font-semi-bold">Your Password</span>
             <span>
               {" "}
               {show ? (
@@ -142,8 +143,12 @@ const Login = () => {
         </Link>
       </p>
       <div className="divider">OR</div>
-      <button onClick={gitSignIn} className="btn btn-outline w-full text-lg ">
-        Continue With GitHub
+
+      <button onClick={googleSignIn} className="btn btn-outline btn-primary w-full text-lg ">
+      <FaGoogle className="text-3xl mx-2"/>  Continue With Google
+      </button>
+      <button onClick={gitSignIn} className="btn btn-outline w-full text-lg mt-4">
+      <FaGithub className="text-3xl mx-2"/>  Continue With GitHub
       </button>
     </div>
   );

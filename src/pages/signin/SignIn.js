@@ -8,9 +8,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getAuth, updateProfile } from "firebase/auth";
 import app from "../../firebase/Firebase.config";
 import useToken from "../../hooks/useToken";
+import { FaBeer } from "@react-icons/all-files/fa/FaBeer";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+
 
 const SignIn = () => {
-  const { googleSignIn, createUser } = useContext(AuthContext);
+  const { googleSignIn, createUser,gitSignIn } = useContext(AuthContext);
   //   console.log(user);
   const auth = getAuth(app);
 
@@ -57,6 +60,7 @@ const SignIn = () => {
         })
           .then(() => {
             toast.success("sign up");
+            console.log('for token .....',email);
             setTokenEmail(email);
             savedDB(user);
             setError("");
@@ -85,7 +89,7 @@ const SignIn = () => {
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">
-      <h1 className="text-3xl my-3 text-center "> Sign In please </h1>
+      <h1 className="text-3xl my-3 text-center "> Sign Up please </h1>
 
       <form onSubmit={handleSubmit(handleSignup)} className="">
         {/* <Header /> */}
@@ -190,10 +194,17 @@ const SignIn = () => {
       <div className="divider">OR</div>
       <button
         onClick={googleSignIn}
-        className="btn btn-outline w-full text-lg "
+        className="btn btn-outline btn-primary w-full text-lg "
       >
-        {" "}
+        <FaGoogle className="mx-3 text-2xl"/>
         Continue With Google
+      </button>
+      <button
+        onClick={gitSignIn}
+        className="btn btn-outline w-full text-lg mt-2"
+      >
+        <FaGithub className="mx-3 text-2xl"/>
+        Continue With Git Hub
       </button>
     </div>
   );

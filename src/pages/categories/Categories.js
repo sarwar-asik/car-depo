@@ -27,16 +27,13 @@ const Categories = () => {
         {categories.map((category) => {
           return (
             <Link to={`/products/${category._id}`}>
-              <div className="card shadow-xl w-[400px] mx-auto">
+              <div className="card  w-[400px] mx-auto">
                 <figure>
-                  <img
-                    src={category.img}
-                    alt="Shoes"
-                    className="max-w-[80%] max-h-60 "
-                  />
+                <img className="mask mask-square max-w-[80%] max-h-60 " src={category.img} alt="" />
+                
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title">{category.name}</h2>
+                  <h2 className="text-2xl font-semibold text-center">{category.name}</h2>
                 </div>
               </div>
             </Link>

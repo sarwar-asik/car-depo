@@ -14,10 +14,11 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch(`https://sh-server-site.vercel.app/create-payment-intent`, {
+    fetch("http://localhost:3008/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ price }),
     })
@@ -50,6 +51,7 @@ const CheckoutForm = ({ order }) => {
       console.log(error);
       setCardError(error.message);
     } else {
+      console.log( paymentMethod );
       setCardError("");
     }
 
@@ -79,7 +81,7 @@ const CheckoutForm = ({ order }) => {
         name:name,
         about: "posted from checkoutForm",
       };
-      fetch(`https://sh-server-site.vercel.app/payment`, {
+      fetch(`http://localhost:3008/payment`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -124,7 +126,7 @@ const CheckoutForm = ({ order }) => {
         <button
           className="btn btn-accent my-8 text-center"
           type="submit"
-          disabled={!stripe || !clientSecret || processing}
+          disabled={!stripe || clientSecret || processing}
         >
           Pay
         </button>
