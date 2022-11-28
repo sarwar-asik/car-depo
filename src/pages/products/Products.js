@@ -77,7 +77,7 @@ const Products = () => {
 
                   <div className="flex justify-between gap-3">
                     <p className="flex flex-col gap-1 text-sm">
-                      <h5>Price : {prod.price} </h5>
+                      <h5>Price : ${prod.price} </h5>
                       <h5> Contact : {prod.mobile} </h5>
                       <h5>Used{prod.used} </h5>
                       <h5>Posted {prod.time} </h5>

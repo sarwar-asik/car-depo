@@ -61,7 +61,7 @@ const AllSeller = () => {
   return (
     <div className="max-w-[80%] mx-auto">
       {isLoading && <Loader />}
-      <h1 className="text-center text-3xl "> Total Seller </h1>
+      <h1 className="text-center text-3xl  py-5"> Total Seller </h1>
 
       <div className="overflow-x-auto">
         <table className="table w-full">

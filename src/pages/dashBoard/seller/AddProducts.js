@@ -23,11 +23,6 @@ const AddProducts = () => {
   } = useForm();
   // console.log(oneCategory);
 
-
-
-
-  
-
   const [oneCategory, setOneCategory] = useState({});
 
   const addProducts = (data) => {
@@ -50,8 +45,6 @@ const AddProducts = () => {
 
     // console.log('full category',getcate);
 
-    
-
     const products = {
       name,
       category,
@@ -69,7 +62,7 @@ const AddProducts = () => {
       used,
       time: new Date().toLocaleDateString(),
     };
-    
+
     if (roleCheck === "seller") {
       fetch(`https://sh-server-site.vercel.app/products?email=${user?.email}`, {
         method: "POST",
@@ -94,14 +87,14 @@ const AddProducts = () => {
 
   return (
     <div className="max-w-lg mx-auto my-5 rounded">
-      <h1 className="text-3xl "> Add Your Products </h1>
+      <h1 className="text-3xl text-center py-3  "> Add Your Products </h1>
 
       <form onSubmit={handleSubmit(addProducts)} className="">
         {/* <Header /> */}
 
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text-alt">Products Name</span>
+            <span className="text-xl font-semibold">Products Name</span>
           </label>
           <input
             {...register("name", { required: "Fill up ,please" })}
@@ -118,7 +111,7 @@ const AddProducts = () => {
         </div>
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text-alt">Photo Url</span>
+            <span className="text-xl font-semibold">Photo Url</span>
           </label>
           <input
             {...register("img", { required: "img is Required" })}
@@ -214,7 +207,6 @@ const AddProducts = () => {
           className="w-full py-3 my-2"
         >
           {allCategories.map((singleCategory) => {
-
             return (
               <>
                 <option value={singleCategory?.name}>

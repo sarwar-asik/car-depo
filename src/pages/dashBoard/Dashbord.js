@@ -23,8 +23,8 @@ const Dashbord = () => {
       roleCheck === 'Admin'&&
       <>
              <Link to="/categories">Add Categories </Link>
-              <Link to="/allseller"> All Seller </Link>
-              <Link to="/allbuyer"> All Buyer </Link>
+              <Link to="/allseller"> All Sellers </Link>
+              <Link to="/allbuyer"> All Buyers </Link>
               <Link to="/report"> Reported Item </Link>
       </>
     }
