@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:3008/create-payment-intent", {
+    fetch("https://sh-server-site.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const CheckoutForm = ({ order }) => {
       console.log(error);
       setCardError(error.message);
     } else {
-      console.log( paymentMethod );
+      console.log(paymentMethod);
       setCardError("");
     }
 
@@ -78,10 +78,10 @@ const CheckoutForm = ({ order }) => {
         transactionId: paymentIntent.id,
         email,
         bookingId: _id,
-        name:name,
+        name: name,
         about: "posted from checkoutForm",
       };
-      fetch(`http://localhost:3008/payment`, {
+      fetch(`https://sh-server-site.vercel.app/payment`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

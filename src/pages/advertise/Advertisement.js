@@ -10,7 +10,7 @@ const Advertisement = () => {
   const [advertises, setAdvertise] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3008/advertise?email=${user?.email}`, {
+      .get(`https://sh-server-site.vercel.app/advertise?email=${user?.email}`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -24,7 +24,7 @@ const Advertisement = () => {
   const [paids, setPaid] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3008/payment`).then((data) => {
+    axios.get(`https://sh-server-site.vercel.app/payment`).then((data) => {
       //   console.log(data.data);
       setPaid(data.data);
     });

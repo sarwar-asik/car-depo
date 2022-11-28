@@ -21,7 +21,7 @@ const ReportedItem = () => {
   console.log(reports);
   const deleteReport = (report) => {
     fetch(
-      `http://localhost:3008/deletereport/${report?._id}?email=${user?.email}`,
+      `https://sh-server-site.vercel.app/deletereport/${report?._id}?email=${user?.email}`,
       {
         method: "DELETE",
         headers: {

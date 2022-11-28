@@ -79,13 +79,18 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-center lg:hidden ">
-          <a className="btn btn-ghost normal-case text-xl">Used Cars Depot</a>
+      
+          <Link to='/' className="btn btn-ghost normal-case text-xl" >
+          Used Cars Depot
+          </Link>
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">{MenuItem}</ul>
           </div>
           <label htmlFor="dashboard-drawer" className="btn btn-ghost lg:hidden">
+          <Link> DashBoard</Link>
+
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -100,6 +105,7 @@ const Header = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
+
           </label>
         </div>
       </div>

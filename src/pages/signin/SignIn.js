@@ -64,6 +64,7 @@ const SignIn = () => {
             setTokenEmail(email);
             savedDB(user);
             setError("");
+            navigate('/')
             reset();
           })
           .catch((e) => setError(e.message));

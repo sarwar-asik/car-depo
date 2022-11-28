@@ -7,6 +7,8 @@ import Loader from "../../../loader/Loader";
 const Allbuyer = () => {
   const { user } = useContext(AuthContext);
 
+  // console.log(user?.email);
+
   const {
     data: seller = [],
     refetch,
@@ -44,7 +46,7 @@ const Allbuyer = () => {
   return (
     <div className="max-w-[80%] mx-auto">
       {isLoading && <Loader />}
-      <h1 className="text-center text-3xl "> Total Seller </h1>
+      <h1 className="text-center text-3xl my-3 "> Total Buyer </h1>
 
       <div className="overflow-x-auto">
         <table className="table w-full">

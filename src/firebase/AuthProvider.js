@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const setToken = (email) => {
-    fetch(`http://localhost:3008/jwt?email=${email}`)
+    fetch(`https://sh-server-site.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem(`accessToken`, data.accessToken);

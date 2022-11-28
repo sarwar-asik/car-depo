@@ -15,10 +15,6 @@ const SellerProducts = () => {
 
   // const [prods, setProd] = useState(null);
   // console.log(prods);
-  
- 
-
-
 
   const {
     data: myProducts,
@@ -35,20 +31,17 @@ const SellerProducts = () => {
     },
   });
 
-
-
   const [advertisess, setAdvertise] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3008/advertise`).then((data) => {
+    axios.get(`https://sh-server-site.vercel.app/advertise`).then((data) => {
       //   console.log(data.data);
       setAdvertise(data.data);
-      refetch()
+      refetch();
     });
   }, []);
 
-console.log(advertisess);
-
+  console.log(advertisess);
 
   const deleteProduct = (product) => {
     // toast(id);
@@ -73,12 +66,10 @@ console.log(advertisess);
     }
   };
 
-  
   // console.log(advertisess);
 
   const advertise = (product) => {
-  
-    fetch("http://localhost:3008/addAdvertisement", {
+    fetch("https://sh-server-site.vercel.app/addAdvertisement", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -113,8 +104,11 @@ console.log(advertisess);
           </thead>
           <tbody>
             {myProducts?.map((product, index) => {
-              // console.log(product);
-              const alreadybooked = advertisess.find(adver=>  adver.name  ===   product.name)
+              // console.log(advertisess);
+
+              const alreadybooked = advertisess.find(
+                (adver) => adver.name !== product.name
+              );
 
               // console.log(alreadybooked)
 
@@ -133,18 +127,18 @@ console.log(advertisess);
                     </button>
                   </td>
                   <td>
-                  
-                     
-                      {
-                        alreadybooked?.name?<button className="btn btn-primary btn-sm"> Advertised</button>
-                        :
-                        <button
+                    {alreadybooked?.name ? (
+                      <button className="btn btn-primary btn-sm">
+                        Advertised
+                      </button>
+                    ) : (
+                      <button
                         onClick={() => advertise(product)}
                         className="btn btn-sm btn-accent"
                       >
                         Advertise
                       </button>
-                      }
+                    )}
                   </td>
                 </tr>
               );

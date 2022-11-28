@@ -13,7 +13,7 @@ const MyOrders = () => {
   //   console.log(user.email);
   useEffect(() => {
     axios
-      .get(`http://localhost:3008/orders/${user?.email}`, {
+      .get(`https://sh-server-site.vercel.app/orders/${user?.email}`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },

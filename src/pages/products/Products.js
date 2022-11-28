@@ -23,7 +23,7 @@ const Products = () => {
 
   const [users, setusers] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:3008/users`).then((data) => {
+    axios.get(`https://sh-server-site.vercel.app/users`).then((data) => {
       //   console.log(data.data);
       setusers(data.data);
     });
