@@ -25,3 +25,10 @@
 3 *   React Router , Tailwind ,  Daisy UI ,  Node ,Express , Mongodb , Stripe , React Quewry Had used this .
 
 4 *  This projects secured by private Routes and Admin Routes .
+
+## for explore 
+### Please , Log In as a Admin .
+
+Admin Email : asikpc2023@gmail.com  ;
+
+Admin Password : 11223344
