@@ -4,7 +4,7 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import BookModal from "../bookModal/BookModal";
 
 const Advertisement = () => {
-  const { user } = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
   console.log(user?.email);
 
   const [advertises, setAdvertise] = useState([]);
@@ -41,10 +41,12 @@ const Advertisement = () => {
   };
 
   return (
-    <div className="max-w-[98%] mx-auto ">
-      {/* <h1 className="text-center text-5xl my-5 "> Advertise Items </h1> */}
+    <div className={` max-w-[98%] mx-auto  mt-[30px] ${theme || "t"}`}>
+      <h1 className="text-center text-5xl font-semibold mt-5 ">
+        Available Products{" "}
+      </h1>
       <div
-        className=" grid sm:grid-cols-1
+        className="my-[200px] grid sm:grid-cols-1
     md:grid-cols-2  lg:grid-cols-3 gap-5"
       >
         {advertises?.map((advertise) => {
@@ -56,20 +58,22 @@ const Advertisement = () => {
           // console.log(alreadyPaid);
           if (!alreadyPaid) {
             return (
-              <div className="card w-96 bg-base-100 mx-auto shadow-xl image-full">
+              <div className="card h-[350px]  mx-auto w-[80%] shadow-lg  ">
                 <figure className=" h-[250px]">
-                  <img className="w-[100%]" src={img} alt="Shoes" />
+                  <img className="w-[100%] " src={img} alt="img" />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-white">{name}</h2>
+                  <h2 className="card-title font-semibold">{name}</h2>
                   <p>{descriptions}</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">${price}</button>
+                    <button className=" rounded hover:translate-x-3 duration-500 ease-in-out ">
+                      ${price}
+                    </button>
 
                     <label
                       onClick={() => productData(advertise)}
                       htmlFor="my-modal-6"
-                      className="btn btn-outline btn-accent"
+                      className="btn1 py-2 px-2 "
                     >
                       Book Now
                     </label>

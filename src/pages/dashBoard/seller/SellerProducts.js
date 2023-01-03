@@ -7,7 +7,7 @@ import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
 
 const SellerProducts = () => {
-  const { user } = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ const SellerProducts = () => {
     });
   }, []);
 
-  console.log(advertisess);
+  // console.log(advertisess);
 
   const deleteProduct = (product) => {
     // toast(id);
@@ -69,7 +69,8 @@ const SellerProducts = () => {
   // console.log(advertisess);
 
   const advertise = (product) => {
-    fetch("https://sh-server-site.vercel.app/addAdvertisement", {
+    // toast(product.name)
+    fetch(`https://sh-server-site.vercel.app/addAdvertisement`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -79,9 +80,12 @@ const SellerProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        refetch();
-        toast.success(`advertised ${product.name}`);
+        toast("added Product");
       });
+  };
+
+  const update = (product) => {
+    toast(`Updating ${product.name}`);
   };
 
   return (
@@ -98,8 +102,9 @@ const SellerProducts = () => {
               <th>Name</th>
               <th>Status</th>
               <th>Price</th>
-              <th>Advertise</th>
               <th>Delete</th>
+              <th>Advertise</th>
+              <th>Update</th>
             </tr>
           </thead>
           <tbody>
@@ -107,21 +112,21 @@ const SellerProducts = () => {
               // console.log(advertisess);
 
               const alreadybooked = advertisess.find(
-                (adver) => adver.name !== product.name
+                (adver) => adver.name === product.name
               );
 
-              // console.log(alreadybooked)
+              // console.log(alreadybooked);
 
               return (
                 <tr>
                   <th>{index + 1}</th>
-                  <td>{product.name}</td>
+                  <td>{product?.name}</td>
                   <td>.....</td>
-                  <td>{product.price}</td>
+                  <td>{product?.price}</td>
                   <td>
                     <button
                       onClick={() => deleteProduct(product)}
-                      className="btn btn-error btn-outline"
+                      className="btn btn-error btn-sm btn-outline"
                     >
                       Delete
                     </button>
@@ -134,11 +139,19 @@ const SellerProducts = () => {
                     ) : (
                       <button
                         onClick={() => advertise(product)}
-                        className="btn btn-sm btn-accent"
+                        className="btn btn-sm btn-accent "
                       >
                         Advertise
                       </button>
                     )}
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => update(product)}
+                      className="btn btn-info btn-sm hover:btn-success "
+                    >
+                      Update
+                    </button>
                   </td>
                 </tr>
               );

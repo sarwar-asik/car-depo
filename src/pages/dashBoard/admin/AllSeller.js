@@ -43,6 +43,7 @@ const AllSeller = () => {
   };
 
   const verifySeller = (seller) => {
+    
     fetch(`https://sh-server-site.vercel.app/verify?email=${user?.email}`, {
       method: "PUT",
       headers: {

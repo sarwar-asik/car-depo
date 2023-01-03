@@ -21,7 +21,7 @@ const BookModal = ({ productInfo, setModal }) => {
 
     const booking = {
       name,
-      email,
+        email,
       product,
       price,
       number,
@@ -51,8 +51,11 @@ const BookModal = ({ productInfo, setModal }) => {
     }
   };
 
+
+
+
   return (
-    <div>
+    <div className="text-slate-600">
       {/* The button to open modal */}
 
       {/* Put this part before </body> tag */}
@@ -106,6 +109,7 @@ const BookModal = ({ productInfo, setModal }) => {
               name="number"
               className="input w-full"
               placeholder="Enter your Number"
+              required
             />
             <select
               name="location"

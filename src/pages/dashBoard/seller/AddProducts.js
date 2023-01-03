@@ -173,7 +173,7 @@ const AddProducts = () => {
             {...register("condition", { required: true })}
             className=" my-2 py-2 mx-1"
           >
-            <option value="Excelent">Excelent</option>
+            <option value="Excelent">Excelant</option>
             <option value="Good">Good</option>
 
             <option value="Fair">Fair</option>

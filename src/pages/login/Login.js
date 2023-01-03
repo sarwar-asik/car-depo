@@ -31,13 +31,11 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   // for jwt ////
-  const [tokenEmail,setTokenEmail] =useState('')
-  const [token]=useToken(tokenEmail)
-  if(token){
+  const [tokenEmail, setTokenEmail] = useState("");
+  const [token] = useToken(tokenEmail);
+  if (token) {
     return navigate(from, { replace: true });
   }
-
-
 
   const submitLogin = (data) => {
     const email = data.email;
@@ -49,107 +47,125 @@ const Login = () => {
       .then((result) => {
         toast("success login ");
         setError("");
-        setTokenEmail(email)
+        setTokenEmail(email);
         // console.log(result.user);
       })
       .catch((err) => {
         setError(err.message);
         console.log(err);
       });
-    setError("")
+    setError("");
   };
   return (
-    <div className="max-w-md mx-auto my-5 rounded">
-      <h1 className="text-3xl my-3 text-center"> Log In please </h1>
-      <form onSubmit={handleSubmit(submitLogin)} className="">
-        {/* <Header /> */}
+    <div className="mx-auto  my-5 rounded lg:flex lg:justify-center  h-full  sm:block md:block gap-[100px] lg:items-center max-w-[85%] ">
+      <div className="">
+        <figure>
+          <img
+            className="rounded"
+            src="https://img.freepik.com/free-photo/businessman-logging-his-tablet_53876-102029.jpg?w=900&t=st=1670220119~exp=1670220719~hmac=dce84407f8961a3207e3abaaa1c82880ba7781971e8a9286352ec76fbc7cda21"
+            alt=""
+          />
+        </figure>
+      </div>
 
-        <div className="form-control w-full ">
-          <label className="label">
-            <span className="text-xl font-semi-bold">Your Email</span>
-          </label>
-          <input
-            {...register("email", {
-              required: "Email is Required",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "Provide correct email",
-              },
-            })}
-            aria-invalid={errors.email ? "true" : "false"}
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full "
-          />
-          {errors.email && (
-            <p className="text-red-400 text-sm" role="alert">
-              {errors.email?.message}
-            </p>
-          )}
-        </div>
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="text-xl font-semi-bold">Your Password</span>
-            <span>
-              {" "}
-              {show ? (
-                <HiEyeOff onClick={handleShow} />
-              ) : (
-                <HiEye onClick={handleShow} />
-              )}
-            </span>
-          </label>
-          <input
-            {...register("password", {
-              required: "Please provide correct password",
-              minLength: {
-                value: 6,
-                message: "Password must be 6 character",
-              },
-            })}
-            type={show ? "password" : "text"}
-            placeholder="type password"
-            className="input input-bordered w-full"
-          />
-          <label className="label">
-            {errors.password && (
+      <div className="">
+        <h1 className="text-3xl my-3 text-center"> Log In please </h1>
+        <form onSubmit={handleSubmit(submitLogin)} className="">
+          {/* <Header /> */}
+
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="text-xl font-semi-bold">Your Email</span>
+            </label>
+            <input
+              {...register("email", {
+                required: "Email is Required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Provide correct email",
+                },
+              })}
+              aria-invalid={errors.email ? "true" : "false"}
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full "
+            />
+            {errors.email && (
               <p className="text-red-400 text-sm" role="alert">
-                {errors.password?.message}
+                {errors.email?.message}
               </p>
             )}
-          </label>
-        </div>
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="text-xl font-semi-bold">Your Password</span>
+              <span>
+                {" "}
+                {show ? (
+                  <HiEyeOff onClick={handleShow} />
+                ) : (
+                  <HiEye onClick={handleShow} />
+                )}
+              </span>
+            </label>
+            <input
+              {...register("password", {
+                required: "Please provide correct password",
+                minLength: {
+                  value: 6,
+                  message: "Password must be 6 character",
+                },
+              })}
+              type={show ? "password" : "text"}
+              placeholder="type password"
+              className="input input-bordered w-full"
+            />
+            <label className="label">
+              {errors.password && (
+                <p className="text-red-400 text-sm" role="alert">
+                  {errors.password?.message}
+                </p>
+              )}
+            </label>
+          </div>
 
-        <select
-          {...register("user", { required: true })}
-          className="w-full py-3 my-2"
+          <select
+            {...register("user", { required: true })}
+            className="w-full py-3 my-2"
+          >
+            <option value="buyer">Buyers</option>
+            <option value="seller">Seller</option>
+          </select>
+
+          <p className="text-xl text-red-500 mb-3"> {error}</p>
+
+          <input
+            type="submit"
+            value="Log In"
+            className="btn btn-active btn-primary w-full my-5"
+          />
+        </form>
+        <p>
+          Create an Account ?
+          <Link to="/signup" className="text-primary">
+            Please Sign up
+          </Link>
+        </p>
+        <div className="divider">OR</div>
+
+        <button
+          onClick={googleSignIn}
+          className="btn btn-outline btn-primary w-full text-lg "
         >
-          <option value="buyer">Buyers</option>
-          <option value="seller">Seller</option>
-        </select>
-
-        <p className="text-xl text-red-500 mb-3"> {error}</p>
-
-        <input
-          type="submit"
-          value="Log In"
-          className="btn btn-active btn-primary w-full my-5"
-        />
-      </form>
-      <p>
-        Create an Account ?
-        <Link to="/signup" className="text-primary">
-          Please Sign up
-        </Link>
-      </p>
-      <div className="divider">OR</div>
-
-      <button onClick={googleSignIn} className="btn btn-outline btn-primary w-full text-lg ">
-      <FaGoogle className="text-3xl mx-2"/>  Continue With Google
-      </button>
-      <button onClick={gitSignIn} className="btn btn-outline w-full text-lg mt-4">
-      <FaGithub className="text-3xl mx-2"/>  Continue With GitHub
-      </button>
+          <FaGoogle className="text-3xl mx-2" /> Continue With Google
+        </button>
+        <button
+          onClick={gitSignIn}
+          className="btn btn-outline w-full text-lg mt-4"
+        >
+          <FaGithub className="text-3xl mx-2" /> Continue With GitHub
+        </button>
+      </div>
     </div>
   );
 };

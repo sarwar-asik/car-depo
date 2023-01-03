@@ -4,7 +4,7 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import useRoleCheck from "../../hooks/useRoleCheck";
 
 const Dashbord = () => {
-  const { user } = useContext(AuthContext);
+  const { user,dashbtn,setdashbtn } = useContext(AuthContext);
   const [roleCheck] = useRoleCheck(user?.email);
   console.log(roleCheck);
   const ItemDash = <React.Fragment>

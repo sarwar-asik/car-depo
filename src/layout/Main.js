@@ -1,18 +1,31 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from '../shared/Footer';
-import Header from '../shared/Header';
+import React from "react";
+import { useContext } from "react";
+import { HiSun } from "react-icons/hi";
+import { TiAdjustContrast } from "react-icons/ti";
+import { Outlet } from "react-router-dom";
+import { AuthContext } from "../firebase/AuthProvider";
+import Footer from "../shared/Footer";
+import Header from "../shared/Header";
+import Theme from "../shared/Theme/Theme";
+import '../shared/custom.css'
 
 const Main = () => {
-    return (
-        <div>
-            <Header></Header>
-            <Outlet/>
-          <div className="w-full mx-auto">
-          <Footer></Footer>
-          </div>
-        </div>
-    );
+  const { theme,} = useContext(AuthContext);
+  
+  return (
+    <div className={`static ${theme?'textColor1':"textColor2"}`}>
+      <div className="fixed right-0 top-[60px] z-10 ">
+       {
+        <Theme></Theme>
+       }
+      </div>
+      <Header></Header>
+      <Outlet />
+      <div className="w-full mx-auto">
+        <Footer></Footer>
+      </div>
+    </div>
+  );
 };
 
 export default Main;

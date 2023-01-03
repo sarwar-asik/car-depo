@@ -18,6 +18,9 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const [loading, setLoading] = useState(true);
+  const [dashbtn, setdashbtn] = useState(false);
+
+  const [theme, setTheme] = useState(true);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -50,6 +53,7 @@ const AuthProvider = ({ children }) => {
     if (islogout) {
       return signOut(auth)
         .then(() => {
+          dashbtn(false);
           setLoading(true);
           localStorage.removeItem("accessToken");
         })
@@ -134,6 +138,10 @@ const AuthProvider = ({ children }) => {
     user,
     gitSignIn,
     googleSignIn,
+    dashbtn,
+    setdashbtn,
+    theme,
+    setTheme,
   };
   return (
     <div>

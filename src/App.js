@@ -4,10 +4,14 @@ import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/Routes";
 import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "./firebase/AuthProvider";
 
 function App() {
+  const {theme} = useContext(AuthContext)
+
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className={theme?'max-w-7xl mx-auto':'bg-slate-700 max-w-7xl mx-auto'}  >
       <RouterProvider router={router}></RouterProvider>
       <ToastContainer autoClose={1500} />
     </div>

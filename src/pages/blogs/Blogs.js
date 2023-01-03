@@ -1,14 +1,17 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../firebase/AuthProvider';
 
 const Blogs = () => {
+  const {theme} = useContext(AuthContext)
     return (
-        <div className='max-w-[90%] mx-auto'>
+        <div className={`max-w-[90%] mx-auto  ${theme||'text-primary'}`}>
             <div className="collapse my-3">
             <input type="checkbox" className="peer" /> 
-            <div className="collapse-title text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <div className="collapse-title  peer-checked:bg-secondary peer-checked:text-secondary-content">
            1. What are the different ways to manage a state in a React application?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+            <div className="collapse-content bg-primary  peer-checked:bg-secondary peer-checked:text-secondary-content"> 
                 <p>
                 There are four main types of state you need to properly manage in a React apps:
                 <ul>
@@ -31,10 +34,10 @@ const Blogs = () => {
             {/* items- */}
             <div className="collapse">
             <input type="checkbox" className="peer" /> 
-            <div className="collapse-title  text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <div className="collapse-title   peer-checked:bg-secondary peer-checked:text-secondary-content">
             How does prototypical inheritance work?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+            <div className="collapse-content bg-primary  peer-checked:bg-secondary peer-checked:text-secondary-content"> 
                 <p>The prototype chain is used for multiple inheritances at different hierarchy levels.
 We can make a prototypes point to other prototypes using the following method.</p>
             </div>
@@ -42,10 +45,10 @@ We can make a prototypes point to other prototypes using the following method.</
             {/* items- */}
             <div className="collapse">
             <input type="checkbox" className="peer" /> 
-            <div className="collapse-title text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <div className="collapse-title  peer-checked:bg-secondary peer-checked:text-secondary-content">
             What is a unit test? Why should we write unit tests?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+            <div className="collapse-content bg-primary  peer-checked:bg-secondary peer-checked:text-secondary-content"> 
                 <p>
                     <ul>
                         <li>
@@ -61,10 +64,10 @@ We can make a prototypes point to other prototypes using the following method.</
             {/* items- */}
             <div className="collapse">
             <input type="checkbox" className="peer" /> 
-            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+            <div className="collapse-title  peer-checked:bg-secondary peer-checked:text-secondary-content">
             React vs. Angular vs. Vue?
             </div>
-            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+            <div className="collapse-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
             <div className="overflow-x-auto">
   <table className="table w-full">
     

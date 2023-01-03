@@ -17,6 +17,7 @@ import Allbuyer from "../pages/dashBoard/admin/Allbuyer";
 import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
 import Blogs from "../pages/blogs/Blogs";
 import PrivateRoute from "./PrivateRoute";
+import PractiseModules from "../practiseModule/PractiseModules";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/modules",
+        element: <PractiseModules />,
       },
       {
         path: "/signup",
