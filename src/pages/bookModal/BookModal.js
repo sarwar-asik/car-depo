@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
-import '../../shared/custom.css'
+import "../../shared/custom.css";
 
 const BookModal = ({ productInfo, setModal }) => {
-  const { user ,theme } = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
 
   // console.log(productInfo);
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const BookModal = ({ productInfo, setModal }) => {
 
     const booking = {
       name,
-        email,
+      email,
       product,
       price,
       number,
@@ -52,11 +52,12 @@ const BookModal = ({ productInfo, setModal }) => {
     }
   };
 
-
-
+  const handleClose = (good) => {
+    setModal(!good);
+  };
 
   return (
-    <div className={` ${theme?"textColor1":"text-slate-600"}`}>
+    <div className={` ${theme ? "textColor1" : "text-slate-600"}`}>
       {/* The button to open modal */}
 
       {/* Put this part before </body> tag */}
@@ -64,7 +65,11 @@ const BookModal = ({ productInfo, setModal }) => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <div className="modal-action">
-            <label htmlFor="my-modal-6" className="btn1 py-2 font-bold text-2xl px-3 rounded-[50%] ">
+            <label
+              htmlFor="my-modal-6"
+              className="btn1 py-2 font-bold text-2xl px-2 rounded-[50%]"
+              onClick={() => handleClose(!true)}
+            >
               <button> X </button>
             </label>
           </div>

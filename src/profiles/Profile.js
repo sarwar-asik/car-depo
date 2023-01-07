@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../firebase/AuthProvider";
 import useRoleCheck from "../hooks/useRoleCheck";
+import '../shared/custom.css'
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user ,theme} = useContext(AuthContext);
   const [roleCheck] = useRoleCheck(user?.email);
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl image-full mx-auto mt-5">
+      <div className={`card w-[90%] mx-auto  shadow-xl image-full mt-5 ${theme?"btn1":""}`}>
         <figure>
           <img
             src={
@@ -19,14 +20,14 @@ const Profile = () => {
           />
         </figure>
         <div className="card-body">
-          <h2 className=" text-lime-50 font-bold text-xl">{user?.email}</h2>
+          <h2 className=" text-lime-50 font-bold font-mono text-xl">{user?.email}</h2>
 
           <div className="indicator mt-3">
-            <span className="indicator-item badge badge-primary">
-              {roleCheck}
+            <span className="indicator-item badge btn1 py-2 font-mono">
+              {roleCheck?roleCheck :"Buyer"}
             </span>
             <div className="grid w-32 h-24 place-items-center">
-              <p className="text-5xl font-semibold ">{user?.displayName}</p>
+              <p className="text-5xl font-semibold font-serif ">{user?.displayName}</p>
             </div>
           </div>
           <div className="card-actions justify-end">

@@ -71,7 +71,7 @@ const Products = () => {
 
   return (
     <div className={theme ? "w-[80%] mx-auto   " : " w-[80%] mx-auto "}>
-      <RouteBanner></RouteBanner>
+      <RouteBanner positionName={[{no:"Home",to:"/"},{no:"Categories",to:"/categories"},{no:products[0]?.category}]}></RouteBanner>
       <h1
         className={` text-[40px] mb-7 font-bold font-serif my-5 text-center ${
           theme ? "textColorHover1" : "textColorHover2"

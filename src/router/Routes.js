@@ -19,6 +19,7 @@ import Blogs from "../pages/blogs/Blogs";
 import PrivateRoute from "./PrivateRoute";
 import PractiseModules from "../practiseModule/PractiseModules";
 import ProductsDetails from "../pages/products/ProductsDetails";
+import Categories from "../pages/categories/Categories";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/modules",
         element: <PractiseModules />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
       },
       {
         path: "/signup",
