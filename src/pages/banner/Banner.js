@@ -5,23 +5,23 @@ const Banner = () => {
         <div>
             <div className="carousel w-full">
   <div id="item1" className="carousel-item w-full">
-    <img  src="https://img.freepik.com/free-photo/close-up-sales-manager-black-suit-selling-car-customer_146671-14738.jpg?w=1060&t=st=1669575585~exp=1669576185~hmac=53856eedf892cf04de36a6392f12385e9c99518e18e06dc5a303578aa3f880db" alt='' className="w-full h-[490px]" />
+    <img  src="https://img.freepik.com/free-vector/white-convertible-car-isolated-white-vector_53876-66815.jpg?w=1380&t=st=1673079685~exp=1673080285~hmac=440b3d10f3d42c6c0b7496fd85392b0e7c1d1b2889bf0ac6e5d6a9d8e8bdee40" alt='' className="w-full h-[590px] rounded-md" />
   </div> 
   <div id="item2" className="carousel-item w-full">
-    <img src="https://as2.ftcdn.net/v2/jpg/02/65/74/87/1000_F_265748773_yeFazVnXHOdnjumA0wzXWL5FkXTuFyM3.jpg" className="w-full h-[490px] " alt='' />
+    <img src="https://as2.ftcdn.net/v2/jpg/02/65/74/87/1000_F_265748773_yeFazVnXHOdnjumA0wzXWL5FkXTuFyM3.jpg" className="w-full h-[590px] rounded-md " alt='' />
   </div> 
   <div id="item3" className="carousel-item w-full">
-    <img src="https://as1.ftcdn.net/v2/jpg/03/99/51/32/1000_F_399513285_jt8xoPECnoH1dGIUsYcaNeFnlJ3j3khd.jpg" className="w-full h-[490px] " alt='' />
+    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/new-ghost-white-fr-3-4-1-1598911711.jpg?crop=1xw:1xh;center,top&resize=480:*" alt='' />
   </div> 
   <div id="item4" className="carousel-item w-full">
-    <img src="https://as1.ftcdn.net/v2/jpg/03/20/08/76/1000_F_320087600_bt2JGXGArTfvdfq0FOgzy5ZOJkZLpjxH.jpg" className="w-full h-[490px] " alt='' />
+    <img src="https://img.freepik.com/free-photo/luxury-sports-car-back-half-side-view_90220-308.jpg?w=1060&t=st=1673031816~exp=1673032416~hmac=27829dc99cc9ef1945cd6eac78da07cdbc3d6f2699e1f96fe27783505521500d" className="w-full h-[590px] rounded-md " alt='' />
   </div>
 </div> 
-<div className="flex justify-center w-full py-2 gap-2">
-  <a href="#item1" className="btn btn-primary btn-sm">1</a> 
-  <a href="#item2" className="btn btn-primary btn-sm">2</a> 
-  <a href="#item3" className="btn btn-primary btn-sm">3</a> 
-  <a href="#item4" className="btn btn-primary btn-sm">4</a>
+<div className="flex justify-center w-full py-2 gap-2 text-white font-[900]">
+  <a href="#item1" className="bg-[#61cab2] p-3 rounded">1</a> 
+  <a href="#item2" className="bg-[#61cab2] p-3 rounded">2</a> 
+  <a href="#item3" className="bg-[#61cab2] p-3 rounded">3</a> 
+  <a href="#item4" className="bg-[#61cab2] p-3 rounded">4</a>
 </div>
             
         </div>

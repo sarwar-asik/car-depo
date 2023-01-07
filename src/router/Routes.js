@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         path: "/products/:id",
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
-        element: <PrivateRoute><Products></Products></PrivateRoute>
+        element:<Products/>
       },
       {
         path: "/selllerproducts",

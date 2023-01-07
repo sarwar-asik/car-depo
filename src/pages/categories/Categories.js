@@ -23,9 +23,10 @@ const Categories = () => {
 
   return (
     <div className={` my-5 ${theme || ""}`}>
-      <h1 className="text-3xl text-center py-5 font-bold">
+      <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
         Products Categories
       </h1>
+      <p   className={` text-lg font-semibold text-center ${theme ? "textColorHover1" : "textColorHover2"}`}> We are servicing 3 Categories Products to customers with garranty and warranty  </p>
       {loading || <Loader />}
       <div
         className="grid sm:grid-cols-1
@@ -33,19 +34,22 @@ const Categories = () => {
       >
         {categories.map((category) => {
           return (
-            <Link to={`/products/${category._id}`} className="shadow-2xl hover:-translate-y-9 duration-500 ease-in-out">
-              <div className="card  w-[400px] mx-auto">
+            <Link to={`/products/${category._id}`} className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 ">
+              <div className="card mx-auto">
                 <figure>
                   <img
-                    className="rounded-[30px] w-[200px] h-60  py-5  opacity-[1] hover:opacity-[0.6] "
+                    className=" h-[310px] opacity-[1] hover:opacity-[0.6] rounded-[0px] w-full"
                     src={category.img}
                     alt=""
                   />
                 </figure>
                 <div className="card-body ">
-                  <h2 className="text-2xl font-semibold text-center">
+                  <h2 className="text-2xl font-mono font-semibold text-center">
                     {category.name}
                   </h2>
+                  <button className="btn1 py-2 font-semibold">
+                    Details
+                  </button>
                 </div>
               </div>
             </Link>

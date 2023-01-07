@@ -7,7 +7,7 @@ import useRoleCheck from "../../hooks/useRoleCheck";
 import BookModal from "../bookModal/BookModal";
 
 const Products = () => {
-  const { user ,theme} = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
 
   const [roleCheck] = useRoleCheck(user?.email);
   // console.log(roleCheck);
@@ -34,7 +34,6 @@ const Products = () => {
 
   // console.log();
   const ReportAdmin = (info) => {
-    
     info["buyer"] = user?.email;
 
     fetch(`https://sh-server-site.vercel.app/reportadmin`, {
@@ -54,30 +53,36 @@ const Products = () => {
   // console.log(products);
 
   // const types = [{e:"Excelent"},{e:"Good"},{e:"Better"}]
-  
+
   // const rests =  types.filter(ty => ty.e !== 'Excelent')
   // console.log(rests);
 
   return (
-    <div className={theme?'w-[80%] mx-auto  ':' w-[80%] mx-auto text-primary'}>
-      <h1 className="text-5xl font-bold my-5 text-center"> Our Products</h1>
-      <div className="grid lg:grid-cols-2 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
+    <div className={theme ? "w-[80%] mx-auto   " : " w-[80%] mx-auto "}>
+      <h1
+        className={` text-[40px] font-bold font-serif my-5 text-center ${
+          theme ? "textColorHover1" : "textColorHover2"
+        }`}
+      >
+        {" "}
+        The Category's Products
+      </h1>
+      <div className="grid lg:grid-cols-1 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
         {products.map((prod) => {
           const getUser = users.find((user) => user.email === prod.email);
           // const rests =  types.filter(ty => ty.e !== prod?.condition)
           // console.log(rests);
-          
-          //  console.log('////',getUser,'.....');
 
+          //  console.log('////',getUser,'.....');
 
           return (
             <>
-              <div className="card lg:card-side   shadow-xl">
+              <div className="card lg:card-side  shadow-xl">
                 <figure>
                   <img
                     src={prod.img}
                     alt="Album"
-                    className="w-[100%] h-[350px] rounded-sm"
+                    className="w-[400px] h-[350px] rounded-sm"
                   />
                 </figure>
                 <div className="card-body py-4">
@@ -134,7 +139,6 @@ const Products = () => {
                       onClick={() => ReportAdmin(prod)}
                       className="bg-blue-400 py-2 hover:bg-lime-800 text-zinc-200 "
                     >
-                      
                       Report to Admin
                     </button>
                   )}

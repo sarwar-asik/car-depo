@@ -1,12 +1,38 @@
+
+
 .textColor1{
-    color:rgb(29, 171, 171)
+    color:#61cab2;
 }
+.textColorHover1{
+    color:rgb(51 82 97)
+}
+.textColorHover1:hover{
+    color: #0ba481;
+    /* background-color: ; */
+}
+
 .textColor2{
     color:aliceblue
 }
 
+
+.textColorHover2{
+    color: white;
+}
+.textColorHover2:hover{
+    color: #61cab2;
+}
+.bgThem1{
+    background-color: #61cab2;
+}
+
+.bgTheme2{
+    background-color: #004a77;
+}
+
+
 .btn1{
-    background-color:rgb(29, 171, 171);
+    background-color:#61cab2;
     color: white;
     border-radius: 5px;
 }

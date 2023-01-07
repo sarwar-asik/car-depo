@@ -19,30 +19,32 @@ const Header = () => {
 
   const MenuItem = (
     <React.Fragment>
-      <li>
+      <li  className={`${theme?"textColorHover1":"textColorHover2"}`} >
         <Link onClick={closeDash} to="/">
           Home
         </Link>
       </li>
       {user?.displayName ? (
         <>
-          <li>
-            <Link className="" onClick={logout}>
+          <li  className={`hover:text-error ${theme?"text-black":""} `} >
+            <Link onClick={logout}>
               Log Out{" "}
             </Link>
           </li>
 
-          <li>
+          <li  className={`${theme?"textColorHover1":"textColorHover2"}`} >
             <Link onClick={closeDash} to="/blogs">
               Blogs
             </Link>
           </li>
-          <li tabIndex={2} htmlFor="dashboard-drawer">
+          <li  className={`${theme?"textColorHover1":"textColorHover2"}`} 
+           tabIndex={2} htmlFor="dashboard-drawer">
             <Link onClick={handleDashbtn} to="/dashboard">
               Dashboard
             </Link>
           </li>
-          <li className=" rounded-full  ">
+          <li  className={`${theme?"textColorHover1":"textColorHover2"} rounded-full `} 
+           >
             <Link onClick={closeDash} to="/profile">
               {" "}
               Profile
@@ -52,17 +54,17 @@ const Header = () => {
       ) : (
         <>
           <li>
-            <Link onClick={handleDashbtn} to="/login">
+            <Link  className={`${theme?"textColorHover1":"textColorHover2"}`}  onClick={handleDashbtn} to="/login">
               Dashboard
             </Link>
           </li>
           <li>
-            <Link onClick={closeDash} to="/login">
+            <Link  className={`${theme?"textColorHover1":"textColorHover2"}`}  onClick={closeDash} to="/login">
               Login
             </Link>
           </li>
           <li>
-            <Link onClick={closeDash} to="/signup">
+            <Link  className={`${theme?"textColorHover1":"textColorHover2"}`}  onClick={closeDash} to="/signup">
               Sign In
             </Link>
           </li>
@@ -71,7 +73,7 @@ const Header = () => {
     </React.Fragment>
   );
   return (
-    <div className={theme ? "textColor1" : "textColor2"}>
+    <div className={``}>
       <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -80,15 +82,15 @@ const Header = () => {
             </label>
             <ul
               tabIndex={1}
-              className="menu menu-compact dropdown-content mt-3 p-2   rounded-box w-52 shadow-xl bg-cyan-700"
+              className={`menu menu-compact dropdown-content mt-3 p-2   rounded-box w-52 shadow-xl font-bold  ${theme?"bg-slate-200":"bg-slate-600"}`}
             >
               {MenuItem}
             </ul>
           </div>
           <div className=" hidden lg:flex">
-            <Link className=" normal-case text-2xl font-bold" to="/">
+            <Link className={`normal-case text-3xl font-serif font-bold ${theme ? "textColor1" : "textColor2"}`} to="/">
               {" "}
-              Used Cars Depo
+              Cars Depo
             </Link>
           </div>
         </div>
@@ -96,7 +98,7 @@ const Header = () => {
           <Link
             onClick={closeDash}
             to="/"
-            className="text-primary normal-case text-xl font-bold"
+            className={` text-4xl mr-4 font-serif font-bold ${theme ? "textColor1" : "textColorHover2"}`}
           >
             Used Cars Depot
           </Link>
@@ -104,14 +106,15 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-0 ">{MenuItem}</ul>
+            <ul className="menu menu-horizontal p-0 font-bold font-serif">{MenuItem}</ul>
           </div>
           {dashbtn && (
             <label
               htmlFor="dashboard-drawer"
               className="btn btn-ghost lg:hidden"
             >
-              <Link> DashBoards</Link>
+              DashBoards
+          
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
