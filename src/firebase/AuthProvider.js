@@ -11,7 +11,6 @@ import {
 } from "firebase/auth";
 import app from "./Firebase.config";
 import { toast } from "react-toastify";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import useToken from "../hooks/useToken";
 
 export const AuthContext = createContext();

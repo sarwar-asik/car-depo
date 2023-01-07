@@ -20,17 +20,18 @@ const Profile = () => {
         </figure>
         <div className="card-body">
           <h2 className=" text-lime-50 font-bold text-xl">{user?.email}</h2>
-         
+
           <div className="indicator mt-3">
-            <span className="indicator-item badge badge-primary">{roleCheck}</span>
+            <span className="indicator-item badge badge-primary">
+              {roleCheck}
+            </span>
             <div className="grid w-32 h-24 place-items-center">
-            <p className="text-5xl font-semibold ">{user?.displayName}</p>
+              <p className="text-5xl font-semibold ">{user?.displayName}</p>
             </div>
           </div>
           <div className="card-actions justify-end">
             <h2 className="text-xl text-white">
-              {" "}
-              Provided by {user?.providerId}{" "}
+              Provided by {user?.providerId}
             </h2>
           </div>
         </div>

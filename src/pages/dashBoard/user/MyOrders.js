@@ -30,7 +30,6 @@ const MyOrders = () => {
   return (
     <div>
       <h1 className="text-center text-3xl my-3 ">
-        {" "}
         Your Orders {orders.length}
       </h1>
       {loading || <Loader />}
@@ -67,8 +66,7 @@ const MyOrders = () => {
                         to={`/payment/${order?._id}`}
                         className="btn btn-outline btn-info"
                       >
-                        {" "}
-                        Pay{" "}
+                        Pay
                       </Link>
                     )}
                     {order?.price && order?.paid && (

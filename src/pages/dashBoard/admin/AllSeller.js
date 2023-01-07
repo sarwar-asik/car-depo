@@ -43,7 +43,6 @@ const AllSeller = () => {
   };
 
   const verifySeller = (seller) => {
-    
     fetch(`https://sh-server-site.vercel.app/verify?email=${user?.email}`, {
       method: "PUT",
       headers: {
@@ -88,8 +87,7 @@ const AllSeller = () => {
                         onClick={() => deleteUser(sell)}
                         className="bg-red-500 text-white  p-2 rounded-[20%]"
                       >
-                        {" "}
-                        Delete{" "}
+                        Delete
                       </button>
                     </td>
                     <td>
@@ -100,8 +98,7 @@ const AllSeller = () => {
                           onClick={() => verifySeller(sell)}
                           className="btn btn-sm btn-info "
                         >
-                          {" "}
-                          Verify{" "}
+                          Verify
                         </h1>
                       )}
                     </td>

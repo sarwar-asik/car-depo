@@ -10,7 +10,7 @@ const Banner = () => {
   <div id="item2" className="carousel-item w-full">
     <img src="https://as2.ftcdn.net/v2/jpg/02/65/74/87/1000_F_265748773_yeFazVnXHOdnjumA0wzXWL5FkXTuFyM3.jpg" className="w-full h-[590px] rounded-md " alt='' />
   </div> 
-  <div id="item3" className="carousel-item w-full">
+  <div id="item3" className="carousel-item w-[full]">
     <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/new-ghost-white-fr-3-4-1-1598911711.jpg?crop=1xw:1xh;center,top&resize=480:*" alt='' />
   </div> 
   <div id="item4" className="carousel-item w-full">

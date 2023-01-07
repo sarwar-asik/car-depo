@@ -34,7 +34,8 @@ const Categories = () => {
       >
         {categories.map((category) => {
           return (
-            <Link to={`/products/${category._id}`} className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 ">
+            <Link to={`/products/${category._id}`} 
+            key={category?._id}  className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 ">
               <div className="card mx-auto">
                 <figure>
                   <img

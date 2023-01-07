@@ -8,10 +8,12 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
 import app from "../../firebase/Firebase.config";
 import useToken from "../../hooks/useToken";
+import loginImg from "../../assets/login-removebg-preview.png";
 
 const Login = () => {
   const auth = getAuth(app);
-  const { googleSignIn, user, login, gitSignIn } = useContext(AuthContext);
+  const { googleSignIn, user, theme, login, gitSignIn } =
+    useContext(AuthContext);
 
   const {
     register,
@@ -48,6 +50,7 @@ const Login = () => {
         toast("success login ");
         setError("");
         setTokenEmail(email);
+        navigate(from, { replace: true });
         // console.log(result.user);
       })
       .catch((err) => {
@@ -57,25 +60,33 @@ const Login = () => {
     setError("");
   };
   return (
-    <div className="mx-auto  my-5 rounded lg:flex lg:justify-center  h-full  sm:block md:block gap-[100px] lg:items-center max-w-[85%] ">
-      <div className="">
+    <div
+      className={`mx-auto my-5 rounded lg:flex lg:justify-center  h-full  sm:block md:block gap-[50px] lg:items-center  max-w-[95%] ${
+        theme ? "#cdcfd0" : ""
+      } `}
+    >
+      <div className=" px-3 w-full">
         <figure>
-          <img
-            className="rounded"
-            src="https://img.freepik.com/free-photo/businessman-logging-his-tablet_53876-102029.jpg?w=900&t=st=1670220119~exp=1670220719~hmac=dce84407f8961a3207e3abaaa1c82880ba7781971e8a9286352ec76fbc7cda21"
-            alt=""
-          />
+          <img className="rounded h-[650px]  w-[100%]" src={loginImg} alt="" />
         </figure>
       </div>
 
-      <div className="">
-        <h1 className="text-3xl my-3 text-center"> Log In please </h1>
+      <div className=" px-4 w-full">
+        <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
+          Log In please
+        </h1>
         <form onSubmit={handleSubmit(submitLogin)} className="">
           {/* <Header /> */}
 
-          <div className="form-control w-full ">
+          <div className="form-control w-full">
             <label className="label">
-              <span className="text-xl font-semi-bold">Your Email</span>
+              <span
+                className={`text-2xl normal ${
+                  theme ? "textColorHover1" : "textColorHover2"
+                }`}
+              >
+                Your Email
+              </span>
             </label>
             <input
               {...register("email", {
@@ -87,8 +98,8 @@ const Login = () => {
               })}
               aria-invalid={errors.email ? "true" : "false"}
               type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full "
+              placeholder="xyz@gamil.com"
+              className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full"
             />
             {errors.email && (
               <p className="text-red-400 text-sm" role="alert">
@@ -98,9 +109,14 @@ const Login = () => {
           </div>
           <div className="form-control w-full">
             <label className="label">
-              <span className="text-xl font-semi-bold">Your Password</span>
+              <span
+                className={`text-2xl normal ${
+                  theme ? "textColorHover1" : "textColorHover2"
+                }`}
+              >
+                Your Password
+              </span>
               <span>
-                {" "}
                 {show ? (
                   <HiEyeOff onClick={handleShow} />
                 ) : (
@@ -117,8 +133,8 @@ const Login = () => {
                 },
               })}
               type={show ? "password" : "text"}
-              placeholder="type password"
-              className="input input-bordered w-full"
+              placeholder="Type password"
+              className="py-3 bg-slate-300 outline-none px-3 font-mono text-2xl border-none text- w-full"
             />
             <label className="label">
               {errors.password && (
@@ -131,39 +147,43 @@ const Login = () => {
 
           <select
             {...register("user", { required: true })}
-            className="w-full py-3 my-2"
+            className={`text-2xl border outline-none border-opacity-0 w-full py-3 normal ${
+              theme ? "textColorHover1" : "textColorHover2 bg-slate-500"
+            }`}
           >
             <option value="buyer">Buyers</option>
             <option value="seller">Seller</option>
           </select>
 
-          <p className="text-xl text-red-500 mb-3"> {error}</p>
+          <p className="text-sm mt-2 font-mono text-red-500 mb-3"> {error}</p>
 
           <input
             type="submit"
             value="Log In"
-            className="btn btn-active btn-primary w-full my-5"
+            className="btn1 py-3 font-bold text-2xl w-full my-5"
           />
         </form>
-        <p>
-          Create an Account ?
-          <Link to="/signup" className="text-primary">
-            Please Sign up
+        <p className="flex text-lg font-mono justify-between">
+          <span>Create an Account ?</span>
+          <Link to="/signup" className="link link-hover">
+            Please Sign up ......
           </Link>
         </p>
         <div className="divider">OR</div>
 
         <button
           onClick={googleSignIn}
-          className="btn btn-outline btn-primary w-full text-lg "
+          className=" w-full text-xl text-[#4086f4] bg-white flex items-center hover:shadow-lg text-center py-3 font-bold justify-between px-5"
         >
-          <FaGoogle className="text-3xl mx-2" /> Continue With Google
+          <FaGoogle className="text-3xl mx-2" />
+          <span>Continue With Google</span>
         </button>
         <button
           onClick={gitSignIn}
-          className="btn btn-outline w-full text-lg mt-4"
+          className="w-full hover:shadow-lg text-xl text-slate-600 mt-5 bg-white flex items-center text-center py-3 font-bold justify-between px-5"
         >
-          <FaGithub className="text-3xl mx-2" /> Continue With GitHub
+          <FaGithub className="text-3xl mx-2" />
+          <span>Continue With GitHub</span>
         </button>
       </div>
     </div>

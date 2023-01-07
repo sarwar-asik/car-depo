@@ -137,7 +137,7 @@ const CheckoutForm = ({ order }) => {
         <>
           <h1 className="text-green-500  font-medium"> {success} </h1>
           <h1 className="text-blue-500  font-medium">
-            TransactionId: {transictionId}{" "}
+            TransactionId: {transictionId}
           </h1>
         </>
       )}

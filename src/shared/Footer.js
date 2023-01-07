@@ -8,10 +8,10 @@ const Footer = () => {
 
   return (
     <footer
-      className={`footer px-10 py-12 shadow-xl font-mono   mt-5 ${theme ? "bg-slate-100 textColorHover1" : "bgThem2"}`}
+      className={`footer px-10 py-12 mt-16 shadow-xl font-mono ${theme ? "bg-slate-300 textColorHr1 text-slate-700" : "bgThem2 shadow-2xl"}`}
     >
       <div>
-        <span className="footer-title text-xl">Our Service</span>
+        <span className="footer-title text-3xl ">Our Service</span>
         <h5> Brand New Cars</h5>
         <h5> Cars Garuanty</h5>
         <h6> Best brand Cars </h6>
@@ -19,16 +19,16 @@ const Footer = () => {
       </div>
 
       <div>
-        <span className="footer-title">Our Responsibilty </span>
-        <p className=" sm:text-xl lg:text-3xl">
-          <span className="text-7xl font-bold">#</span>
+        <span className="footer-title text-3xl">Our Responsibilty </span>
+        <p className=" sm:text-xl lg:text-2xl">
+          <span className="text-6xl font-bold">#</span>
           We Services Used product to our customer <br />
           You can get like fresh .
         </p>
       </div>
 
       <div>
-        <span className="footer-title">Contact Us</span>
+        <span className="footer-title text-3xl">Contact Us</span>
         <div className="grid grid-flow-col gap-4">
           <a href="https://twitter.com/sarwar_asik" target="_blank">
            

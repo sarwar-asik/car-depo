@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
+import '../../shared/custom.css'
 
 const BookModal = ({ productInfo, setModal }) => {
-  const { user } = useContext(AuthContext);
+  const { user ,theme } = useContext(AuthContext);
 
   // console.log(productInfo);
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const BookModal = ({ productInfo, setModal }) => {
 
 
   return (
-    <div className="text-slate-600">
+    <div className={` ${theme?"textColor1":"text-slate-600"}`}>
       {/* The button to open modal */}
 
       {/* Put this part before </body> tag */}
@@ -63,11 +64,11 @@ const BookModal = ({ productInfo, setModal }) => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <div className="modal-action">
-            <label htmlFor="my-modal-6" className="btn btn-outline">
+            <label htmlFor="my-modal-6" className="btn1 py-2 font-bold text-2xl px-3 rounded-[50%] ">
               <button> X </button>
             </label>
           </div>
-          <h3 className="font-bold text-2xl mb-3 text-center">
+          <h3 className="font-bold text-4xl mb-7 text-center">
             Book Your Products
           </h3>
 
@@ -79,41 +80,41 @@ const BookModal = ({ productInfo, setModal }) => {
             <input
               type="text "
               name="name"
-              className="input w-full"
-              placeholder="type here"
+              className="input w-full font-mono text-xl"
+              placeholder="Your Name"
               defaultValue={user?.displayName}
             />
             <input
               type="email"
               name="email"
               defaultValue={user?.email}
-              className="input w-full"
-              placeholder="type here"
+              className="input w-full font-mono text-xl"
+              placeholder="Your Email"
             />
             <input
               type="text "
               name="product"
               defaultValue={productInfo?.name}
-              className="input w-full"
+              className="input font-mono w-full"
               placeholder="type here"
             />
             <input
               type="text "
               name="price"
               defaultValue={productInfo?.price}
-              className="input w-full"
+              className="input font-mono w-full"
               placeholder="type here"
             />
             <input
               type="number"
               name="number"
-              className="input w-full"
+              className="input font-mono w-full"
               placeholder="Enter your Number"
               required
             />
             <select
               name="location"
-              className="select select-bordered w-full max-w-xs"
+              className="select font-mono select-bordered w-full max-w-xs"
             >
               <option value={`post Office ${productInfo?.location}`} selected>
                 Post Office , {productInfo?.location}
@@ -129,7 +130,7 @@ const BookModal = ({ productInfo, setModal }) => {
             <input
               htmlFor="my-modal-6"
               type="submit"
-              className="btn btn-outline"
+              className="btn1 py-3 font-bold text-2xl w-full my-5"
               value="Submit "
             />
           </form>

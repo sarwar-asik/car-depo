@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
 import useRoleCheck from "../../hooks/useRoleCheck";
+import RouteBanner from "../../shared/routeBanners/RouteBanner";
 import BookModal from "../bookModal/BookModal";
 
 const Products = () => {
   const { user, theme } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const [roleCheck] = useRoleCheck(user?.email);
   // console.log(roleCheck);
   const products = useLoaderData();
@@ -17,7 +18,11 @@ const Products = () => {
   const [isModal, setModal] = useState(true);
 
   const productData = (data) => {
-    setproducts(data);
+    if (user?.email) {
+      setproducts(data);
+    } else {
+      navigate("/login");
+    }
     // console.log(data);
   };
 
@@ -34,20 +39,27 @@ const Products = () => {
 
   // console.log();
   const ReportAdmin = (info) => {
-    info["buyer"] = user?.email;
-
-    fetch(`https://sh-server-site.vercel.app/reportadmin`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(info),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success(`Reported Admin ${info?.name}`);
-      });
+    if (user?.email) {
+      info["buyer"] = user?.email;
+      fetch(`https://sh-server-site.vercel.app/reportadmin`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(info),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          toast.success(`Reported Admin ${info?.name}`);
+        });
+    } else {
+      navigate("/login");
+    }
+  };
+  const detailHandler = (carDetails) => {
+    navigate(`/productDetails/${carDetails?._id}`, { state: carDetails });
+    // console.log(carDetails,"from btn");
   };
 
   // console.log(products);
@@ -59,89 +71,73 @@ const Products = () => {
 
   return (
     <div className={theme ? "w-[80%] mx-auto   " : " w-[80%] mx-auto "}>
+      <RouteBanner></RouteBanner>
       <h1
-        className={` text-[40px] font-bold font-serif my-5 text-center ${
+        className={` text-[40px] mb-7 font-bold font-serif my-5 text-center ${
           theme ? "textColorHover1" : "textColorHover2"
         }`}
       >
-        {" "}
-        The Category's Products
+        {products[0]?.category} Products
       </h1>
-      <div className="grid lg:grid-cols-1 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
+      <div className="grid lg:grid-cols-3 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
         {products.map((prod) => {
           const getUser = users.find((user) => user.email === prod.email);
-          // const rests =  types.filter(ty => ty.e !== prod?.condition)
-          // console.log(rests);
-
-          //  console.log('////',getUser,'.....');
+          const {
+            name,
+            img,
+            descriptions,
+            location,
+            price,
+            mobile,
+            time,
+            posted,
+            used,
+            seller,
+          } = prod;
 
           return (
             <>
-              <div className="card lg:card-side  shadow-xl">
+              <div className="card shadow-xl">
                 <figure>
                   <img
-                    src={prod.img}
+                    src={img}
                     alt="Album"
-                    className="w-[400px] h-[350px] rounded-sm"
+                    className="w-[380px] h-[320px] rounded-sm"
                   />
                 </figure>
                 <div className="card-body py-4">
-                  <h2 className="text-4xl font-bold ">{prod.name}</h2>
-                  <p> {prod.descriptions} </p>
-                  <h6 className="text-md font-medium">
-                    Location : {prod.location}{" "}
-                  </h6>
+                  <h2 className="text-4xl font-bold font-serif">{name}</h2>
+                  <p className="text-[16px] font-medium"> {descriptions} </p>
 
                   <div className="flex justify-between gap-3">
-                    <p className="flex flex-col gap-1 text-sm">
-                      <h5>Price : ${prod.price} </h5>
-                      <h5> Contact : {prod.mobile} </h5>
-                      <h5>Used{prod.used} </h5>
-                      <h5>Posted {prod.time} </h5>
-                    </p>
-
-                    <p className="flex flex-col gap-3 font-semibold ">
-                      <h5> Offer Price : $5500</h5>
-                      <h4> Posted : {prod?.posted}</h4>
-                      {/* <select name="" className="bg-red-300 text-slate-600" id="">
-                        <option>{prod?.condition
-                                    }</option>
-                                    {
-                                      rests.map(res=><option>{res.e}</option>)
-                                      
-                                    }
-                                   
-                                   
-                      </select> */}
-
-                      <div className="indicator">
-                        {getUser?.status === "verified" && (
-                          <span className="indicator-item badge badge-warning">
+                    {/* {getUser?.status === "verified" && (
+                          <span className="indicator-item badge badge-primary">
                             verified
                           </span>
-                        )}
-                        <div className="grid w-12   place-items-center">
-                          {prod.seller}
-                        </div>
-                      </div>
-                    </p>
+                        )} */}
                   </div>
 
                   <label
                     onClick={() => productData(prod)}
                     htmlFor="my-modal-6"
-                    className="btn btn-outline btn-error"
+                    className="btn1 py-2 font-bold text-2xl w-full my-3 text-center"
                   >
                     Book Now
                   </label>
-                  {user?.email && (
+                  <div className="flex justify-between font-mono mt-1">
                     <button
                       onClick={() => ReportAdmin(prod)}
-                      className="bg-blue-400 py-2 hover:bg-lime-800 text-zinc-200 "
+                      className="shadow-xl hover:bg-error hover:text-white rounded-[5px] py-3 px-1"
                     >
-                      Report to Admin
+                      Report Admin
                     </button>
-                  )}
+                    <button
+                      onClick={() => detailHandler(prod)}
+                      className="shadow-xl bg-primary text-white rounded-sm py-3 px-1"
+                    >
+                      Full Details
+                    </button>
+                  </div>
                 </div>
               </div>
             </>

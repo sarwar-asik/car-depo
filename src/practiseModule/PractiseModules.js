@@ -6,7 +6,7 @@ const PractiseModules = () => {
 
   const reducer = (state, action) => {
     if (action.type === "INCREMENT") {
-      return state + action.payload
+      return state + action.payload;
     } else if (action.type === "DECREMENT") {
       return state - 1;
     } else {
@@ -23,16 +23,16 @@ const PractiseModules = () => {
 
       <div className="text-center  flex flex-col gap-[20px] my-5">
         <button
-          onClick={() => dispatch({ type: "INCREMENT" ,payload:5})}
+          onClick={() => dispatch({ type: "INCREMENT", payload: 5 })}
           className="p-[20px] btn btn-info w-[50%] mx-auto"
         >
-          Increament{" "}
+          Increament
         </button>
         <button
-          onClick={() => dispatch({ type: "DECREMENT",data:5 })}
+          onClick={() => dispatch({ type: "DECREMENT", data: 5 })}
           className="p-[20px] btn btn-error w-[50%] mx-auto"
         >
-          Decrecreament{" "}
+          Decrecreament
         </button>
       </div>
     </div>

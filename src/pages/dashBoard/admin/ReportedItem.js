@@ -67,7 +67,6 @@ const ReportedItem = () => {
                       onClick={() => deleteReport(report)}
                       className="bg-red-500 text-white p-2 btn-sm rounded-3xl"
                     >
-                      {" "}
                       Delete
                     </button>
                   </td>

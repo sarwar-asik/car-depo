@@ -18,6 +18,7 @@ import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
 import Blogs from "../pages/blogs/Blogs";
 import PrivateRoute from "./PrivateRoute";
 import PractiseModules from "../practiseModule/PractiseModules";
+import ProductsDetails from "../pages/products/ProductsDetails";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
         element:<Products/>
+      },
+      {
+        path:"/productDetails/:_id",
+        element:<ProductsDetails/>
       },
       {
         path: "/selllerproducts",

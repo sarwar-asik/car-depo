@@ -13,7 +13,7 @@ const Payment = () => {
   return (
     <div className="text-center">
       <h1 className="text-2xl my-5 ">
-        Payment <span className="font-bold"> ${price} </span>for{" "}
+        Payment <span className="font-bold"> ${price} </span>for
         <span className="font-bold"> {product} </span>
       </h1>
 

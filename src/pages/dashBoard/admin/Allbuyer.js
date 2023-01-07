@@ -71,8 +71,7 @@ const Allbuyer = () => {
                         onClick={() => deleteUser(sell)}
                         className="bg-red-500 text-white  p-2 rounded-[20%]"
                       >
-                        {" "}
-                        Delete{" "}
+                        Delete
                       </button>
                     </td>
                   </tr>
