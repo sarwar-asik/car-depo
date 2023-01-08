@@ -16,6 +16,7 @@ const Products = () => {
   // console.log(products);
   const [productInfo, setproducts] = useState({});
   const [isModal, setModal] = useState(true);
+  console.log("products",productInfo?.name);
 
   const productData = (data) => {
     if (user?.email) {
@@ -71,7 +72,13 @@ const Products = () => {
 
   return (
     <div className={theme ? "w-[80%] mx-auto   " : " w-[80%] mx-auto "}>
-      <RouteBanner positionName={[{no:"Home",to:"/"},{no:"Categories",to:"/categories"},{no:products[0]?.category}]}></RouteBanner>
+      <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "Categories", to: "/categories" },
+          { no: products[0]?.category },
+        ]}
+      ></RouteBanner>
       <h1
         className={` text-[40px] mb-7 font-bold font-serif my-5 text-center ${
           theme ? "textColorHover1" : "textColorHover2"
@@ -119,7 +126,7 @@ const Products = () => {
 
                   <label
                     onClick={() => productData(prod)}
-                    htmlFor="my-modal-6"
+                    htmlFor={productInfo?._id}
                     className="btn1 py-2 font-bold text-2xl w-full my-3 text-center"
                   >
                     Book Now

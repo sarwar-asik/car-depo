@@ -52,7 +52,7 @@ const Footer = () => {
             target="_blank"
             className="text-2xl"
           >
-            <FaLinkedinIn className="bg-slate-100 text-3xl text-blue-800" />
+            <FaLinkedinIn className="bg-slate-100 text-2xl text-blue-800" />
           </a>
         </div>
       </div>

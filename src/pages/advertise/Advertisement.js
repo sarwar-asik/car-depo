@@ -11,8 +11,7 @@ const Advertisement = () => {
 
   const navigate = useNavigate();
 
-  const [loading ,setLoading] = useState(false)
-
+  const [loading, setLoading] = useState(false);
 
   const [advertises, setAdvertise] = useState([]);
   useEffect(() => {
@@ -25,7 +24,7 @@ const Advertisement = () => {
       .then((data) => {
         //   console.log(data.data);
         setAdvertise(data.data);
-        setLoading(true)
+        setLoading(true);
       });
   }, [user?.email]);
 
@@ -62,11 +61,10 @@ const Advertisement = () => {
           theme ? "textColorHover1" : "textColorHover2"
         }`}
       >
-        {" "}
         These Projects are advertised by the Seller who are verified .The
         Products did not sell yet .
       </p>
-      {loading|| <Loader/>}
+      {loading || <Loader />}
       <div
         className="mt-9 grid sm:grid-cols-1
     md:grid-cols-2  lg:grid-cols-3 gap-5"
@@ -77,10 +75,16 @@ const Advertisement = () => {
           const alreadyPaid = paids.find(
             (pay) => pay?.name === advertise?.name
           );
+          console.log("from advertise", productInfo?.name);
           // console.log(alreadyPaid);
           if (!alreadyPaid) {
             return (
-              <div className="card  mx-auto w-[90%] shadow-lg  ">
+              <div
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom"
+                data-aos-duration="1200"
+                className="card  mx-auto w-[90%] shadow-lg  "
+              >
                 <figure className="">
                   <img
                     className="w-[90%] mx-auto h-[250px] rounded-[3%]"
@@ -102,7 +106,7 @@ const Advertisement = () => {
                   <div className="flex justify-between bg-slate-100 shadow pr-2 rounded-[5px]">
                     <label
                       onClick={() => productData(advertise)}
-                      htmlFor="my-modal-6"
+                      htmlFor={productInfo?._id}
                       className="btn1 py-2 px-2 rounded-l-none font-semibold  cursor-pointer"
                     >
                       Book Now

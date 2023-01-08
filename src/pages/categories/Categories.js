@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../firebase/AuthProvider";
 import Loader from "../../loader/Loader";
-import '../../shared/custom.css'
+import "../../shared/custom.css";
 
 const Categories = () => {
   const { theme } = useContext(AuthContext);
@@ -26,7 +26,15 @@ const Categories = () => {
       <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
         Products Categories
       </h1>
-      <p   className={` text-lg font-semibold text-center ${theme ? "textColorHover1" : "textColorHover2"}`}> We are servicing 3 Categories Products to customers with garranty and warranty  </p>
+      <p
+        className={` text-lg font-semibold text-center ${
+          theme ? "textColorHover1" : "textColorHover2"
+        }`}
+      >
+        {" "}
+        We are servicing 3 Categories Products to customers with garranty and
+        warranty{" "}
+      </p>
       {loading || <Loader />}
       <div
         className="grid sm:grid-cols-1
@@ -34,8 +42,14 @@ const Categories = () => {
       >
         {categories.map((category) => {
           return (
-            <Link to={`/products/${category._id}`} 
-            key={category?._id}  className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 ">
+            <Link
+              data-aos="fade-up"
+              data-aos-anchor-placement="center-bottom"
+              data-aos-duration="1200"
+              to={`/products/${category._id}`}
+              key={category?._id}
+              className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 "
+            >
               <div className="card mx-auto">
                 <figure>
                   <img
@@ -48,9 +62,7 @@ const Categories = () => {
                   <h2 className="text-2xl font-mono font-semibold text-center">
                     {category.name}
                   </h2>
-                  <button className="btn1 py-2 font-semibold">
-                    Details
-                  </button>
+                  <button className="btn1 py-2 font-semibold">Details</button>
                 </div>
               </div>
             </Link>

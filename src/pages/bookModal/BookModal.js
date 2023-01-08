@@ -7,9 +7,9 @@ import "../../shared/custom.css";
 
 const BookModal = ({ productInfo, setModal }) => {
   const { user, theme } = useContext(AuthContext);
-
+  // console.log('BookModal',productInfo?._id);
   const [roleCheck] = useRoleCheck(user?.email);
-  console.log(roleCheck);
+  // console.log(roleCheck);
   // console.log(productInfo);
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const BookModal = ({ productInfo, setModal }) => {
 
     console.log(booking);
 
-    if (user && roleCheck !== 'Admin') {
+    if (user && roleCheck !== "Admin") {
       fetch(`https://sh-server-site.vercel.app/bookings`, {
         method: "POST",
         headers: {
@@ -50,12 +50,9 @@ const BookModal = ({ productInfo, setModal }) => {
           toast("Added Booking");
           setModal(false);
         });
-    }
-    else if( roleCheck=== 'Admin') {
-      navigate('/dashboard')
-      
-    } 
-     else {
+    } else if (roleCheck === "Admin") {
+      navigate("/dashboard");
+    } else {
       navigate("/login");
     }
   };
@@ -63,22 +60,24 @@ const BookModal = ({ productInfo, setModal }) => {
   const handleClose = (good) => {
     setModal(!good);
   };
-
+  console.log("Modal", productInfo?.name);
   return (
-    <div className={` ${theme ? "textColor1" : "text-slate-600"}`}>
+    <div
+      className={` ${theme ? "textColor1" : "text-slate-600"}`}
+    >
       {/* The button to open modal */}
 
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <input type="checkbox" id={productInfo?._id} className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <div className="modal-action">
             <label
-              htmlFor="my-modal-6"
+              htmlFor={productInfo?._id}
               className="btn1 py-2 font-bold text-2xl px-2 rounded-[50%]"
               onClick={() => handleClose(!true)}
             >
-              <button> X </button>
+              X
             </label>
           </div>
           <h3 className="font-bold text-4xl mb-7 text-center">
@@ -141,7 +140,7 @@ const BookModal = ({ productInfo, setModal }) => {
             </select>
 
             <input
-              htmlFor="my-modal-6"
+              htmlFor={productInfo?._id}
               type="submit"
               className="btn1 py-3 font-bold text-2xl w-full my-5"
               value="Book"

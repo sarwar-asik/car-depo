@@ -1,23 +1,45 @@
-import React from 'react';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../firebase/AuthProvider';
-import banner from '../../assets/cars-removebg-preview.png'
+import React from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../firebase/AuthProvider";
+import banner from "../../assets/cars-removebg-preview.png";
 
 const Hero1 = () => {
-    const {theme} = useContext(AuthContext)
-    return (
-        <div>
-             <div className={`hero my-[50px] shadow-lg ${theme ?"textColor1":"textColor2"}`}>
+  const { theme } = useContext(AuthContext);
+  return (
+    <div>
+      <div
+        className={`hero my-[50px] shadow-lg ${
+          theme ? "textColor1" : "textColor2"
+        }`}
+      >
         <div className="hero-content flex-col gap-3 lg:flex-row">
+          {/* <section
+           
+           >
+             </section> */}
           <img
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
             src={banner}
             className=" rounded-lg  h-[500px] max-w-[80%]"
             alt=""
           />
-          <div>
-            <h1 className="text-5xl font-bold  font-serif"> Brand New Service </h1>
-            <p  className={` text-lg font-semibold mb-5 ${theme ? "textColorHover1" : "textColorHover2"}`}>
+          <div
+            data-aos="fade-left"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
+          >
+            <h1 className="text-5xl font-bold  font-serif">
+              {" "}
+              Brand New Service{" "}
+            </h1>
+            <p
+              className={` text-lg font-semibold mb-5 ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}
+            >
               We provide Used Cars to our customer . Ours cars are almost brand
               new these used few years . You can order your car by sign in . And
               seller is able to sell his product by create a seller account .
@@ -29,9 +51,8 @@ const Hero1 = () => {
           </div>
         </div>
       </div>
-            
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Hero1;

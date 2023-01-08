@@ -18,15 +18,13 @@ const Dashbord = () => {
             to="/addproducts"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
             Add Products
           </Link>
           <Link
             to="/selllerproducts"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
-            My Products{" "}
+            My Products
           </Link>
         </>
       )}
@@ -36,8 +34,7 @@ const Dashbord = () => {
             to="/myorders"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
-            My Orders{" "}
+            My Orders
           </Link>
         </>
       )}
@@ -47,28 +44,25 @@ const Dashbord = () => {
             to="/Addcategories"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            Add Categories{" "}
+            Add Categories
           </Link>
           <Link
             to="/allseller"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
-            All Sellers{" "}
+            All Sellers
           </Link>
           <Link
             to="/allbuyer"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
-            All Buyers{" "}
+            All Buyers
           </Link>
           <Link
             to="/report"
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
-            {" "}
-            Reported Item{" "}
+            Reported Item
           </Link>
         </>
       )}

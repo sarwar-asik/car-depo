@@ -60,8 +60,7 @@ const AddCategories = () => {
         ]}
       ></RouteBanner>
       <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5">
-        {" "}
-        Add a Categories{" "}
+        Add a Categories
       </h1>
       <form
         onSubmit={handleSubmit(addCategories)}
