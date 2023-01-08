@@ -82,7 +82,7 @@ const Header = () => {
               onClick={closeDash}
               to="/login"
             >
-              Login
+              Log In
             </Link>
           </li>
           <li>
@@ -91,7 +91,7 @@ const Header = () => {
               onClick={closeDash}
               to="/signup"
             >
-              Sign In
+              Sign Up
             </Link>
           </li>
         </>
@@ -134,7 +134,7 @@ const Header = () => {
               theme ? "textColor1" : "textColorHover2"
             }`}
           >
-             Cars Depot
+             Cars Depo
           </Link>
         </div>
         <div className="navbar-end">

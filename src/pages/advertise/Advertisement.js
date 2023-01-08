@@ -2,12 +2,17 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../firebase/AuthProvider";
+import Loader from "../../loader/Loader";
 import BookModal from "../bookModal/BookModal";
 
 const Advertisement = () => {
   const { user, theme } = useContext(AuthContext);
-  console.log(user?.email);
+  // console.log(user?.email);
+
   const navigate = useNavigate();
+
+  const [loading ,setLoading] = useState(false)
+
 
   const [advertises, setAdvertise] = useState([]);
   useEffect(() => {
@@ -20,6 +25,7 @@ const Advertisement = () => {
       .then((data) => {
         //   console.log(data.data);
         setAdvertise(data.data);
+        setLoading(true)
       });
   }, [user?.email]);
 
@@ -60,6 +66,7 @@ const Advertisement = () => {
         These Projects are advertised by the Seller who are verified .The
         Products did not sell yet .
       </p>
+      {loading|| <Loader/>}
       <div
         className="mt-9 grid sm:grid-cols-1
     md:grid-cols-2  lg:grid-cols-3 gap-5"

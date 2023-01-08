@@ -144,7 +144,7 @@ const BookModal = ({ productInfo, setModal }) => {
               htmlFor="my-modal-6"
               type="submit"
               className="btn1 py-3 font-bold text-2xl w-full my-5"
-              value="Submit "
+              value="Book"
             />
           </form>
         </div>
