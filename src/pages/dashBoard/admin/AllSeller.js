@@ -3,9 +3,10 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
+import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const AllSeller = () => {
-  const { user } = useContext(AuthContext);
+  const { user,theme } = useContext(AuthContext);
 
   const {
     data: seller = [],
@@ -59,14 +60,22 @@ const AllSeller = () => {
   };
 
   return (
-    <div className="max-w-[80%] mx-auto">
+    <div className={` ${theme ? "" : "text-slate-600 "}`}>
       {isLoading && <Loader />}
-      <h1 className="text-center text-3xl  py-5"> Total Seller </h1>
+      <RouteBanner
+        positionName={[
+          { no: "Home",to: "/"},
+          { no: "DashBoard", to: "/dashboard" },
+          { no: "Admin", to: "/profile"},
+          { no: "All Seller", to: "/allseller" },
+        ]}
+      ></RouteBanner>
+      <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5"> Total Seller </h1>
 
-      <div className="overflow-x-auto">
-        <table className="table w-full">
+      <div className="overflow-x-auto mx-auto max-w-[80%]">
+        <table className="table w-full text-xl font-mono">
           <thead>
-            <tr>
+            <tr className="text-5xl">
               <th></th>
               <th>Name</th>
               <th>Email</th>
@@ -85,18 +94,18 @@ const AllSeller = () => {
                     <td>
                       <button
                         onClick={() => deleteUser(sell)}
-                        className="bg-red-500 text-white  p-2 rounded-[20%]"
+                        className="bg-red-500 text-white  px-2 py-1 rounded-[8px] "
                       >
                         Delete
                       </button>
                     </td>
                     <td>
                       {sell?.status === "verified" ? (
-                        <h1 className="btn btn-sm btn-success"> Verified </h1>
+                        <h1 className="px-1 py-1 text-white bg-info"> Verified </h1>
                       ) : (
                         <h1
                           onClick={() => verifySeller(sell)}
-                          className="btn btn-sm btn-info "
+                          className="btn1 px-1 py-1 hover:bg-info"
                         >
                           Verify
                         </h1>

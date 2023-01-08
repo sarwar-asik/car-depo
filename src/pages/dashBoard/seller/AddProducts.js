@@ -6,9 +6,10 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import useRoleCheck from "../../../hooks/useRoleCheck";
+import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const AddProducts = () => {
-  const { user } = useContext(AuthContext);
+  const { user ,theme} = useContext(AuthContext);
   const allCategories = useLoaderData();
 
   // console.log(allCategories);
@@ -86,22 +87,32 @@ const AddProducts = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto my-5 rounded">
-      <h1 className="text-3xl text-center py-3  "> Add Your Products </h1>
+    <div className="container mx-auto my-5 rounded">
+       <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "DashBoard", to: "/dashboard" },
+          { no: "Seller", to: "/profile"},
+          { no: "Add Products", to: "/addproducts" },
+        ]}
+      ></RouteBanner>
+      <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5"> Add Your Products </h1>
 
-      <form onSubmit={handleSubmit(addProducts)} className="">
+      <form onSubmit={handleSubmit(addProducts)} className=" px-5 max-w-[80%] mx-auto">
         {/* <Header /> */}
 
         <div className="form-control w-full ">
           <label className="label">
-            <span className="text-xl font-semibold">Products Name</span>
+            <span  className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}>Products Name</span>
           </label>
           <input
             {...register("name", { required: "Fill up ,please" })}
             aria-invalid={errors.name ? "true" : "false"}
             type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full "
+            placeholder="Product Name"
+            className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
           />
           {errors.name && (
             <p className="text-red-400 text-sm" role="alert">
@@ -111,14 +122,16 @@ const AddProducts = () => {
         </div>
         <div className="form-control w-full ">
           <label className="label">
-            <span className="text-xl font-semibold">Photo Url</span>
+            <span  className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}>Photo Url</span>
           </label>
           <input
             {...register("img", { required: "img is Required" })}
             aria-invalid={errors.img ? "true" : "false"}
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full "
+            type="url"
+            placeholder="Paste URL"
+            className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
           />
           {errors.img && (
             <p className="text-red-400 text-sm" role="alert">
@@ -127,27 +140,27 @@ const AddProducts = () => {
           )}
         </div>
 
-        <div className="grid-cols-2  py-5">
+        <div className="grid grid-cols-2 gap-2 py-5">
           <input
             {...register("reselPrice", { required: "reselPrice is Required" })}
             aria-invalid={errors.reselPrice ? "true" : "false"}
             type="text"
             placeholder="Price"
-            className="input my-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono  border-none"
           />
           <input
             {...register("discount", { required: "discount is Required" })}
             aria-invalid={errors.discount ? "true" : "false"}
             type="text"
             placeholder="Discount Price"
-            className="input my-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono border-none"
           />
           <input
             {...register("usedTime", { required: "usedTime is Required" })}
             aria-invalid={errors.usedTime ? "true" : "false"}
             type="text"
             placeholder="Used Timed"
-            className="input my-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono  border-none"
           />
 
           <input
@@ -155,7 +168,7 @@ const AddProducts = () => {
             aria-invalid={errors.mobile ? "true" : "false"}
             type="text"
             placeholder="Your Mobile"
-            className="input my-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono  border-none"
           />
           <input
             {...register("descriptions", {
@@ -164,15 +177,14 @@ const AddProducts = () => {
             aria-invalid={errors.descriptions ? "true" : "false"}
             type="text"
             placeholder="descriptions"
-            className="input my-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono  border-none"
           />
-          <label htmlFor="" className="mx-3 font-medium">
-            Condition
-          </label>
+          
           <select
             {...register("condition", { required: true })}
-            className=" my-2 py-2 mx-1"
+            className="py-2 outline-none bg-slate-300 pl-1 font-mono  border-none"
           >
+            <option value="Fresh">Condition</option>
             <option value="Excelent">Excelant</option>
             <option value="Good">Good</option>
 
@@ -186,12 +198,14 @@ const AddProducts = () => {
           )}
         </div>
 
-        <label htmlFor="" className="mt-3 font-medium">
+        <label htmlFor=""  className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}>
           Location
         </label>
         <select
           {...register("location", { required: true })}
-          className="w-full py-3 my-2"
+          className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
         >
           <option value="Dhaka">Dhaka</option>
           <option value="Chattagrame">Chattagrame</option>
@@ -199,12 +213,14 @@ const AddProducts = () => {
           <option value="Maijdee">Maijdee</option>
         </select>
 
-        <label htmlFor="" className="mt-3 font-medium">
+        <label htmlFor=""  className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}>
           Category
         </label>
         <select
           {...register("category", { required: true })}
-          className="w-full py-3 my-2"
+          className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
         >
           {allCategories.map((singleCategory) => {
             return (
@@ -220,7 +236,7 @@ const AddProducts = () => {
         <input
           type="submit"
           value="Add Product"
-          className="btn btn-active btn-primary w-full my-5"
+          className="btn1 py-3 font-bold text-2xl w-full my-5"
         />
       </form>
     </div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
+import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const SellerProducts = () => {
   const { user, theme } = useContext(AuthContext);
@@ -89,15 +90,23 @@ const SellerProducts = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl text-center my-5 "> Your Products</h1>
+    <div className={` ${theme ? "" : "text-slate-400 "}`}>
+       <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "DashBoard", to: "/dashboard" },
+          { no: "Seller", to: "/profile" },
+          { no: "My Products", to: "/selllerproducts" },
+        ]}
+      ></RouteBanner>
+      <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5"> Your Products</h1>
 
       <h1>{isLoading && <Loader />}</h1>
 
       <div className="overflow-x-auto mx-auto max-w-[80%]">
-        <table className="table w-full">
-          <thead>
-            <tr>
+        <table className="table w-full text-xl font-mono">
+          <thead >
+            <tr className="text-3xl">
               <th>No</th>
               <th>Name</th>
               <th>Status</th>
@@ -133,13 +142,14 @@ const SellerProducts = () => {
                   </td>
                   <td>
                     {alreadybooked?.name ? (
-                      <button className="btn btn-primary btn-sm">
+                      <button  className=" text-white px-1 py-1 bg-info">
                         Advertised
                       </button>
                     ) : (
                       <button
                         onClick={() => advertise(product)}
-                        className="btn btn-sm btn-accent "
+                       
+                        className="btn1 px-1 py-1 hover:bg-info"
                       >
                         Advertise
                       </button>
@@ -148,7 +158,7 @@ const SellerProducts = () => {
                   <td>
                     <button
                       onClick={() => update(product)}
-                      className="btn btn-info btn-sm hover:btn-success "
+                      className="btn btn-info btn-sm hover:btn-success btn-outline"
                     >
                       Update
                     </button>

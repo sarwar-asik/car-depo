@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import useRoleCheck from "../../../hooks/useRoleCheck";
+import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const AddCategories = () => {
+  const { theme } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -13,12 +15,11 @@ const AddCategories = () => {
     formState: { errors },
   } = useForm();
 
-  
   const { user } = useContext(AuthContext);
 
-  const [roleCheck] =useRoleCheck(user?.email)
+  const [roleCheck] = useRoleCheck(user?.email);
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   console.log("role is ......", roleCheck);
   const addCategories = (event) => {
@@ -29,45 +30,61 @@ const navigate = useNavigate()
       options: event.options,
     };
     console.log(categories);
-  if(roleCheck === 'Admin'){
-    fetch(`https://sh-server-site.vercel.app/category?email=${user?.email}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(categories),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("added microbus");
-        reset();
-      });
-  }
-  else{
-    navigate('/signup')
-  }
-
-
-
+    if (roleCheck === "Admin") {
+      fetch(`https://sh-server-site.vercel.app/category?email=${user?.email}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(categories),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          toast.success("added microbus");
+          reset();
+        });
+    } else {
+      navigate("/signup");
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto my-5 rounded">
-      <h1 className="text-3xl text-center "> Add a Categories </h1>
-      <form onSubmit={handleSubmit(addCategories)} className="">
+    <div className="container mx-auto my-5 rounded">
+      <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "Dashboard", to: "/dashboard" },
+          { no: "Admin", to: "/profile" },
+          { no: "Add Categories", to: "/Addcategories" },
+        ]}
+      ></RouteBanner>
+      <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5">
+        {" "}
+        Add a Categories{" "}
+      </h1>
+      <form
+        onSubmit={handleSubmit(addCategories)}
+        className=" px-5 max-w-lg mx-auto"
+      >
         {/* <Header /> */}
 
         <div className="form-control w-full my-3 ">
           <label className="label">
-            <span className="label-text-alt">Category Name</span>
+            <span
+              className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}
+            >
+              Category Name
+            </span>
           </label>
           <input
             {...register("name")}
             aria-invalid={errors.name ? "true" : "false"}
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full "
+            className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
           />
           {errors.name && (
             <p className="text-red-400 text-sm" role="alert">
@@ -77,14 +94,20 @@ const navigate = useNavigate()
         </div>
         <div className="form-control w-full my-3 ">
           <label className="label">
-            <span className="label-text-alt">Category Photo</span>
+            <span
+              className={`text-2xl normal ${
+                theme ? "textColorHover1" : "textColorHover2"
+              }`}
+            >
+              Category Photo
+            </span>
           </label>
           <input
             {...register("img")}
             aria-invalid={errors.img ? "true" : "false"}
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full "
+            className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
           />
           {errors.img && (
             <p className="text-red-400 text-sm" role="alert">
@@ -95,7 +118,7 @@ const navigate = useNavigate()
 
         <select
           {...register("options", { required: true })}
-          className="w-full py-3 my-2"
+          className="py-3 outline-none bg-slate-300 px-3 font-mono text-2xl border-none text- w-full "
         >
           <option value="buyer">Buyers</option>
           <option value="seller">Seller</option>
@@ -104,7 +127,7 @@ const navigate = useNavigate()
         <input
           type="submit"
           value="Add Categories"
-          className="btn btn-active btn-primary w-full my-5"
+          className="btn1 py-3 font-bold text-2xl w-full my-5"
         />
       </form>
     </div>

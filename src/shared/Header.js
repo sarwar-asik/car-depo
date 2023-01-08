@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
 import { FaBars } from "react-icons/fa";
 import "../shared/custom.css";
 
 const Header = () => {
   const { user, logout, dashbtn, setdashbtn, theme } = useContext(AuthContext);
+  const navigate  = useNavigate()
 
   const handleDashbtn = () => {
     setdashbtn(true);
@@ -15,6 +16,18 @@ const Header = () => {
     setdashbtn(false);
   };
 
+  const handleLogout =()=>{
+    const islogout = window.confirm(" Log Out ?");
+
+    if (islogout) {
+      logout().then(()=>{
+        navigate('/')
+         dashbtn(false);
+          localStorage.removeItem("accessToken");
+      })
+      .catch(err =>console.log(err))
+      }
+  }
   const MenuItem = (
     <React.Fragment>
       <li className={`${theme ? "textColorHover1" : "textColorHover2"}`}>
@@ -25,7 +38,7 @@ const Header = () => {
       {user?.displayName ? (
         <>
           <li className={`hover:text-error ${theme ? "text-black" : ""} `}>
-            <Link onClick={logout}>Log Out</Link>
+            <Link onClick={handleLogout}>Log Out</Link>
           </li>
 
           <li className={`${theme ? "textColorHover1" : "textColorHover2"}`}>
@@ -117,11 +130,11 @@ const Header = () => {
           <Link
             onClick={closeDash}
             to="/"
-            className={` text-4xl mr-4 font-serif font-bold ${
+            className={` lg:text-3xl sm:text-2xl mr-4 font-serif font-bold ${
               theme ? "textColor1" : "textColorHover2"
             }`}
           >
-            Used Cars Depot
+             Cars Depot
           </Link>
         </div>
         <div className="navbar-end">

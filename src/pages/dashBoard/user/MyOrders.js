@@ -37,12 +37,13 @@ const MyOrders = () => {
       <RouteBanner
         positionName={[
           { no: "Home", to: "/" },
-          { no: "DashBoard", to: "/" },
+          { no: "DashBoard", to: "/dashboard" },
+          { no: "User", to: "/profile" },
           { no: "My Orders", to: "/myorders" },
         ]}
       ></RouteBanner>
       <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5 ">
-        Your Booked  {orders.length} Cars
+        Your Booked  [ {orders.length} ] Cars
       </h1>
       {loading || <Loader />}
       <div className="overflow-x-auto mx-auto max-w-[80%]">

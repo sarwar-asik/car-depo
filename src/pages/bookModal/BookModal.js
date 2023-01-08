@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
+import useRoleCheck from "../../hooks/useRoleCheck";
 import "../../shared/custom.css";
 
 const BookModal = ({ productInfo, setModal }) => {
   const { user, theme } = useContext(AuthContext);
 
+  const [roleCheck] = useRoleCheck(user?.email);
+  console.log(roleCheck);
   // console.log(productInfo);
   const navigate = useNavigate();
 
@@ -33,7 +36,7 @@ const BookModal = ({ productInfo, setModal }) => {
 
     console.log(booking);
 
-    if (user) {
+    if (user && roleCheck !== 'Admin') {
       fetch(`https://sh-server-site.vercel.app/bookings`, {
         method: "POST",
         headers: {
@@ -47,7 +50,12 @@ const BookModal = ({ productInfo, setModal }) => {
           toast("Added Booking");
           setModal(false);
         });
-    } else {
+    }
+    else if( roleCheck=== 'Admin') {
+      navigate('/dashboard')
+      
+    } 
+     else {
       navigate("/login");
     }
   };

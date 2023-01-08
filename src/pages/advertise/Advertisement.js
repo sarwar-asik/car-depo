@@ -96,7 +96,7 @@ const Advertisement = () => {
                     <label
                       onClick={() => productData(advertise)}
                       htmlFor="my-modal-6"
-                      className="btn1 py-2 px-2 rounded-l-none   cursor-pointer"
+                      className="btn1 py-2 px-2 rounded-l-none font-semibold  cursor-pointer"
                     >
                       Book Now
                     </label>

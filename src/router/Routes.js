@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       },
       { path: "/dashboard", element: <Dashbord /> },
       {
-        path: "/categories",
+        path: "/Addcategories",
         element: <AddCategories />,
       },
       {

@@ -44,20 +44,11 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, []);
+  }, [auth]);
 
   const logout = () => {
-    const islogout = window.confirm(" Log Out ?");
-
-    if (islogout) {
-      return signOut(auth)
-        .then(() => {
-          dashbtn(false);
-          setLoading(true);
-          localStorage.removeItem("accessToken");
-        })
-        .catch((e) => console.log(e));
-    }
+    setLoading(false)
+    return signOut(auth)
   };
 
   const gitProvider = new GithubAuthProvider();
@@ -78,7 +69,7 @@ const AuthProvider = ({ children }) => {
         const email = "github@gmail.com";
         const type = "buyer";
         const users = { name, email, type };
-        savedDB(users);
+    
       })
       .catch((err) => console.log(err));
   };
@@ -99,36 +90,9 @@ const AuthProvider = ({ children }) => {
 
   const googleSignIn = () => {
     return signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(" from google sign in ", user);
-        setTokenEmail(user.email);
-        const name = user.displayName;
-        const email = user.email;
-        const type = "buyer";
-        const users = { name, email, type };
-        savedDB(users);
-        setToken(user.email);
-
-        toast.success("Success Google ");
-      })
-      .catch((err) => console.log(err));
   };
 
-  const savedDB = (user) => {
-    fetch(`https://sh-server-site.vercel.app/users`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .catch((data) => {
-        console.log(data);
-        toast.success("added DB");
-      });
-  };
+ 
 
   const authInfo = {
     createUser,

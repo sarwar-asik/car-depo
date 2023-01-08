@@ -18,6 +18,29 @@ const SignIn = () => {
   //   console.log(user);
   const auth = getAuth(app);
 
+const handleGoogelSignIn = ()=>{
+  googleSignIn().then((result) => {
+    const user = result.user;
+    console.log(" from google sign in ", user);
+    setTokenEmail(user.email);
+    const name = user.displayName;
+    const email = user.email;
+    const users = {  name, email, role: "buyer"};
+    savedDB(users);
+    setToken(user.email);
+
+    toast.success("Success Google ");
+  })
+  .catch((err) => console.log(err));
+}
+const setToken = (email) => {
+  fetch(`https://sh-server-site.vercel.app/jwt?email=${email}`)
+    .then((res) => res.json())
+    .then((data) => {
+      localStorage.setItem(`accessToken`, data.accessToken);
+    });
+};
+
   const {
     register,
     handleSubmit,
@@ -73,6 +96,7 @@ const SignIn = () => {
       .catch((err) => setError(err.message));
   };
 
+
   const savedDB = (user) => {
     fetch(`https://sh-server-site.vercel.app/users`, {
       method: "POST",
@@ -85,7 +109,6 @@ const SignIn = () => {
       .catch((data) => {
         console.log(data);
         navigate(from, { replace: true });
-
         toast.success("added DB");
       });
   };
@@ -226,7 +249,7 @@ const SignIn = () => {
         </p>
         <div className="divider">OR</div>
         <button
-          onClick={googleSignIn}
+          onClick={ handleGoogelSignIn}
           className=" w-full text-xl text-[#4086f4] bg-white flex items-center hover:shadow-lg text-center py-3 font-bold justify-between px-5"
         >
           <FaGoogle className="text-3xl mx-2" />

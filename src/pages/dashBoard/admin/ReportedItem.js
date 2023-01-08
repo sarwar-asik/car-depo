@@ -4,10 +4,11 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
+import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const ReportedItem = () => {
   //   const reports = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user,theme } = useContext(AuthContext);
 
   const { data: reports = [], refetch } = useQuery({
     queryKey: ["reports"],
@@ -41,10 +42,19 @@ const ReportedItem = () => {
   };
 
   return (
-    <div className="max-w-[80%] mx-auto">
-      <div className="overflow-x-auto  ">
-        <h1 className="text-3xl text-center my-3"> Report Products</h1>
-        <table className="table w-full">
+    <div className={` ${theme ? "" : "text-slate-600 "}`}>
+        <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "DashBoard", to: "/dashboard" },
+          { no: "Admin", to: "/profile"},
+          { no: "Reoprted Cars", to: "/report" },
+        ]}
+      ></RouteBanner>
+        <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5"> Reported Cars </h1>
+      <div className="overflow-x-auto mx-auto max-w-[80%]">
+      
+        <table className="table w-full text-xl font-mono">
           <thead>
             <tr>
               <th>No</th>
@@ -65,7 +75,7 @@ const ReportedItem = () => {
                   <td>
                     <button
                       onClick={() => deleteReport(report)}
-                      className="bg-red-500 text-white p-2 btn-sm rounded-3xl"
+                      className="bg-red-500 text-white  px-2 py-1 rounded-[8px]"
                     >
                       Delete
                     </button>

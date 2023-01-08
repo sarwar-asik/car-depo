@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 const useRoleCheck = (email) => {
   const [roleCheck, setRoleCheck] = useState("");
 
+console.log(email);  
+
   const [adminloading, setAdminLoading] = useState(true);
 
   useEffect(() => {

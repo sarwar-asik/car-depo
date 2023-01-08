@@ -12,8 +12,51 @@ import loginImg from "../../assets/login-removebg-preview.png";
 
 const Login = () => {
   const auth = getAuth(app);
+  const navigate = useNavigate()
   const { googleSignIn, user, theme, login, gitSignIn } =
     useContext(AuthContext);
+
+
+
+    const handleGoogelSignIn = ()=>{
+      googleSignIn().then((result) => {
+        const user = result.user;
+        console.log(" from google sign in ", user);
+        setTokenEmail(user.email);
+        const name = user.displayName;
+        const email = user.email;
+        const users = {  name, email, role:"buyer"};
+        savedDB(users);
+        setToken(user.email);
+    
+        toast.success("Success Google ");
+      })
+      .catch((err) => console.log(err));
+    }
+
+    const savedDB = (user) => {
+      fetch(`https://sh-server-site.vercel.app/users`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .catch((data) => {
+          console.log(data);
+          navigate(from, { replace: true });
+          toast.success("added DB");
+        });
+    };
+  
+    const setToken = (email) => {
+      fetch(`https://sh-server-site.vercel.app/jwt?email=${email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem(`accessToken`, data.accessToken);
+        });
+    };
 
   const {
     register,
@@ -28,7 +71,6 @@ const Login = () => {
   };
 
   const location = useLocation();
-  const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -172,7 +214,7 @@ const Login = () => {
         <div className="divider">OR</div>
 
         <button
-          onClick={googleSignIn}
+          onClick={handleGoogelSignIn}
           className=" w-full text-xl text-[#4086f4] bg-white flex items-center hover:shadow-lg text-center py-3 font-bold justify-between px-5"
         >
           <FaGoogle className="text-3xl mx-2" />

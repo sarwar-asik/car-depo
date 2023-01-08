@@ -12,7 +12,7 @@ const RouteBanner = ({positionName}) => {
           {
             positionName?.map(names =>{
                 return <div className="flex items-center justify-center">
-                    <Link to={names?.to?names.to:"/"} className='text-3xl font-semibold font-serif'>{names?.no}</Link>
+                    <Link to={names?.to?names.to:"/"} className='lg:text-3xl sm:text-xl font-semibold font-serif'>{names?.no}</Link>
             <span className='text-4xl  font-bold'> {">"} </span>
 
                 </div>

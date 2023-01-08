@@ -1,16 +1,28 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../firebase/AuthProvider";
 import useRoleCheck from "../hooks/useRoleCheck";
-import '../shared/custom.css'
+import "../shared/custom.css";
+import RouteBanner from "../shared/routeBanners/RouteBanner";
 
 const Profile = () => {
-  const { user ,theme} = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
   const [roleCheck] = useRoleCheck(user?.email);
   return (
     <div>
-      <div className={`card w-[90%] mx-auto  shadow-xl image-full mt-5 ${theme?"btn1":""}`}>
+      <RouteBanner
+        positionName={[
+          { no: "Home", to: "/" },
+          { no: "Profile", to: "/profile" },
+        ]}
+      ></RouteBanner>
+      <div
+        className={`card  container mx-auto  shadow-xl image-full mt-5 ${
+          theme ? "btn1" : ""
+        }`}
+      >
         <figure>
           <img
+            className="w-[100%] max-h-[650px]"
             src={
               user?.photoURL
                 ? user.photoURL
@@ -20,14 +32,18 @@ const Profile = () => {
           />
         </figure>
         <div className="card-body">
-          <h2 className=" text-lime-50 font-bold font-mono text-xl">{user?.email}</h2>
+          <h2 className=" text-lime-50 font-bold font-mono text-xl">
+            User :{user?.email}
+          </h2>
 
           <div className="indicator mt-3">
             <span className="indicator-item badge btn1 py-2 font-mono">
-              {roleCheck?roleCheck :"Buyer"}
+              {roleCheck ? roleCheck : "Buyer"}
             </span>
             <div className="grid w-32 h-24 place-items-center">
-              <p className="text-5xl font-semibold font-serif ">{user?.displayName}</p>
+              <p className="text-5xl font-semibold font-serif ">
+                {user?.displayName}
+              </p>
             </div>
           </div>
           <div className="card-actions justify-end">
