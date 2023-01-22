@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import PractiseModules from "../practiseModule/PractiseModules";
 import ProductsDetails from "../pages/products/ProductsDetails";
 import Categories from "../pages/categories/Categories";
+import Advertisement from "../pages/advertise/Advertisement";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
         element:<Products/>
+      },
+      {
+        path:"/advertised",
+        element:<Advertisement/>
+
       },
       {
         path:"/productDetails/:_id",

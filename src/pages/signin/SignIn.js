@@ -81,7 +81,7 @@ const SignIn = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL:
-            "https://pbs.twimg.com/profile_images/1594759062939267072/mtaBjtjA_400x400.jpg",
+            "https://img.freepik.com/free-psd/3d-illustration-cartoon-character-businessman-wearing-glasses-working-desktop-computer-desk-office_1150-52380.jpg?w=900&t=st=1674386077~exp=1674386677~hmac=801c0ef9b2ba5d3dbbff8c0e5d024de33aafe3d326649376bebea94f25c3d3d3",
         })
           .then(() => {
             toast.success("sign up");

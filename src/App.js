@@ -11,9 +11,9 @@ function App() {
   const {theme} = useContext(AuthContext)
 
   return (
-    <div className={theme?'max-w-7xl mx-auto App':'bgTheme2 max-w-7xl mx-auto App' }  >
+    <div className={`${theme?' App':'bgTheme2  App'} max-w-7xl mx-auto `}  >
       <RouterProvider router={router}></RouterProvider>
-      <ToastContainer autoClose={1500} />
+      <ToastContainer autoClose={1200} />
     </div>
   );
 }

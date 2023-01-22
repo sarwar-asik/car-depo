@@ -7,6 +7,8 @@ import RouteBanner from "../shared/routeBanners/RouteBanner";
 const Profile = () => {
   const { user, theme } = useContext(AuthContext);
   const [roleCheck] = useRoleCheck(user?.email);
+  
+  console.log(user);
   return (
     <div>
       <RouteBanner
@@ -25,10 +27,10 @@ const Profile = () => {
             className="w-[100%] max-h-[650px]"
             src={
               user?.photoURL
-                ? user.photoURL
-                : "https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=740&t=st=1669397457~exp=1669398057~hmac=1d170eb2ae4cac166202f10f04deca93467975c391fa5aaf7ec5f388a102bb74"
+                ? user?.photoURL
+                : "https://img.freepik.com/free-psd/3d-illustration-cartoon-character-businessman-wearing-glasses-working-desktop-computer-desk-office_1150-52380.jpg?w=900&t=st=1674386077~exp=1674386677~hmac=801c0ef9b2ba5d3dbbff8c0e5d024de33aafe3d326649376bebea94f25c3d3d3"
             }
-            alt="Shoes"
+            alt="profile"
           />
         </figure>
         <div className="card-body">

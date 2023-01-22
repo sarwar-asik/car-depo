@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
@@ -8,10 +8,11 @@ import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const { user, theme } = useContext(AuthContext);
-
+  const [refresh, setrefresh] = useState(false);
   //   console.log(user.email);
   useEffect(() => {
     axios
@@ -25,11 +26,25 @@ const MyOrders = () => {
         setOrders(data.data);
         setLoading(true);
       });
-  }, [user?.email]);
+  }, [user?.email, refresh]);
 
-  console.log(orders);
-  const handleDelete = (name) => {
-    toast(` Deleting....`);
+  const handleDelete = (booked) => {
+    console.log(booked);
+
+    fetch(`https://sh-server-site.vercel.app/deleteorder/${user?.email}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booked),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast(` Deleted`);
+        setrefresh(true);
+        // navigate("/myorders")
+      });
   };
 
   return (
@@ -43,7 +58,11 @@ const MyOrders = () => {
         ]}
       ></RouteBanner>
       <h1 className="text-center text-4xl font-serif font-bold  mt-10 mb-5 ">
-        Your Booked  [ {orders.length} ] Cars
+        {
+          orders?.length > 0? ` Your Booked [ ${orders.length} ] Cars` : <>
+          <span>Please Book an Item </span> <Link to='/advertised' className="mx-2 py-2 bg-[#258b73] text-white my-2 rounded text-lg px-2 hover:bg-slate-200 shadow-xl hover:text-[#258b73]">Book</Link>
+          </>
+        }
       </h1>
       {loading || <Loader />}
       <div className="overflow-x-auto mx-auto max-w-[80%]">
@@ -92,7 +111,7 @@ const MyOrders = () => {
                   <td>
                     <button
                       onClick={() => handleDelete(order)}
-                      className="btn btn-outline btn-error btn-sm"
+                      className="btn btn-error btn-sm text-white"
                     >
                       Delete
                     </button>

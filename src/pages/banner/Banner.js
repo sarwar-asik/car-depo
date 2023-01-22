@@ -3,8 +3,8 @@ import banner1  from '../../assets/banner1-removebg-preview.png'
 
 const Banner = () => {
     return (
-        <div>
-            <div className="carousel w-full">
+        <div className='max-w-[100%] mx-auto'>
+            <div className="carousel w-full mx-auto">
   <div id="item1" className="carousel-item w-full">
     <img  src="https://img.freepik.com/free-vector/white-convertible-car-isolated-white-vector_53876-66815.jpg?w=1380&t=st=1673079685~exp=1673080285~hmac=440b3d10f3d42c6c0b7496fd85392b0e7c1d1b2889bf0ac6e5d6a9d8e8bdee40" alt='' className="w-full h-[590px] rounded-md" />
   </div> 

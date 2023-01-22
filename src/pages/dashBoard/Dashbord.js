@@ -26,6 +26,12 @@ const Dashbord = () => {
           >
             My Products
           </Link>
+          <Link
+            to="/myorders"
+            className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
+          >
+            My Orders
+          </Link>
         </>
       )}
       {roleCheck === "buyer" && (
@@ -63,6 +69,12 @@ const Dashbord = () => {
             className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
           >
             Reported Item
+          </Link>
+          <Link
+            to="/myorders"
+            className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
+          >
+            My Orders
           </Link>
         </>
       )}

@@ -15,14 +15,14 @@ const Footer = () => {
         <h5> Brand New Cars</h5>
         <h5> Cars Garuanty</h5>
         <h6> Best brand Cars </h6>
-        <h5> One time Used Cars</h5>
+        <h5>Update Features Cars</h5>
       </div>
 
       <div>
         <span className="footer-title text-2xl">Our Responsibilty </span>
         <p className=" sm:text-xl lg:text-xl">
           <span className="text-5xl font-bold">#</span>
-          We Services Used product to our customer <br />
+          We Services  product to our customer <br />
           You can get like fresh .
         </p>
       </div>

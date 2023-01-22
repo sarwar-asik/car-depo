@@ -22,7 +22,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className={` my-5 ${theme || ""}`}>
+    <div className={` my-5 `}>
       <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
         Products Categories
       </h1>
@@ -43,18 +43,16 @@ const Categories = () => {
         {categories.map((category) => {
           return (
             <Link
-              data-aos="fade-up"
-              data-aos-anchor-placement="center-bottom"
-              data-aos-duration="1200"
               to={`/products/${category._id}`}
               key={category?._id}
               
-              className="shadow-2xl hover:-translate-y-9 duration-500 rounded-[10px]  ease-in-out mt-10 "
+              className="shadow-2xl hover:-translate-y-9 duration-[700ms] rounded-[10px]  ease-in-out mt-10 "
             >
-              <div className="card mx-auto">
+              <div data-aos="fade-up" data-aos-anchor-placement="center-bottom"
+              data-aos-duration="1200"  className="card mx-auto">
                 <figure>
                   <img
-                    className=" h-[310px] opacity-[1] hover:opacity-[0.6] rounded-[0px] w-full"
+                    className=" h-[310px] opacity-[0.8]  hover:opacity-[1] duration-150  rounded-[0px] w-full"
                     src={category.img}
                     alt=""
                   />
