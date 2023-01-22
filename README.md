@@ -1,4 +1,4 @@
-# Project Name : SH Used Cars 
+# Project Name : CAR DEPO
 
 ## Live Server Link [ https://used-cars-project-a88b9.web.app/ ]
 
@@ -27,8 +27,4 @@
 4 *  This projects secured by private Routes and Admin Routes .
 
 ## for explore 
-### Please , Log In as a Admin .
-
-Admin Email : asikpc2023@gmail.com  ;
-
-Admin Password : 11223344
+log as a seller or buyer .
