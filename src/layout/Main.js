@@ -13,10 +13,10 @@ const Main = () => {
   const { theme } = useContext(AuthContext);
 
   return (
-    <div className={`static ${theme ? "textColor1" : "textColor2"} overflow-y-hidden`}>
-      <div className="fixed right-[px] top-[60px] z-40 ">{<Theme></Theme>}</div>
+    <div className={`static ${theme ? "textColor1" : "textColor2"} `}>
+      {/* <div className="fixed right-[px] top-[60px] z-40 ">{<Theme></Theme>}</div> */}
       <Header></Header>
-      <div className="container  mx-auto overflow-y-hidden">
+      <div className="container  mx-auto ">
         <Outlet />
       </div>
 

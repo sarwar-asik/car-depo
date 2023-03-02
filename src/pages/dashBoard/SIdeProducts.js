@@ -19,9 +19,12 @@ const SIdeProducts = () => {
   }, [user?.email]);
   
   return (
-    <div className="px-3 text-slate-800 text-[18px]">
-        <h2 className="text-3xl font-bold font-serif">Your Products</h2>
-      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 mt-3 gap-6">
+    <div className="px-3 text-slate-800 text-[18px] relative ">
+        <nav className="min-w-[85%] sticky top-0 mx-auto flex justify-between my-2 py-2 px-3 rounded bg-slate-200 mt-3  ">
+          <h2 className="text-xl font-bold text-center"> Your Products </h2>
+          <h2 className="text-xl font-bold text-center">To Sell  </h2>
+        </nav>
+      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 mt-3 gap-6">
         {advertises?.map((p) => {
           const { name, price, img, descriptions } = p;
           return (
@@ -55,7 +58,7 @@ const SIdeProducts = () => {
         })}
       </section>
     
-      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 mt-3 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 mt-3 gap-6">
         {advertises?.map((p) => {
           const { name, price, img, descriptions } = p;
           return (
@@ -89,7 +92,7 @@ const SIdeProducts = () => {
         })}
       </section>
     
-      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 mt-3 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 mt-3 gap-6">
         {advertises?.map((p) => {
           const { name, price, img, descriptions } = p;
           return (
@@ -123,7 +126,7 @@ const SIdeProducts = () => {
         })}
       </section>
     
-      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 mt-3 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 mt-3 gap-6">
         {advertises?.map((p) => {
           const { name, price, img, descriptions } = p;
           return (
