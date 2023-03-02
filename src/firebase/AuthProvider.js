@@ -47,10 +47,9 @@ const AuthProvider = ({ children }) => {
   }, [auth]);
 
   const logout = () => {
-    setLoading(false)
-    return signOut(auth)
+    setLoading(false);
+    return signOut(auth);
   };
-
   const gitProvider = new GithubAuthProvider();
 
   const [tokenEmail, setTokenEmail] = useState("");
@@ -69,7 +68,6 @@ const AuthProvider = ({ children }) => {
         const email = "github@gmail.com";
         const type = "buyer";
         const users = { name, email, type };
-    
       })
       .catch((err) => console.log(err));
   };
@@ -89,17 +87,17 @@ const AuthProvider = ({ children }) => {
   const provider = new GoogleAuthProvider();
 
   const googleSignIn = () => {
-    return signInWithPopup(auth, provider)
+    return signInWithPopup(auth, provider);
   };
-
- 
+  const [categories, setCategories] = useState([]);
+  
 
   const authInfo = {
     createUser,
     login,
     logout,
     user,
-    gitSignIn,
+    gitSignIn,    
     googleSignIn,
     dashbtn,
     setdashbtn,

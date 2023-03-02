@@ -94,6 +94,15 @@ const Header = () => {
               Sign Up
             </Link>
           </li>
+          {/* <li
+            className={`${
+              theme ? "textColorHover1" : "textColorHover2"
+            } rounded-full `}
+          >
+            <Link onClick={closeDash} to="/adminDash">
+              Admin Dashboard
+            </Link>
+          </li> */}
         </>
       )}
     </React.Fragment>

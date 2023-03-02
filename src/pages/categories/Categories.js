@@ -1,24 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useReducer } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../firebase/AuthProvider";
 import Loader from "../../loader/Loader";
+import { categoriesActionType } from "../../Redux/state/actionType";
+import {
+  categoriesReducer,
+  initialState,
+} from "../../Redux/state/categoryState/CategoryReducer";
 import "../../shared/custom.css";
 
 const Categories = () => {
   const { theme } = useContext(AuthContext);
 
-  const [categories, setCategories] = useState([]);
-
-  const [loading, setlodaing] = useState(false);
-
+  // from redux   ////
+  const [state, dispatch] = useReducer(categoriesReducer, initialState);
+  const { categories, loading, error } = state;
+  console.log("state", state);
   useEffect(() => {
-    axios.get(`https://sh-server-site.vercel.app/categories`).then((data) => {
-      //   console.log(data.data);
-      setCategories(data.data);
-      setlodaing(true);
-    });
+    dispatch({ type: categoriesActionType.FETCHING_START });
+    axios
+      .get(`https://sh-server-site.vercel.app/categories`)
+      .then((data) => {
+        // setCategories(data.data);
+        dispatch({
+          type: categoriesActionType.FETCHING_SUCCESS,
+          payload: data.data,
+        });
+      })
+      .catch(() => {
+        dispatch({ type: categoriesActionType.FETCHING_ERROR });
+      });
   }, []);
 
   return (
@@ -35,21 +49,24 @@ const Categories = () => {
         We are servicing 3 Categories Products to customers with garranty and
         warranty{" "}
       </p>
-      {loading || <Loader />}
+      {state?.loading && <Loader />}
       <div
         className="grid sm:grid-cols-1
     md:grid-cols-2 gap-4  lg:grid-cols-3 "
       >
-        {categories.map((category) => {
+        {categories?.map((category) => {
           return (
             <Link
               to={`/products/${category._id}`}
               key={category?._id}
-              
               className="shadow-2xl hover:-translate-y-9 duration-[700ms] rounded-[10px]  ease-in-out mt-10 "
             >
-              <div data-aos="fade-up" data-aos-anchor-placement="center-bottom"
-              data-aos-duration="1200"  className="card mx-auto">
+              <div
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom"
+                data-aos-duration="1200"
+                className="card mx-auto"
+              >
                 <figure>
                   <img
                     className=" h-[310px] opacity-[0.8]  hover:opacity-[1] duration-150  rounded-[0px] w-full"

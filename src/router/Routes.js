@@ -17,10 +17,13 @@ import Allbuyer from "../pages/dashBoard/admin/Allbuyer";
 import ReportedItem from "../pages/dashBoard/admin/ReportedItem";
 import Blogs from "../pages/blogs/Blogs";
 import PrivateRoute from "./PrivateRoute";
-import PractiseModules from "../practiseModule/PractiseModules";
+
 import ProductsDetails from "../pages/products/ProductsDetails";
 import Categories from "../pages/categories/Categories";
 import Advertisement from "../pages/advertise/Advertisement";
+import Redux from "../Redux/Redux";
+import AdminDashBoard from "../pages/dashBoard/AdminDashBoard";
+import SIdeProducts from "../pages/dashBoard/SIdeProducts";
 
 const router = createBrowserRouter([
   {
@@ -31,14 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/modules",
-        element: <PractiseModules />,
-      },
-      {
-        path: "/categories",
-        element: <Categories />,
       },
       {
         path: "/signup",
@@ -62,16 +57,11 @@ const router = createBrowserRouter([
         path: "/products/:id",
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
-        element:<Products/>
+        element: <Products />,
       },
       {
-        path:"/advertised",
-        element:<Advertisement/>
-
-      },
-      {
-        path:"/productDetails/:_id",
-        element:<ProductsDetails/>
+        path: "/productDetails/:_id",
+        element: <ProductsDetails />,
       },
       {
         path: "/selllerproducts",
@@ -105,8 +95,30 @@ const router = createBrowserRouter([
         element: <ReportedItem />,
       },
       {
-        path:'/blogs',
-        element:<Blogs/>
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/redux",
+        element: <Redux />,
+      },
+      {
+        path:"/adminDash",
+        element:<AdminDashBoard/>,
+        children:[
+          {
+            path:"/adminDash",
+            element:<SIdeProducts/>
+          },
+          {
+            path:"/adminDash/products",
+            element:<SIdeProducts/>
+          },
+          {
+            path:"/adminDash/categories",
+            element:<Advertisement/>
+          },
+        ]
       }
     ],
   },

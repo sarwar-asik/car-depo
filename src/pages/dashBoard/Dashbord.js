@@ -76,6 +76,12 @@ const Dashbord = () => {
           >
             My Orders
           </Link>
+          <Link
+            to="/redux"
+            className={`${theme ? "textColorHover1 " : "textColorHover2"}`}
+          >
+            Redux Practise
+          </Link>
         </>
       )}
     </React.Fragment>
@@ -84,7 +90,6 @@ const Dashbord = () => {
   if (!roleCheck) {
     return <progress className="progress w-56"></progress>;
   }
-
   return (
     <div>
       <div className="drawer drawer-mobile">
