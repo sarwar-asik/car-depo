@@ -21,7 +21,7 @@ const Main = () => {
       </div>
 
       <div className="w-full mx-auto">
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ import Advertisement from "../pages/advertise/Advertisement";
 import Redux from "../Redux/Redux";
 import AdminDashBoard from "../pages/dashBoard/AdminDashBoard";
 import SIdeProducts from "../pages/dashBoard/SIdeProducts";
+import AllProducts from "../pages/products/AllProducts";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://sh-server-site.vercel.app/products/${params.id}`),
         element: <Products />,
+      },
+      {
+        path:"/allProducts",
+        element:<AllProducts/>
       },
       {
         path: "/productDetails/:_id",

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.12",
     "@react-icons/all-files": "^4.1.0",
     "@stripe/react-stripe-js": "^1.15.0",
     "@stripe/stripe-js": "^1.44.1",

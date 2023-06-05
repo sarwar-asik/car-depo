@@ -7,12 +7,46 @@ import useRoleCheck from "../../hooks/useRoleCheck";
 import RouteBanner from "../../shared/routeBanners/RouteBanner";
 import BookModal from "../bookModal/BookModal";
 
-const Products = () => {
+const AllProducts = () => {
   const { user, theme } = useContext(AuthContext);
   const navigate = useNavigate();
   const [roleCheck] = useRoleCheck(user?.email);
   // console.log(roleCheck);
-  const products = useLoaderData();
+ 
+
+
+
+
+
+  // console.log(user?.email);
+
+
+
+  const [loading, setLoading] = useState(false);
+
+  const [productsData, seproductsData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://sh-server-site.vercel.app/advertise?email=${user?.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((data) => {
+        //   console.log(data.data);
+        seproductsData(data.data);
+        setLoading(true);
+      });
+  }, [user?.email]);
+
+
+
+  const products = productsData
+
+
+
+
   // console.log(products);
   const [productInfo, setproducts] = useState({});
   const [isModal, setModal] = useState(true);
@@ -87,7 +121,7 @@ const Products = () => {
         {products[0]?.category} Products
       </h1>
       <div className="grid lg:grid-cols-3 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
-        {products.map((prod) => {
+        {products?.map((prod) => {
           const getUser = users.find((user) => user.email === prod.email);
           const {
             name,
@@ -150,4 +184,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default AllProducts;

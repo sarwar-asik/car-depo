@@ -31,9 +31,9 @@ const Hero1 = () => {
             data-aos-offset="300"
             data-aos-easing="ease-in-sine"
           >
-            <h1 className="text-5xl font-bold  font-serif">
-              {" "}
-              Brand New Service{" "}
+            <h1 className="text-[3rem] font-bold  font-serif">
+           Sell You Products
+        
             </h1>
             <p
               className={` text-lg font-semibold mb-5 ${
@@ -46,7 +46,7 @@ const Hero1 = () => {
             </p>
 
             <Link to="/signup" className="btn1 py-3 px-3 font-bold mt-10 ">
-              Connect
+              Register
             </Link>
           </div>
         </div>

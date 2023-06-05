@@ -37,7 +37,7 @@ const Categories = () => {
 
   return (
     <div className={` my-5 `}>
-      <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
+      <h1 className="text-[3rem] text-center py-5 font-bold mt-10 font-serif">
         Products Categories
       </h1>
       <p

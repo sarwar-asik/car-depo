@@ -1,19 +1,59 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
+
 const AdminDashBoard = () => {
   const itemData = [
     { name: "Categories", path: "/adminDash/categories" },
     { name: "Products", path: "/adminDash/products" },
     { name: "All User", path: "/adminDash/categories" },
-    { name: "Seller", path: "/adminDash/products" },
+    { name: "Seller", path: "/adminDash/products",options:[
+      {
+        name:"Product1"
+      },
+      {
+        name:"Product2"
+      },
+      {
+        name:"Product3"
+      },
+      {
+        name:"Product4"
+      },
+    ] },
     { name: "Our Sell", path: "/adminDash/categories" },
     { name: "Document", path: "/adminDash/products" },
-    { name: "Sold ", path: "/adminDash/categories" },
+    { name: "Sold ", path: "/adminDash/categories",options:[
+      {
+        name:"Product1"
+      },
+      {
+        name:"Product2"
+      },
+      {
+        name:"Product3"
+      },
+      {
+        name:"Product4"
+      },
+    ]  },
     { name: "All User", path: "/adminDash/categories" },
     { name: "Seller", path: "/adminDash/products" },
     { name: "Our Sell", path: "/adminDash/categories" },
-    { name: "Document", path: "/adminDash/products" },
+    { name: "Document", path: "/adminDash/products",options:[
+      {
+        name:"Product1"
+      },
+      {
+        name:"Product2"
+      },
+      {
+        name:"Product3"
+      },
+      {
+        name:"Product4"
+      },
+    ]  },
     { name: "Sold ", path: "/adminDash/categories" },
     { name: "Document", path: "/adminDash/products" },
     { name: "Sold ", path: "/adminDash/categories" },
@@ -66,7 +106,21 @@ const AdminDashBoard = () => {
           }`}
         >
           {itemData?.map((item) => {
-            return <Link to={item.path}>{item?.name}</Link>;
+            return <Link to={item.path}>
+            {item?.options?
+            <select className="outline-none ">
+              <option disabled className="text-slate-700 font-semibold">{item.name}</option>
+              {item?.options?.map(opt=>{
+                return <>
+               
+                <option className="text-slate-700 text-[14px] font-[500]">{opt?.name}</option>
+                </>
+              })}
+            </select>
+            :item.name}
+
+            
+            </Link>;
           })}
         </section>
       )}

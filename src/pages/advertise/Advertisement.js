@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../firebase/AuthProvider";
 import Loader from "../../loader/Loader";
 import BookModal from "../bookModal/BookModal";
@@ -14,6 +14,7 @@ const Advertisement = () => {
   const [loading, setLoading] = useState(false);
 
   const [advertises, setAdvertise] = useState([]);
+
   useEffect(() => {
     axios
       .get(`https://sh-server-site.vercel.app/advertise?email=${user?.email}`, {
@@ -52,8 +53,8 @@ const Advertisement = () => {
   };
 
   return (
-    <div className={` max-w-[98%] my-10 mx-auto  mt-[30px] ${theme || "t"}`}>
-      <h1 className="text-5xl text-center py-5 font-bold mt-10 font-serif">
+    <div className={` max-w-[98%] my-10 mx-auto  mt-[30px] ${theme || "t"} `}>
+      <h1 className="text-[3rem] text-center py-5 font-bold mt-10 font-serif">
         Available Products
       </h1>
       <p
@@ -64,12 +65,13 @@ const Advertisement = () => {
         These Projects are advertised by the Seller who are verified .The
         Products did not sell yet .
       </p>
+
       {loading || <Loader />}
       <div
         className="mt-9 grid sm:grid-cols-1
     md:grid-cols-2  lg:grid-cols-3 gap-5"
       >
-        {advertises?.map((advertise) => {
+        {advertises?.slice(0, 4).map((advertise) => {
           const { name, price, img, descriptions } = advertise;
           // console.log(paids);
           const alreadyPaid = paids.find(
@@ -124,6 +126,13 @@ const Advertisement = () => {
           }
         })}
       </div>
+      <section className="w-[14rem] mx-auto mt-5 text-center !rounded-t-[50%]  btn1 px-7 font-semibold font-serif  py-4">
+        {advertises?.length > 3 && (
+          <Link to='/allProducts' className="w-full  ">
+            See {advertises?.length} Car
+          </Link>
+        )}
+      </section>
     </div>
   );
 };
