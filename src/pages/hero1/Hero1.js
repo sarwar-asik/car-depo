@@ -36,7 +36,7 @@ const Hero1 = () => {
         
             </h1>
             <p
-              className={` text-lg font-semibold mb-5 ${
+              className={` text-[1em] font-semibold mb-5 ${
                 theme ? "textColorHover1" : "textColorHover2"
               }`}
             >

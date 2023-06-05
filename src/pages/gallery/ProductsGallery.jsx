@@ -2,10 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../shared/custom.css";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../loader/Loader";
 
 const ProductsGallery = () => {
   const [productsData, setproductsData] = useState([]);
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
 
   const detailHandler = (carDetails) => {
     navigate(`/productDetails/${carDetails?._id}`, { state: carDetails });
@@ -22,10 +25,11 @@ const ProductsGallery = () => {
       .then((data) => {
         //   console.log(data.data);
         setproductsData(data.data);
+        setLoading(true);
       });
   }, []);
   return (
-    <div className="my-3 bg-slate-100 rounded-md shadow-2xl my-3">
+    <div className=" bg-slate-100 rounded-md shadow-2xl my-3">
       <h3 className="text-[3rem]  text-center py-5 font-bold mt-10 font-serif">
         {" "}
         Our Product Gallery
@@ -53,14 +57,15 @@ const ProductsGallery = () => {
           />
         </svg>
         </Link>
+        {loading || <Loader/>}
         <div className="carousel !gap-4 rounded-box w-[90%] mx-auto">
           {productsData?.map((item) => {
             return (
               <div
               onClick={() => detailHandler(item)}
-               className="carousel-item h-[18rem] w-[22rem] items-center rounded-tr-[100px] bg-cover bg-center bg-no-repeat "   style={{ backgroundImage: `url(${item?.img})` }}>
+               className="carousel-item cursor-alias h-[18rem] w-[22rem] items-center rounded-tr-[100px] bg-cover bg-center bg-no-repeat "   style={{ backgroundImage: `url(${item?.img})` }}>
             
-               <h4 className="mx-auto hidden inner-text text-w text-[1.5rem]  p-2 rounded  font-extrabold font-serif">
+               <h4 className="mx-auto hidden inner-text text-w text-[1.5rem]   rounded  font-extrabold font-serif bg-slate-200 p-3">
                see Products
                </h4> 
               </div>

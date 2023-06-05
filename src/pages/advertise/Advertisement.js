@@ -128,7 +128,7 @@ const Advertisement = () => {
       </div>
       <section className="w-[14rem] mx-auto mt-5 text-center !rounded-t-[50%]  btn1 px-7 font-semibold font-serif  py-4">
         {advertises?.length > 3 && (
-          <Link to='/allProducts' className="w-full  ">
+          <Link to='/allProducts' className="w-full  cursor-pointer">
             See {advertises?.length} Car
           </Link>
         )}

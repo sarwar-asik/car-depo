@@ -7,7 +7,7 @@ const Contacts = () => {
       <h1 className=" text-5xl text-center text-gray-50 font-bold font-serif">
         Contact Us{" "}
       </h1>
-      <p className="text-center text-slate-300 text-xl mt-2 mb-7">
+      <p className="text-center text-slate-300 text-xl font-mono mt-2 mb-7">
         {" "}
         You can connect with us for any query . Write your message here .{" "}
       </p>

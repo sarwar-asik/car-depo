@@ -89,6 +89,15 @@ const Header = () => {
             <Link
               className={`${theme ? "textColorHover1" : "textColorHover2"}`}
               onClick={closeDash}
+              to="/allProducts"
+            >
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={`${theme ? "textColorHover1" : "textColorHover2"}`}
+              onClick={closeDash}
               to="/signup"
             >
               Sign Up
@@ -139,7 +148,7 @@ const Header = () => {
           <Link
             onClick={closeDash}
             to="/"
-            className={` lg:text-3xl sm:text-2xl mr-4 font-serif font-bold ${
+            className={` text-[2em] mr-4 font-serif font-bold ${
               theme ? "textColor1" : "textColorHover2"
             }`}
           >

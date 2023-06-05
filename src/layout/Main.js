@@ -16,7 +16,7 @@ const Main = () => {
     <div className={`static ${theme ? "textColor1" : "textColor2"} `}>
       {/* <div className="fixed right-[px] top-[60px] z-40 ">{<Theme></Theme>}</div> */}
       <Header></Header>
-      <div className="container  mx-auto ">
+      <div className="containe  mx-auto ">
         <Outlet />
       </div>
 

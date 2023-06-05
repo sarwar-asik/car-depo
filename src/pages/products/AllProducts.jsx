@@ -6,6 +6,7 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import useRoleCheck from "../../hooks/useRoleCheck";
 import RouteBanner from "../../shared/routeBanners/RouteBanner";
 import BookModal from "../bookModal/BookModal";
+import Loader from "../../loader/Loader";
 
 const AllProducts = () => {
   const { user, theme } = useContext(AuthContext);
@@ -120,6 +121,7 @@ const AllProducts = () => {
       >
         {products[0]?.category} Products
       </h1>
+      {loading || <Loader />}
       <div className="grid lg:grid-cols-3 gap-3 my-5 sm:grid-cols-1 md:grid-cols-2 ">
         {products?.map((prod) => {
           const getUser = users.find((user) => user.email === prod.email);
