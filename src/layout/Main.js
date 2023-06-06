@@ -21,7 +21,7 @@ const Main = () => {
   }, []);
 
   return (
-    <div className="h-screen overflow-y-scroll scrollbar-width-thin scrollbar-thumb-red" >
+    <div className="" >
       {isLoading ? (
         <img src={mainLoader} className="w-[300px] h-[250px] mx-auto my-auto mt-[15rem] rounded-xl" alt="" />
       ) : (
