@@ -61,8 +61,16 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path:"/allProducts",
-        element:<AllProducts/>
+        path: "/allProducts",
+        element: <AllProducts />,
+      },
+      {
+        path: "/categories",
+        element: <Categories />,
+      },
+      {
+        path: "/advertised",
+        element: <Advertisement />,
       },
       {
         path: "/productDetails/:_id",
@@ -107,24 +115,25 @@ const router = createBrowserRouter([
         path: "/redux",
         element: <Redux />,
       },
+
       {
-        path:"/adminDash",
-        element:<AdminDashBoard/>,
-        children:[
+        path: "/adminDash",
+        element: <AdminDashBoard />,
+        children: [
           {
-            path:"/adminDash",
-            element:<SIdeProducts/>
+            path: "/adminDash",
+            element: <SIdeProducts />,
           },
           {
-            path:"/adminDash/products",
-            element:<SIdeProducts/>
+            path: "/adminDash/products",
+            element: <SIdeProducts />,
           },
           {
-            path:"/adminDash/categories",
-            element:<Advertisement/>
+            path: "/adminDash/categories",
+            element: <Advertisement />,
           },
-        ]
-      }
+        ],
+      },
     ],
   },
 ]);

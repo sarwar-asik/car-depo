@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
@@ -9,6 +9,7 @@ import { AuthContext } from "./firebase/AuthProvider";
 
 function App() {
   const {theme} = useContext(AuthContext)
+  
 
   return (
     <div className={`${theme?' App':'bgTheme2  App'} max-w-7xl mx-auto `}  >

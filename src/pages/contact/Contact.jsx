@@ -1,9 +1,21 @@
 import React from "react";
 import "../../shared/custom.css";
+import { toast } from "react-toastify";
 
 const Contacts = () => {
+  const contactHandler = (event) => {
+    event.preventDefault(); 
+    toast.success("Sent your Message");
+    const form = event.target;
+    form.reset();
+  };
   return (
-    <div className="py-[130px] bgThem1 rounded hover:shadow-xl my-5">
+    <div
+      data-aos="fade-up"
+      data-aos-anchor-placement="center-bottom"
+      data-aos-duration="1200"
+      className="py-[130px] bgThem1 rounded hover:shadow-xl my-5"
+    >
       <h1 className=" text-5xl text-center text-gray-50 font-bold font-serif">
         Contact Us{" "}
       </h1>
@@ -11,15 +23,21 @@ const Contacts = () => {
         {" "}
         You can connect with us for any query . Write your message here .{" "}
       </p>
-      <div className="text-center">
-        <input
-          type="text"
-          placeholder="Write here"
-          className="h-[48px] input-[white] rounded-xl w-full rounded-r-none max-w-xs border-r-0 px-3 input input-bordered "
-        />
-        <button className="bg-slate-700 h-[48px] text-slate-100 px-5 rounded-r-md">
-          Message{" "}
-        </button>
+      <div className="text-center font-semibold">
+        <form onSubmit={contactHandler} action="">
+          <input
+            type="text"
+            required
+            placeholder="Write here"
+            className="h-[48px] input-[white] rounded-xl w-full rounded-r-none max-w-xs border-r-0 px-3 input input-bordered "
+          />
+          <button
+            type="submit"
+            className="bg-slate-700 h-[48px] text-slate-100 px-5 rounded-r-md"
+          >
+            Message{" "}
+          </button>
+        </form>
       </div>
     </div>
   );

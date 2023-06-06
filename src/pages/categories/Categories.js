@@ -18,6 +18,7 @@ const Categories = () => {
   // from redux   ////
   const [state, dispatch] = useReducer(categoriesReducer, initialState);
   const { categories, loading, error } = state;
+  
   console.log("state", state);
   useEffect(() => {
     dispatch({ type: categoriesActionType.FETCHING_START });
@@ -69,7 +70,7 @@ const Categories = () => {
               >
                 <figure>
                   <img
-                    className=" h-[310px] opacity-[0.8]  hover:opacity-[1] duration-150  rounded-[0px] w-full"
+                    className=" h-[310px] opacity-[0.8]  hover:opacity-[1] duration-150  rounded-[0pxinde] w-full"
                     src={category.img}
                     alt=""
                   />

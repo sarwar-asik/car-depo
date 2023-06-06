@@ -7,11 +7,12 @@ import Hero1 from "../hero1/Hero1";
 import ProductsGallery from "../gallery/ProductsGallery";
 import Contacts from "../contact/Contact";
 
+
 const Home = () => {
 
 
   return (
-    <div>
+    <div >
       <Banner />
       <Categories />
 
