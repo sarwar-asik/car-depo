@@ -8,7 +8,9 @@ const Dashbord = () => {
 
   console.log("from dashboard", user?.email);
 
-  const [roleCheck] = useRoleCheck(user?.email);
+  // const [roleCheck] = useRoleCheck(user?.email);
+  const roleCheck ="seller";
+  
   console.log(roleCheck);
   const ItemDash = (
     <React.Fragment>

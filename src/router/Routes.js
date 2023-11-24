@@ -25,6 +25,7 @@ import Redux from "../Redux/Redux";
 import AdminDashBoard from "../pages/dashBoard/AdminDashBoard";
 import SIdeProducts from "../pages/dashBoard/SIdeProducts";
 import AllProducts from "../pages/products/AllProducts";
+import DashBoardLayout from "../layout/DashBoardLayout";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
             element: <Advertisement />,
           },
         ],
+      },
+      {
+        path: "/dashboardLayout",
+        element: <DashBoardLayout />,
       },
     ],
   },
