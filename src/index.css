@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
+  /* background-color: blue; */
   /* background-color: blue;
   width: 100%; */
 }

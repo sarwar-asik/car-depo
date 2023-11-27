@@ -55,7 +55,7 @@ const Advertisement = () => {
   return (
     <div className={` max-w-[98%] my-10 mx-auto  mt-[30px] ${theme || "t"} `}>
       <h1 className="text-[3rem] text-center py-5 font-bold mt-10 font-serif">
-        Available Products
+       Our Products
       </h1>
       <p
         className={` text-lg font-semibold text-center ${
@@ -77,7 +77,7 @@ const Advertisement = () => {
           const alreadyPaid = paids.find(
             (pay) => pay?.name === advertise?.name
           );
-          console.log("from advertise", productInfo?.name);
+          // console.log("from advertise", productInfo?.name);
           // console.log(alreadyPaid);
           if (!alreadyPaid) {
             return (
@@ -86,6 +86,7 @@ const Advertisement = () => {
                 data-aos-anchor-placement="center-bottom"
                 data-aos-duration="1200"
                 className="card  mx-auto w-[90%] shadow-lg  "
+                key={advertise?._id}
               >
                 <figure className="">
                   <img
@@ -129,7 +130,7 @@ const Advertisement = () => {
       <section className="w-[14rem] mx-auto mt-5 text-center !rounded-t-[50%]  btn1 px-7 font-semibold font-serif  py-4">
         {advertises?.length > 3 && (
           <Link to='/allProducts' className="w-full  cursor-pointer">
-            See {advertises?.length} Car
+            See Other Cars
           </Link>
         )}
       </section>

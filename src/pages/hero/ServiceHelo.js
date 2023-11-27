@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ServiceHelo = () => {
   return (
-    <div>
+    <div className="mt-4">
       <div className="bg-slate-600 text-white relative z-10 py-14 md:py-16 xl:py-20">
         <div className="bg-[#258b73]  absolute top-0 right-0 z-[-1] h-full w-1/2" />
         <div className="container mx-auto   py-3 rounded ">

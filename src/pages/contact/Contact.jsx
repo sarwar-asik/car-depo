@@ -29,11 +29,11 @@ const Contacts = () => {
             type="text"
             required
             placeholder="Write here"
-            className="h-[48px] input-[white] rounded-xl w-full rounded-r-none max-w-xs border-r-0 px-3 input input-bordered "
+            className="h-[48px] input-[white] rounded-xl w-full lg:rounded-r-none max-w-xs border-r-0 px-3 input input-bordered "
           />
           <button
             type="submit"
-            className="bg-slate-700 h-[48px] text-slate-100 px-5 rounded-r-md"
+            className="bg-slate-700 h-[48px] text-slate-100 rounded  px-5 lg:rounded-r-md lg:rounded-l-none"
           >
             Message{" "}
           </button>

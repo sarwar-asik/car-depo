@@ -1,5 +1,7 @@
 import React from "react";
-// import banner1 from "../../assets/banner1-removebg-preview.png";
+import banner1 from "../../assets/banner1.jpg";
+import banner2 from "../../assets/banner2.jpg";
+
 
 const Banner = () => {
   return (
@@ -7,14 +9,14 @@ const Banner = () => {
       <div className="carousel w-full mx-auto">
         <div id="item1" className="carousel-item w-full">
           <img
-            src="https://img.freepik.com/free-vector/white-convertible-car-isolated-white-vector_53876-66815.jpg?w=1380&t=st=1673079685~exp=1673080285~hmac=440b3d10f3d42c6c0b7496fd85392b0e7c1d1b2889bf0ac6e5d6a9d8e8bdee40"
+            src={banner1}
             alt=""
             className="w-full h-[590px] rounded-md"
           />
         </div>
         <div id="item2" className="carousel-item w-full">
           <img
-            src="https://as2.ftcdn.net/v2/jpg/02/65/74/87/1000_F_265748773_yeFazVnXHOdnjumA0wzXWL5FkXTuFyM3.jpg"
+             src={banner2}
             className="w-full h-[590px] rounded-md "
             alt=""
           />

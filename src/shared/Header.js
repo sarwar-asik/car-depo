@@ -67,7 +67,16 @@ const Header = () => {
         </>
       ) : (
         <>
-          <li>
+           <li>
+            <Link
+              className={`${theme ? "textColorHover1" : "textColorHover2"}`}
+              onClick={closeDash}
+              to="/allProducts"
+            >
+              Products
+            </Link>
+          </li>
+          {/* <li>
             <Link
               className={`${theme ? "textColorHover1" : "textColorHover2"}`}
               onClick={handleDashbtn}
@@ -75,7 +84,7 @@ const Header = () => {
             >
               Dashboard
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               className={`${theme ? "textColorHover1" : "textColorHover2"}`}
@@ -85,15 +94,7 @@ const Header = () => {
               Log In
             </Link>
           </li>
-          <li>
-            <Link
-              className={`${theme ? "textColorHover1" : "textColorHover2"}`}
-              onClick={closeDash}
-              to="/allProducts"
-            >
-              Products
-            </Link>
-          </li>
+       
           <li>
             <Link
               className={`${theme ? "textColorHover1" : "textColorHover2"}`}
