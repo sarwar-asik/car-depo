@@ -4,12 +4,12 @@ import { AuthContext } from "../../firebase/AuthProvider";
 import useRoleCheck from "../../hooks/useRoleCheck";
 
 const Dashbord = () => {
-  const { user, dashbtn, setdashbtn, theme } = useContext(AuthContext);
+  const { user, theme } = useContext(AuthContext);
 
   console.log("from dashboard", user?.email);
 
-  // const [roleCheck] = useRoleCheck(user?.email);
-  const roleCheck ="seller";
+  const [roleCheck] = useRoleCheck(user?.email);
+  // const roleCheck ="seller";
   
   console.log(roleCheck);
   const ItemDash = (
@@ -105,7 +105,7 @@ const Dashbord = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul
             className={`menu p-4 w-80 shadow-2xl font-bold font-serif  text-base-content  ${
-              theme ? " bg-slate-200" : " bg-slate-400"
+              theme ? " bg-slate-400" : " bg-slate-400"
             }`}
           >
             <li>{ItemDash}</li>

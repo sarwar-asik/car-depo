@@ -36,14 +36,17 @@ const Footer = () => {
           </a>
           <a
             href="https://github.com/sarwar-asik"
+
             className="text-2xl"
             target="_blank"
+            rel="noreferrer"
           >
             <FaGithub className="text-slate-700 bg-slate-100 text-2xl" />
           </a>
           <a
             href="https://web.facebook.com/profile.php?id=100087624802395"
             target="_blank"
+            rel="noreferrer"
           >
             <FaFacebook  className=" text-[#0a66c2] bg-white text-2xl"/>
           </a>
@@ -51,6 +54,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/sarwar-hossain-a29660257/"
             target="_blank"
             className="text-2xl"
+            rel="noreferrer"
           >
             <FaLinkedinIn className="bg-slate-100 text-2xl text-blue-800" />
           </a>

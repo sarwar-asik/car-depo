@@ -18,20 +18,20 @@ const Redux = () => {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
   // start form ///
-  const [FirstName, SetFirstName] = useState("");
-  const [LastName, SetLastName] = useState("");
-  const [Email, SetEmail] = useState("");
-  // const [FirstName,SetFirstName] = useState("")
-  const handleForm = (e) => {
-    e.preventDefault();
-    const data = {
-      FirstName,
-      LastName,
-      Email,
-    };
-    toast(FirstName);
-    console.log(data);
-  };
+  // const [FirstName, SetFirstName] = useState("");
+  // const [LastName, SetLastName] = useState("");
+  // const [Email, SetEmail] = useState("");
+  // // const [FirstName,SetFirstName] = useState("")
+  // const handleForm = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     FirstName,
+  //     LastName,
+  //     Email,
+  //   };
+  //   toast(FirstName);
+  //   console.log(data);
+  // };
 
   return (
     <div className="my-[50px]">

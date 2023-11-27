@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
 
 const SIdeProducts = () => {
-  const { user, theme } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [advertises, setAdvertise] = useState([]);
   useEffect(() => {
     axios

@@ -6,14 +6,14 @@ import { HiEye, HiEyeOff } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
-import app from "../../firebase/Firebase.config";
+// import app from "../../firebase/Firebase.config";
 import useToken from "../../hooks/useToken";
 import loginImg from "../../assets/login-removebg-preview.png";
 
 const Login = () => {
-  const auth = getAuth(app);
+  // const auth = getAuth(app);
   const navigate = useNavigate()
-  const { googleSignIn, user, theme, login, gitSignIn } =
+  const { googleSignIn, theme, login, gitSignIn } =
     useContext(AuthContext);
 
 

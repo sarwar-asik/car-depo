@@ -6,6 +6,7 @@ import Categories from "../categories/Categories";
 import Hero1 from "../hero1/Hero1";
 import ProductsGallery from "../gallery/ProductsGallery";
 import Contacts from "../contact/Contact";
+import ServiceHelo from "../hero/ServiceHelo";
 
 
 const Home = () => {
@@ -16,9 +17,10 @@ const Home = () => {
       <Banner />
       <Categories />
 
-     <Hero1></Hero1>
+      <ServiceHelo/>
       <Advertisement />
       <ProductsGallery/>
+     <Hero1></Hero1>
       <Contacts/>
     </div>
   );

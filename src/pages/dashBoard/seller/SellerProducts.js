@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
@@ -10,7 +10,7 @@ import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 const SellerProducts = () => {
   const { user, theme } = useContext(AuthContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // console.log(user.email);
 

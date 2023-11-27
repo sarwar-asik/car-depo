@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../firebase/AuthProvider";
 import useRoleCheck from "../../hooks/useRoleCheck";
@@ -11,7 +11,7 @@ import Loader from "../../loader/Loader";
 const AllProducts = () => {
   const { user, theme } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [roleCheck] = useRoleCheck(user?.email);
+  // const [roleCheck] = useRoleCheck(user?.email);
   // console.log(roleCheck);
  
 

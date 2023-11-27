@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../firebase/AuthProvider";
 import Loader from "../../../loader/Loader";
@@ -8,7 +8,7 @@ import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const { user, theme } = useContext(AuthContext);

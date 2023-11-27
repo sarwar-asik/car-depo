@@ -8,7 +8,7 @@ import RouteBanner from "../../../shared/routeBanners/RouteBanner";
 const Payment = () => {
   const order = useLoaderData();
   //   console.log(order);
-  const { price, name,img, _id, product } = order;
+  const { price, name,img,  product } = order;
   const stripePromise = loadStripe(process.env.REACT_APP_STRIP_PK);
 
   return (

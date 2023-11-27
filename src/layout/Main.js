@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 import { AuthContext } from "../firebase/AuthProvider";
 import Footer from "../shared/Footer";
 import Header from "../shared/Header";
-import mainLoader from "../assets/mainSpiningLoader.gif"
-import "../App.css"
+import mainLoader from "../assets/mainSpiningLoader.gif";
+import "../App.css";
 import "../shared/custom.css";
 
 const Main = () => {
@@ -21,15 +21,19 @@ const Main = () => {
   }, []);
 
   return (
-    <div className="" >
+    <div className="bg-red-40 w-full">
       {isLoading ? (
-        <img src={mainLoader} className="w-[300px] h-[250px] mx-auto my-auto mt-[15rem] rounded-xl" alt="" />
+        <img
+          src={mainLoader}
+          className="w-[300px] h-[250px] mx-auto my-auto mt-[15rem] rounded-xl"
+          alt=""
+        />
       ) : (
         <div className={`static ${theme ? "textColor1" : "textColor2"} `}>
           {" "}
           {/* <div className="fixed right-[px] top-[60px] z-40 ">{<Theme></Theme>}</div> */}
           <Header></Header>
-          <div className="containe  mx-auto ">
+          <div className="containe   mx-auto ">
             <Outlet />
           </div>
           <div className="w-full mx-auto">

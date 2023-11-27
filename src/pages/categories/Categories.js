@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useReducer } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const Categories = () => {
 
   // from redux   ////
   const [state, dispatch] = useReducer(categoriesReducer, initialState);
-  const { categories, loading, error } = state;
+  const { categories } = state;
   
   console.log("state", state);
   useEffect(() => {

@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
+// import axios from "axios";
+import React, { useContext,  useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -19,12 +19,12 @@ const AddProducts = () => {
   const {
     register,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm();
   // console.log(oneCategory);
 
-  const [oneCategory, setOneCategory] = useState({});
+  // const [oneCategory, setOneCategory] = useState({});
 
   const addProducts = (data) => {
     // console.log(data);

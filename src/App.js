@@ -12,7 +12,7 @@ function App() {
   
 
   return (
-    <div className={`${theme?' App':'bgTheme2  App'} max-w-7xl mx-auto `}  >
+    <div className={`${theme?' App':'bgTheme2  App'} max-w-7 mx-auto `}  >
       <RouterProvider router={router}></RouterProvider>
       <ToastContainer autoClose={1200} />
     </div>

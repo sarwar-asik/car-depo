@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import app from "./Firebase.config";
 import { toast } from "react-toastify";
-import useToken from "../hooks/useToken";
+// import useToken from "../hooks/useToken";
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -52,8 +52,8 @@ const AuthProvider = ({ children }) => {
   };
   const gitProvider = new GithubAuthProvider();
 
-  const [tokenEmail, setTokenEmail] = useState("");
-  const [token] = useToken(tokenEmail);
+  // const [tokenEmail, setTokenEmail] = useState("");
+  // const [token] = useToken(tokenEmail);
 
   const gitSignIn = () => {
     signInWithPopup(auth, gitProvider)
@@ -64,10 +64,10 @@ const AuthProvider = ({ children }) => {
         setToken(result.user.displayName);
 
         setLoading(true);
-        const name = user.displayName;
-        const email = "github@gmail.com";
-        const type = "buyer";
-        const users = { name, email, type };
+        // const name = user.displayName;
+        // const email = "github@gmail.com";
+        // const type = "buyer";
+        // const users = { name, email, type };
       })
       .catch((err) => console.log(err));
   };
@@ -89,7 +89,7 @@ const AuthProvider = ({ children }) => {
   const googleSignIn = () => {
     return signInWithPopup(auth, provider);
   };
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   
 
   const authInfo = {
@@ -103,6 +103,7 @@ const AuthProvider = ({ children }) => {
     setdashbtn,
     theme,
     setTheme,
+    loading
   };
   return (
     <div>
